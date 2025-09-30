@@ -1,0 +1,55 @@
+{
+  "name": "espanso-dynamic-forms",
+  "version": "0.1.0",
+  "description": "Alternative to native Espanso Forms feature using JSON Forms.",
+  "author": "Lumetirum <contact@lumetirum.com>",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "keywords": [
+    "espanso",
+    "forms",
+    "jsonforms",
+    "json-forms",
+    "yaml-forms",
+    "yaml-schema",
+    "json-schema",
+    "schema-forms",
+    "dynamic-forms",
+    "interactive-forms"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vue-tsc && vite build && electron-builder",
+		"build:linux": "vue-tsc && vite build && electron-builder --linux",
+		"build:mac": "vue-tsc && vite build && electron-builder --mac",
+		"build:win": "vue-tsc && vite build && electron-builder --win"
+  },
+  "dependencies": {
+    "@jsonforms/core": "^3.6.0",
+    "@jsonforms/vue": "^3.6.0",
+    "@jsonforms/vue-vuetify": "^3.6.0",
+    "@mdi/font": "^7.4.47",
+    "@vueuse/core": "^13.9.0",
+    "dayjs": "^1.11.18",
+    "js-yaml": "^4.1.0",
+    "liquidjs": "^10.21.1",
+    "maska": "^2.1.11",
+    "pinia": "^3.0.3",
+    "vue": "^3.4.21",
+    "vuetify": "^3.10.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
+    "prettier": "^3.6.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6",
+    "vite-plugin-electron": "^0.28.6",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue-tsc": "^2.0.26"
+  },
+  "main": "dist-electron/main.js",
+  "packageManager": "yarn@4.6.0"
+}

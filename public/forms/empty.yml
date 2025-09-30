@@ -1,0 +1,53 @@
+schema:
+  type: object
+  properties:
+    message:
+      type: string
+      title: "Status Message"
+      default: "No configuration detected"
+    troubleshooting:
+      type: object
+      properties:
+        selectedTip:
+          type: string
+          title: "Select a troubleshooting tip"
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: "Error"
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/message"
+              options:
+                readonly: true
+            - type: Label
+              text: "⚠️ Configuration Not Found"
+            - type: Label
+              text: "The configuration file was not provided or could not be recognized."
+            - type: Label
+              text: "Please check the following:"
+            - type: Label
+              text: "• Ensure the config file exists in the correct location"
+            - type: Label
+              text: "• Verify the file format is valid (JSON/YAML)"
+
+    - type: Category
+      label: "Troubleshooting"
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Label
+              text: "🔧 Troubleshooting Tips"
+            - type: Label
+              text: "• Check if the config file path is correct"
+            - type: Label
+              text: "• Ensure the file extension matches expected format"
+
+data:
+  message: "Form configuration file not detected"
+  troubleshooting:
+    selectedTip: ""
