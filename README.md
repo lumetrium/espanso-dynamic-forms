@@ -11,7 +11,9 @@
  Create powerful, interactive forms with JSON Forms and insert the templated output anywhere with Espanso.
 </p>
 <p align="center">
-<img src="https://media.lumetrium.com/definer/other/espanso-dynamic-forms-demo.gif" />
+
+<video src="https://github.com/user-attachments/assets/be458a30-e3f3-423e-8b40-cf0d0f21f49a" loop="true" autoplay="autoplay" controls muted />
+
 </p>
 
 
