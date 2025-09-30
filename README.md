@@ -10,6 +10,10 @@
 <p align="center">
  Create powerful, interactive forms with JSON Forms and insert the templated output anywhere with Espanso.
 </p>
+<p align="center">
+<video src="https://media.lumetrium.com/definer/other/espanso-dynamic-forms-demo.mp4" width="320" height="240" controls></video>
+</p>
+
 
 
 ## About
@@ -324,5 +328,5 @@ template: |
   <img src="./public/logos/definer.png" style="margin-right: 1em" height="40px" align="left"/>
 </a>
 
-**[Definer - Popup Translator & Dictionary](https://chromewebstore.google.com/detail/definer-popup-dictionary/noagjioaihamoljcbelhdlldnmlgnkon?utm_source=teleprompter&utm_medium=referral&utm_content=readme)**  
+**[Definer - Popup Translator & Dictionary](https://chromewebstore.google.com/detail/definer-popup-dictionary/noagjioaihamoljcbelhdlldnmlgnkon?utm_source=espanso-dynamic-forms&utm_medium=referral&utm_content=readme)**  
 Instant definitions, translations, search, and AI results for words and phrases you select or type.
