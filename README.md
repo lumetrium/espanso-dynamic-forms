@@ -43,7 +43,7 @@ This tool allows you to move beyond basic text fields and create dynamic, valida
 
 ### 1. Create an Espanso Trigger
 
-Add this configuration to your Espanso config file (`~/.config/espanso/default.yml` on Linux/macOS or `%APPDATA%\espanso\default.yml` on Windows):
+Add this configuration to your Espanso config file (`~/.config/espanso/match/base.yml` on Linux/macOS or `%APPDATA%\espanso\match\base.yml` on Windows):
 
 ```yaml
 matches:
@@ -55,7 +55,7 @@ matches:
         type: script
         params:
           args:
-            - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe" 
+            - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe"
             - -- 
             - --form-config
             - "%CONFIG%/forms/demo.yml"
@@ -68,7 +68,7 @@ Create a form config file at `%CONFIG%/forms/demo.yml`.
 It can be named anything and placed anywhere, 
 just update the `--form-config` path in the Espanso trigger accordingly.
 
-The configuration has four main sections:
+The config file has four main sections:
 
 - **`schema`** - Defines data structure and validation rules
 - **`uischema`** - Defines form layout and UI components
@@ -106,6 +106,7 @@ schema:
   required:
     - types
     - content
+
 uischema:
   type: Categorization
   elements:
@@ -143,6 +144,15 @@ uischema:
         - type: Control
           scope: "#/properties/style"
           label: Style guidelines
+
+data:
+  type: comment
+  content: "{{clipboard}}"
+  style:
+    - Use a conversational, slightly informal style with simple language
+    - Use contractions like "you're" and "don't"
+    - Prioritize clarity with simple sentence structure
+
 template: |
   Help me reply to this {{type}}:
   ```
@@ -164,13 +174,6 @@ template: |
   {{context}}
   ```
   {% endif %}
-data:
-  type: comment
-  content: "{{clipboard}}"
-  style:
-    - Use a conversational, slightly informal style with simple language
-    - Use contractions like "you're" and "don't"
-    - Prioritize clarity with simple sentence structure
 
 ````
 
@@ -281,6 +284,11 @@ uischema:
       options:
         multi: false
 
+data:
+  subject: "{{clipboard}}"
+  priority: Medium
+  contact_name: ""
+
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}
@@ -291,11 +299,6 @@ template: |
 
   Regards,
   Me
-
-data:
-  subject: "{{clipboard}}"
-  priority: Medium
-  contact_name: ""
 ```
 
 </details>

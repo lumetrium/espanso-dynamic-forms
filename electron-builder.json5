@@ -1,51 +1,81 @@
-// @see - https://www.electron.build/configuration/configuration
 {
-  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "espanso-dynamic-forms",
-  "asar": true,
-  "productName": "EspansoDynamicForms",
-  "directories": {
-    "output": "release/${version}"
-  },
-  "files": [
-    "dist",
-    "dist-electron"
-  ],
-  "mac": {
-    "target": [
-      "dmg"
-    ],
-    "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
-  },
-  "win": {
-    "target": [
-      {
-        "target": "nsis",
-        "arch": [
-          "x64"
-        ]
-      },
+	"$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+	"appId": "espanso-dynamic-forms",
+	"asar": true,
+	"productName": "EspansoDynamicForms",
+	"directories": {
+		"output": "release/${version}"
+	},
+	"files": [
+		"dist",
+		"dist-electron"
+	],
+	"mac": {
+		"target": [
+			"dmg"
+		],
+		"artifactName": "${productName}-Mac-${version}-Installer.${ext}"
+	},
+	"win": {
+		"target": [
+			{
+				"target": "nsis",
+				"arch": [
+					"x64"
+				]
+			},
 			{
 				"target": "portable",
 				"arch": ["x64", "ia32"]
 			}
-    ],
-  },
-  "nsis": {
-    "oneClick": false,
-    "perMachine": false,
-    "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false,
+		]
+	},
+	"nsis": {
+		"oneClick": false,
+		"perMachine": false,
+		"allowToChangeInstallationDirectory": true,
+		"deleteAppDataOnUninstall": false,
 		"runAfterFinish": false,
 		"artifactName": "${productName}-${version}-Windows-Setup.${ext}"
-  },
+	},
 	"portable": {
 		"artifactName": "${productName}-${version}-Windows-Portable.${ext}"
 	},
-  "linux": {
-    "target": [
-      "AppImage"
-    ],
-    "artifactName": "${productName}-Linux-${version}.${ext}"
-  }
+	"linux": {
+		"target": [
+			{
+				"target": "AppImage",
+				"arch": ["x64"]
+			},
+			{
+				"target": "deb",
+				"arch": ["x64"]
+			}
+		],
+		"category": "Utility",
+		"synopsis": "Espanso Dynamic Forms",
+		"description": "Dynamic form creation tool for Espanso text expander"
+	},
+	"deb": {
+		"artifactName": "${productName}-${version}-Linux.${ext}",
+		"depends": [
+			"libgtk-3-0",
+			"libnotify4",
+			"libnss3",
+			"libxss1",
+			"libxtst6",
+			"xdg-utils",
+			"libatspi2.0-0",
+			"libdrm2",
+			"libxcomposite1",
+			"libxdamage1",
+			"libxrandr2",
+			"libgbm1",
+			"libxkbcommon0",
+			"libasound2"
+		]
+	},
+	"appImage": {
+		"artifactName": "${productName}-${version}-Linux.${ext}"
+	}
 }
