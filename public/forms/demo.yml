@@ -25,6 +25,7 @@ schema:
   required:
     - types
     - content
+
 uischema:
   type: Categorization
   elements:
@@ -51,6 +52,9 @@ uischema:
               label: My draft response
               options:
                 multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
             - type: Control
               scope: "#/properties/context"
               label: Additional context
@@ -62,6 +66,15 @@ uischema:
         - type: Control
           scope: "#/properties/style"
           label: Style guidelines
+
+data:
+  type: message
+  content: "{{clipboard}}"
+  style:
+    - Use a conversational, slightly informal style with simple language
+    - Use contractions like "you're" and "don't"
+    - Prioritize clarity with simple sentence structure
+
 template: |
   Help me reply to this {{type}}:
   ```
@@ -83,10 +96,3 @@ template: |
   {{context}}
   ```
   {% endif %}
-data:
-  type: comment
-  content: "{{clipboard}}"
-  style:
-    - Use a conversational, slightly informal style with simple language
-    - Use contractions like "you're" and "don't"
-    - Prioritize clarity with simple sentence structure

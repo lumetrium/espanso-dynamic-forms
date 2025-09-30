@@ -133,6 +133,9 @@ uischema:
               label: My draft response
               options:
                 multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
             - type: Control
               scope: "#/properties/context"
               label: Additional context
@@ -174,12 +177,9 @@ template: |
   {{context}}
   ```
   {% endif %}
-
 ````
 
 </details>
-
-> You can also ask AI to generate a form config for you – it knows the syntax well.
 
 ### 3. Try It Out
 
@@ -201,9 +201,9 @@ The following examples show a native Espanso form and its equivalent in Espanso 
     replace: |
       Subject: {{form1.subject}}
       Priority: {{form1.priority}}
-			
+      
       ---
-			
+      
       Hi {{form1.contact_name}},
 
       Just following up on our conversation about {{form1.subject}}.
@@ -292,9 +292,9 @@ data:
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}
-	
+  
   ---
-	
+  
   Hi {{contact_name | capitalize}},
 
   Just following up on our conversation about {{subject}}.
