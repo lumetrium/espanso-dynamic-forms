@@ -1,0 +1,57 @@
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+      default: ""
+    priority:
+      type: string
+      enum:
+        - High
+        - Medium
+        - Low
+      default: Medium
+    contact_name:
+      type: string
+      default: ""
+  required:
+    - subject
+    - priority
+    - contact_name
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+      label: Subject
+      options:
+        multi: false
+    - type: Control
+      scope: "#/properties/priority"
+      label: Priority
+      options:
+        format: radio
+    - type: Control
+      scope: "#/properties/contact_name"
+      label: Contact Name
+      options:
+        multi: false
+
+data:
+  subject: "{{clipboard}}"
+  priority: Medium
+  contact_name: ""
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority | upcase}}
+
+  ---
+
+  Hi {{contact_name | capitalize}},
+
+  Just following up on our conversation about {{subject}}.
+
+  Regards,
+  Me

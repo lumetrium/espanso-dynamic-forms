@@ -30,9 +30,9 @@ This tool allows you to move beyond basic text fields and create dynamic, valida
 - **Complete JSON Forms Support**: Anything you can do with JSON Forms, you can do here.
 - **Advanced Validation**: Required fields, pattern matching (regex), min/max length, and more.
 - **Conditional Visibility**: Show or hide form fields based on the values of other fields.
-- **Modern UI Widgets**: Enjoy access to date/time pickers, toggles, sliders, radio buttons, and dropdowns thanks to the [Vuetify renderer](https://jsonforms.io/docs/renderer-sets#vue-vuetify-renderer-set).
+- **Modern UI Components**: Use tabs, date/time pickers, toggles, sliders, and more thanks to the [Vuetify renderer](https://jsonforms.io/docs/renderer-sets#vue-vuetify-renderer-set).
 - **Complex Data Structures**: Easily handle arrays and nested objects.
-- **Flexible Output**: Use Liquid templating's logic (`if/else`, `case`) and filters to transform your data into any format, from a simple sentence to a complex markdown table or code block.
+- **Flexible Output**: Use Liquid templating's logic (`if/else`, `case`) and filters to transform your data into any format you need.
 
 ## Installation
 
@@ -55,7 +55,7 @@ matches:
         type: script
         params:
           args:
-            - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe"
+            - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe" # on Linux use "/usr/bin/espanso-dynamic-forms"
             - -- 
             - --form-config
             - "%CONFIG%/forms/demo.yml"
@@ -146,7 +146,7 @@ uischema:
           label: Style guidelines
 
 data:
-  type: comment
+  type: message
   content: "{{clipboard}}"
   style:
     - Use a conversational, slightly informal style with simple language
@@ -189,51 +189,51 @@ template: |
 
 
 ## Compare
+The following examples show a native Espanso form and its equivalent in Espanso Dynamic Forms config.
 
-Espanso’s built-in forms are great for simple prompts. But for complex UIs, validation, and maintainability, you'll likely want:
-
-- Real validation (required, enum, regex, min/max)
-- Rich widgets (selects, radios, date/time, sliders)
-- Layout control (categories, tabs, groups, conditional visibility)
-- Clean separation of schema, UI, defaults, and output template
 
 ### Native form example
 <details>
 <summary><strong>Click here to view a simple native Espanso form</strong></summary>
 
 ```yaml
-- trigger: :email
-  replace: "{{output}}"
-  vars:
-    - name: form1
-      type: form
-      params:
-        layout: |
-         Subject: [[subject]]
-         Priority: [[priority]]
-         ---
-         Hi [[contact_name]],
+  - trigger: :email
+    replace: |
+      Subject: {{form1.subject}}
+      Priority: {{form1.priority}}
+			
+      ---
+			
+      Hi {{form1.contact_name}},
 
-         Just following up on our conversation about [[subject]].
+      Just following up on our conversation about {{form1.subject}}.
 
-         Regards,
-         Me
-      fields:
-        subject:
-          type: text
-          multiline: false
-          default: "{{clipboard}}"
-        priority:
-          type: choice
-          values:
-            - High
-            - Medium
-            - Low
-          default: Medium
-        contact_name:
-          type: text
-          multiline: false
-          default: ""
+      Regards,
+      Me
+    vars:
+      - name: "form1"
+        type: form
+        params:
+          layout: |
+            Subject: [[subject]]
+            Priority: [[priority]]
+            Contact name [[contact_name]],
+          fields:
+            subject:
+              type: text
+              multiline: false
+              default: "{{clipboard}}"
+            priority:
+              type: choice
+              values:
+                - High
+                - Medium
+                - Low
+              default: Medium
+            contact_name:
+              type: text
+              multiline: false
+              default: ""
 ```
 
 </details>
@@ -292,7 +292,9 @@ data:
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}
+	
   ---
+	
   Hi {{contact_name | capitalize}},
 
   Just following up on our conversation about {{subject}}.
