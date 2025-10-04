@@ -1,6 +1,6 @@
 {
   "name": "espanso-dynamic-forms",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Alternative to native Espanso Forms feature using JSON Forms.",
   "author": "Lumetirum <contact@lumetirum.com>",
   "license": "GPL-3.0-only",
@@ -50,6 +50,5 @@
     "vite-plugin-electron-renderer": "^0.14.5",
     "vue-tsc": "^2.0.26"
   },
-  "main": "dist-electron/main.js",
-  "packageManager": "yarn@4.6.0"
+  "main": "dist-electron/main.js"
 }

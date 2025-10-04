@@ -56,12 +56,9 @@ jobs:
         run: |
           brew install python-setuptools
 
-      - name: Install corepack
-        run: corepack enable && corepack prepare yarn@4.6.0 --activate
-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache yarn dependencies
         uses: actions/cache@v4
@@ -74,7 +71,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build Linux
         if: matrix.os == 'ubuntu-latest'
@@ -86,19 +83,19 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: --max-old-space-size=8192
 
-#      - name: Build Mac
-#        if: matrix.os == 'macos-latest'
-#        run: |
-#          sudo -H pip install setuptools
-#          yarn build:mac
-#        env:
-#          CSC_LINK: ${{ secrets.CSC_LINK }}
-#          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-#          APPLE_ID: ${{ secrets.APPLE_ID }}
-#          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-#          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          NODE_OPTIONS: --max-old-space-size=8192
+      #      - name: Build Mac
+      #        if: matrix.os == 'macos-latest'
+      #        run: |
+      #          sudo -H pip install setuptools
+      #          yarn build:mac
+      #        env:
+      #          CSC_LINK: ${{ secrets.CSC_LINK }}
+      #          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+      #          APPLE_ID: ${{ secrets.APPLE_ID }}
+      #          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+      #          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      #          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #          NODE_OPTIONS: --max-old-space-size=8192
 
       - name: Build Windows
         if: matrix.os == 'windows-latest'
