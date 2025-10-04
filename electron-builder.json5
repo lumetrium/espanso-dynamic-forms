@@ -24,10 +24,6 @@
 					"x64"
 				]
 			},
-			{
-				"target": "portable",
-				"arch": ["x64", "ia32"]
-			}
 		],
 		"icon": "public/logos/edf-bg-rounded.ico",
 	},
