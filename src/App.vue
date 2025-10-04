@@ -136,4 +136,14 @@ async function submitForm() {
 .v-row {
 	margin: auto;
 }
+
+.v-input.vertical .v-field__field > .d-flex:has(> .v-input) {
+	flex-flow: column;
+	width: 100%;
+	padding: 16px 12px 8px;
+}
+
+.v-input.vertical .v-field__field .v-checkbox-btn {
+	--v-input-control-height: 36px;
+}
 </style>

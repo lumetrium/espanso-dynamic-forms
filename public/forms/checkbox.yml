@@ -1,0 +1,36 @@
+schema:
+  type: object
+  properties:
+    selections:
+      type: array
+      items:
+        type: string
+        enum:
+          - First choice
+          - Second choice
+          - Third choice
+          - Fourth choice
+      uniqueItems: true
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/selections"
+      label: Select Your Options
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical
+
+data:
+  selections: []
+
+template: |
+  {% if selections.size > 0 %}
+  You selected:
+  - {{ selections | join: "\n- " }}
+  {% else %}
+  No items selected
+  {% endif %}
