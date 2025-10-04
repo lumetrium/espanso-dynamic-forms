@@ -1,0 +1,24 @@
+schema:
+  type: object
+  properties:
+    mydate:
+      type: string
+      format: date
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/mydate"
+      label: Select Date
+      options:
+        dateFormat: DD.MM.YYYY
+        dateSaveFormat: YYYY-MM-DD
+
+data:
+  mydate: "{{ 'now' | date: '%Y-%m-%d' }}"
+
+template: |
+  My special date is {{ mydate | date: "%A – %Y • %b • %d" }}
+
+# see https://shopify.github.io/liquid/filters/date/

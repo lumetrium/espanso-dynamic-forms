@@ -1,0 +1,247 @@
+schema:
+  type: object
+  properties:
+    task_type:
+      type: string
+      enum:
+        - discuss
+        - explain
+        - fix
+        - improve
+        - document
+        - debug
+        - review
+        - refactor
+        - optimize
+        - suggest_alternatives
+        - generate_types
+        - add_feature
+    code:
+      type: string
+      default: "{{clipboard}}"
+    language:
+      type: string
+      enum:
+        - typescript
+        - javascript
+        - html
+        - css
+        - scss
+        - php
+        - yaml
+        - json
+        - postgresql
+        - sql
+        - autohotkey_v1
+        - other
+    framework:
+      type: string
+      enum:
+        - vue3
+        - nestjs
+        - nodejs
+        - django
+        - other
+        - none
+    file_context:
+      type: string
+    error_message:
+      type: string
+    issue:
+      type: string
+    expected_behavior:
+      type: string
+    context:
+      type: string
+    related_code:
+      type: string
+    requirements:
+      type: array
+      items:
+        type: string
+    output_format:
+      type: array
+      items:
+        type: string
+  required:
+    - task_type
+    - code
+
+uischema:
+  type: Categorization
+  options:
+    vuetify:
+      v-tabs:
+        grow: true
+  elements:
+    - type: Category
+      label: Code & Task
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/task_type"
+              label: What do you need help with?
+              options:
+                format: radio
+                vuetify:
+                  v-radio-group:
+                    inline: true
+                    hideDetails: true
+            - type: HorizontalLayout
+              options:
+                vuetify:
+                  v-col:
+                    padding: 0
+              elements:
+                - type: Control
+                  scope: "#/properties/language"
+                  label: Language
+                  options:
+                    format: select
+                    vuetify:
+                      v-autocomplete:
+                        hideDetails: true
+                - type: Control
+                  scope: "#/properties/framework"
+                  label: Framework/Library
+                  options:
+                    format: select
+                    vuetify:
+                      v-autocomplete:
+                        hideDetails: true
+            - type: Control
+              scope: "#/properties/issue"
+              label: Specific issue or question
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 5
+            - type: Control
+              scope: "#/properties/error_message"
+              label: Error message or stack trace
+              options:
+                multi: true
+            #              rule:
+            #                effect: SHOW
+            #                condition:
+            #                  scope: "#/properties/task_type"
+            #                  schema:
+            #                    enum:
+            #                      - debug
+            #                      - fix
+            #                      - suggest_alternatives
+            - type: Control
+              scope: "#/properties/file_context"
+              label: File context (filename, line numbers, function name)
+            - type: Control
+              scope: "#/properties/code"
+              label: Code
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 20
+    - type: Category
+      label: Context & Requirements
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/expected_behavior"
+              label: Expected behavior (what should this code do?)
+              options:
+                multi: true
+            - type: Control
+              scope: "#/properties/context"
+              label: Additional context (project details, constraints, dependencies)
+              options:
+                multi: true
+            - type: Control
+              scope: "#/properties/related_code"
+              label: Related code or files
+              options:
+                multi: true
+            - type: Control
+              scope: "#/properties/requirements"
+              label: Specific requirements or constraints
+    - type: Category
+      label: Output Preferences
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/output_format"
+              label: Output preferences
+
+template: |
+  Help me {{task_type}} this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+
+  {% if file_context %}
+  **File:** {{file_context}}
+  {% endif %}
+
+  ```{{language}}
+  {{code}}
+  ```
+
+  {% if error_message %}
+  **Error/Stack Trace:**
+  ```
+  {{error_message}}
+  ```
+  {% endif %}
+
+  {% if issue %}
+  **Issue/Question:**
+  {{issue}}
+  {% endif %}
+
+  {% if expected_behavior %}
+  **Expected Behavior:**
+  {{expected_behavior}}
+  {% endif %}
+
+  {% if context %}
+  **Context:**
+  {{context}}
+  {% endif %}
+
+  {% if related_code %}
+  **Related Code:**
+  ```
+  {{related_code}}
+  ```
+  {% endif %}
+
+  {% if requirements.size > 0 %}
+  **Requirements:**
+  - {{requirements | join: '\n- '}}
+  {% endif %}
+
+  {% if testing_requirements and testing_requirements != 'no_tests_needed' %}
+  **Testing:** {{testing_requirements | replace: '_', ' '}}
+  {% endif %}
+
+  {% if output_format and output_format.size > 0 %}
+  **Output Preferences:**
+  - {{output_format | join: '\n- '}}
+  {% endif %}
+
+data:
+  task_type: discuss
+  code: "{{clipboard}}"
+  language: typescript
+  requirements:
+    - No regressions to existing behavior
+    - Match existing code style in the file
+    - Keep functions small and focused
+    - Prefer clear names over comments
+    - Keep API backward compatible unless stated otherwise
+    - Avoid external dependencies unless justified
+  output_format:
+    - Provide complete, runnable code examples
+    - Include brief explanations for complex logic
+    - Explain the specific changes made
+    - Show before/after comparisons when refactoring
