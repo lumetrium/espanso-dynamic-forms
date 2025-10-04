@@ -10,6 +10,16 @@ export const vuetify = createVuetify({
   icons: {
     defaultSet: 'mdi',
   },
+	theme: {
+		defaultTheme: 'dark',
+		themes: {
+			dark: {
+				colors: {
+					primary: '#4cdd9f',
+				}
+			},
+		},
+	},
 	defaults: {
 		global: {
 		},

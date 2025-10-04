@@ -8,14 +8,16 @@
 <br/>
 
 <p align="center">
- Create powerful, interactive forms with JSON Forms and insert the templated output anywhere with Espanso.
+
+<img src="./public/logos/edf-bg-rounded.png" height="140"/>
+
 </p>
+
+
 <p align="center">
-
-<video src="https://github.com/user-attachments/assets/be458a30-e3f3-423e-8b40-cf0d0f21f49a" loop="true" autoplay="autoplay" controls muted />
-
+ Create powerful, interactive forms with <a href="https://jsonforms.io/" target="_blank">JSON Forms</a> and<br/>
+ insert the templated output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
 </p>
-
 
 
 ## About
@@ -30,7 +32,13 @@ The workflow:
 4. **Formatted Output**: The app takes your data, formats it using your [Liquid template](https://liquidjs.com), and passes the final text back to Espanso.
 5. **Insertion**: Espanso pastes the beautifully formatted text right where you typed your trigger.
 
-This tool allows you to move beyond basic text fields and create dynamic, validated, and user-friendly forms that can generate complex outputs, all within the Espanso ecosystem.
+
+<p align="center">
+
+<video src="https://github.com/user-attachments/assets/be458a30-e3f3-423e-8b40-cf0d0f21f49a" loop="true" autoplay="autoplay" controls muted />
+
+</p>
+
 
 ## Feature Highlights
 - **Complete JSON Forms Support**: Anything you can do with JSON Forms, you can do here.
@@ -55,7 +63,7 @@ Add this configuration to your Espanso config file (`~/.config/espanso/match/bas
 matches:
   - trigger: ":demo"
     replace: "{{output}}"
-    backend: clipboard
+    force_mode: clipboard
     vars:
       - name: output
         type: script
@@ -313,7 +321,16 @@ template: |
 
 ## Tips and notes
 - **Liquid variables**: Any field in your schema becomes available in the template. You can also pass special tokens like `{{clipboard}}` as defaults and then render them.
-- **Multiline output**: Use `backend: clipboard` to avoid truncation.
+- **Multiline output**: Use "[force_mode: clipboard](https://espanso.org/docs/matches/basics/#injection-mechanism)" to avoid truncation.
+
+## Platforms
+This application is available for:
+- **Windows**
+- **Linux**
+
+This app has not been built or tested on **macOS**.   
+However, since this is an Electron app, you may be able to build it for macOS yourself following the standard Electron build process.
+
 
 ## References
 - **Form Syntax**: Learn more about form structure and configuration in the [JSON Forms documentation](https://jsonforms.io/docs)
