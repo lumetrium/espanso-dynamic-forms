@@ -9,7 +9,7 @@
 
 <p align="center">
 
-<img src="./public/logos/edf-bg-rounded.png" height="140"/>
+<img src="./public/logos/edf.png" height="140"/>
 
 </p>
 
@@ -319,6 +319,11 @@ template: |
 
 </details>
 
+## More examples
+
+Browse the [examples folder](./public/forms) for more sample form configs.
+
+
 ## Tips and notes
 - **Liquid variables**: Any field in your schema becomes available in the template. You can also pass special tokens like `{{clipboard}}` as defaults and then render them.
 - **Multiline output**: Use "[force_mode: clipboard](https://espanso.org/docs/matches/basics/#injection-mechanism)" to avoid truncation.
@@ -328,8 +333,8 @@ This application is available for:
 - **Windows**
 - **Linux**
 
-This app has not been built or tested on **macOS**.   
-However, since this is an Electron app, you may be able to build it for macOS yourself following the standard Electron build process.
+> This app has **NOT** been built or tested on **macOS**. 
+> However, since this is an Electron app, you may be able to build it for macOS yourself following the standard Electron build process.
 
 
 ## References
