@@ -33,6 +33,7 @@ import { extendedVuetifyRenderers } from '@jsonforms/vue-vuetify'
 import { storeToRefs } from 'pinia'
 import { markRaw, ref, watch } from 'vue'
 import { JsonForms } from '@jsonforms/vue'
+import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
 import { useTemplater } from './templater/useTemplater.ts'
 
@@ -43,6 +44,8 @@ const {
 	data: initialData,
 	isValid,
 } = storeToRefs(useFormSchemaStore())
+
+const { env } = storeToRefs(useEnvStore())
 
 const renderers = markRaw([...extendedVuetifyRenderers])
 
@@ -67,8 +70,9 @@ watch(initialData, async (initial) => {
 			typeof initialValue !== 'string'
 				? initialValue
 				: render(initial[key] || '', {
-					...initial,
+					env: env.value,
 					clipboard: clipboardText.value,
+					...initial,
 				})
 	})
 	data.value = value
@@ -82,8 +86,9 @@ async function submitForm() {
 			? template.value.join('\n')
 			: template.value
 		const result = render(templateString, {
-			...data.value,
+			env: env.value,
 			clipboard: clipboardText.value,
+			...data.value,
 		})
 		window.electronAPI.sendResult(result)
 	}

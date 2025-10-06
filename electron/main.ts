@@ -1,12 +1,11 @@
 import { app, BrowserWindow, ipcMain, clipboard } from 'electron'
-import * as fs from 'node:fs'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { parseEnvParams } from './resolvers/env-resolver.ts'
+import { getFormFilePath, parseFormConfig } from './resolvers/form-resolver.ts'
 import defaultYamlForm from '../public/forms/empty.yml?raw'
-
-// @ts-ignore
-import { load as loadYaml } from 'js-yaml'
+import fs from 'node:fs'
 
 // @ts-ignore
 const require = createRequire(import.meta.url)
@@ -34,37 +33,17 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
 	: RENDERER_DIST
 
 const args = process.argv.slice(2)
-let formFileIndex = args.indexOf('--form-config')
-let formFileContent = 'EMPTY'
 
-let formFilePath =
-	formFileIndex !== -1 && args.length > formFileIndex + 1
-		? args[formFileIndex + 1]
-		: FORM_CONFIG
+const formFilePath = getFormFilePath(args, '')
+const formFileContent = parseFormConfig(args, defaultYamlForm)
 
-if (formFilePath && fs.existsSync(formFilePath)) {
-	formFileContent = fs.readFileSync(formFilePath, 'utf-8')
-}
-
-if (!formFilePath || !fs.existsSync(formFilePath)) {
-	formFileContent = defaultYamlForm
-}
-
-if (
-	formFileContent &&
-	(
-		!formFilePath ||
-		formFilePath?.endsWith('.yaml') ||
-		formFilePath?.endsWith('.yml')
-	)
-) {
-	try {
-		const doc = loadYaml(formFileContent)
-		formFileContent = JSON.stringify(doc, null, 2)
-	} catch (e) {
-		console.error('Error parsing YAML file:', e)
-	}
-}
+const envContent = parseEnvParams(args, {
+	...process.env,
+	APP_EXECUTABLE: app.getPath('exe'),
+	APP_INSTALLATION_DIR: path.dirname(app.getPath('exe')),
+	FORM_CONFIG_PATH: formFilePath,
+	FORM_CONFIG_PATH_REAL: fs.realpathSync(formFilePath)
+})
 
 
 let win: BrowserWindow | null
@@ -91,7 +70,10 @@ async function createWindow() {
 
 	// Test active push message to Renderer-process.
 	win.webContents.on('did-finish-load', () => {
-		win?.webContents.send('main-process-message', formFileContent)
+		win?.webContents.send('main-process-message', {
+			form: formFileContent,
+			env: envContent,
+		})
 	})
 
 	if (VITE_DEV_SERVER_URL) {
