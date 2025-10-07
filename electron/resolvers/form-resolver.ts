@@ -4,14 +4,19 @@ import { FORM_CONFIG } from '../main.ts'
 // @ts-ignore
 import { load as loadYaml } from 'js-yaml'
 
-export function getFormFilePath<F>(
-	args: string[],
-	fallback: F,
-) {
+export function getFormFilePath<F>(args: string[], fallback: F) {
 	let formFileIndex = args.indexOf('--form-config')
 	return formFileIndex !== -1 && args.length > formFileIndex + 1
 		? args[formFileIndex + 1]
 		: fallback
+}
+
+export function getFormFilePathReal(formFilePath: string, fallback = '') {
+	try {
+		return fs.realpathSync(formFilePath)
+	} catch (e) {
+		return fallback
+	}
 }
 
 export function parseFormConfig(args: string[], fallback = '') {
@@ -23,6 +28,7 @@ export function parseFormConfig(args: string[], fallback = '') {
 	}
 
 	if (!formFilePath || !fs.existsSync(formFilePath)) {
+		formFilePath = ''
 		formFileContent = fallback
 	}
 

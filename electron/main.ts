@@ -3,9 +3,12 @@ import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { parseEnvParams } from './resolvers/env-resolver.ts'
-import { getFormFilePath, parseFormConfig } from './resolvers/form-resolver.ts'
+import {
+	getFormFilePath,
+	getFormFilePathReal,
+	parseFormConfig,
+} from './resolvers/form-resolver.ts'
 import defaultYamlForm from '../public/forms/empty.yml?raw'
-import fs from 'node:fs'
 
 // @ts-ignore
 const require = createRequire(import.meta.url)
@@ -42,9 +45,8 @@ const envContent = parseEnvParams(args, {
 	APP_EXECUTABLE: app.getPath('exe'),
 	APP_INSTALLATION_DIR: path.dirname(app.getPath('exe')),
 	FORM_CONFIG_PATH: formFilePath,
-	FORM_CONFIG_PATH_REAL: fs.realpathSync(formFilePath)
+	FORM_CONFIG_PATH_REAL: getFormFilePathReal(formFilePath, ''),
 })
-
 
 let win: BrowserWindow | null
 

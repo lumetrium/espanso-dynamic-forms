@@ -2,7 +2,10 @@
 	<v-app theme="dark">
 		<v-main>
 			<v-container class="pa-0 pb-8">
-				<v-card width="100%" class="mx-auto">
+				<v-card
+					width="100%"
+					class="mx-auto"
+				>
 					<v-card-text class="pa-0">
 						<json-forms
 							v-if="isValid"
@@ -10,7 +13,8 @@
 							:schema="schema"
 							:uischema="uischema"
 							:renderers="renderers"
-							@change="(event) => (data = event.data)"
+							:i18n="jsonFormsI18n"
+							@change="onChange"
 						/>
 					</v-card-text>
 				</v-card>
@@ -33,6 +37,7 @@ import { extendedVuetifyRenderers } from '@jsonforms/vue-vuetify'
 import { storeToRefs } from 'pinia'
 import { markRaw, ref, watch } from 'vue'
 import { JsonForms } from '@jsonforms/vue'
+import { useJsonFormsI18n } from './hooks/useJsonFormsI18n.ts'
 import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
 import { useTemplater } from './templater/useTemplater.ts'
@@ -41,6 +46,7 @@ const {
 	schema,
 	uischema,
 	template,
+	i18n: i18nSchema,
 	data: initialData,
 	isValid,
 } = storeToRefs(useFormSchemaStore())
@@ -48,6 +54,8 @@ const {
 const { env } = storeToRefs(useEnvStore())
 
 const renderers = markRaw([...extendedVuetifyRenderers])
+
+const { jsonFormsI18n, setMessages, setLocale } = useJsonFormsI18n()
 
 const { render } = useTemplater()
 
@@ -60,9 +68,15 @@ async function populateClipboardText() {
 
 const data = ref({})
 
+watch(i18nSchema, (i18n) => {
+	setMessages(i18n)
+	setLocale(env.value.LOCALE || 'en')
+})
+
 watch(initialData, async (initial) => {
 	await populateClipboardText()
 	if (!initial) return
+
 	const value = {} as any
 	Object.keys(initial).forEach((key) => {
 		const initialValue = initial[key]
@@ -70,10 +84,10 @@ watch(initialData, async (initial) => {
 			typeof initialValue !== 'string'
 				? initialValue
 				: render(initial[key] || '', {
-					env: env.value,
-					clipboard: clipboardText.value,
-					...initial,
-				})
+						env: env.value,
+						clipboard: clipboardText.value,
+						...initial,
+					})
 	})
 	data.value = value
 })
@@ -92,6 +106,10 @@ async function submitForm() {
 		})
 		window.electronAPI.sendResult(result)
 	}
+}
+
+function onChange(event: any) {
+	data.value = event.data
 }
 </script>
 
