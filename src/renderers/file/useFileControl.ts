@@ -19,7 +19,7 @@ export function useFileControl(props: ControlProps, isMultiple: boolean) {
 	const { getFilePath, loadFileFromPath } = useFilePathLoader()
 
 	const files = ref<File[] | undefined>()
-	const isLoadingDefaults = ref(true)
+	const isLoadingDefaults = ref(false)
 
 	const acceptedTypes = computed<string | undefined>(() => {
 		const opt = vuetifyControl.control.value.uischema?.options?.accept
@@ -89,6 +89,8 @@ export function useFileControl(props: ControlProps, isMultiple: boolean) {
 		() => vuetifyControl.control.value.data,
 		async (initialData) => {
 			if (initialData === undefined) return
+
+			isLoadingDefaults.value = true
 
 			// Handle single file path
 			const singleFilePath = getFilePath(initialData)

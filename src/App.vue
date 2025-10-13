@@ -176,4 +176,8 @@ function onChange(event: any) {
 .v-input.vertical .v-field__field .v-checkbox-btn {
 	--v-input-control-height: 36px;
 }
+
+.fixed-cell-small {
+	vertical-align: top;
+}
 </style>
