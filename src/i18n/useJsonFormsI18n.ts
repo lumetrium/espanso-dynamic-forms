@@ -14,9 +14,25 @@ import { FormSchemaI18n } from '../models/form-schema.ts'
 export function useJsonFormsI18n() {
 	const { t, te, locale, setLocaleMessage } = useI18n()
 
-	function translator(key: string, defaultMessage: string | undefined) {
-		if (te(key)) return t(key)
-		return defaultMessage
+	function translator(
+		key: string,
+		defaultMessage: string | undefined,
+		params?: Record<string, string>,
+	) {
+		if (te(key)) return t(key, params ?? {})
+
+		if (defaultMessage === undefined) {
+			return undefined
+		}
+
+		let message = defaultMessage
+		if (params) {
+			Object.keys(params).forEach((param) => {
+				message = message.replace(`{${param}}`, params[param])
+			})
+		}
+
+		return message
 	}
 
 	const jsonFormsI18n = computed<JsonFormsI18nState>(() => ({
@@ -36,6 +52,7 @@ export function useJsonFormsI18n() {
 	}
 
 	return {
+		t: translator,
 		jsonFormsI18n,
 		setMessages,
 		setLocale,

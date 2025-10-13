@@ -1,0 +1,60 @@
+schema:
+  type: object
+  required:
+    - singleFile
+    - multipleFiles
+  properties:
+    singleFile:
+      type: object
+      format: file
+      i18n: file
+    multipleFiles:
+      type: array
+      format: file
+      i18n: file
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/singleFile"
+      options:
+        accept: "*"
+    - type: Control
+      scope: "#/properties/multipleFiles"
+      options:
+        accept: "image/*, .md"
+
+data:
+  singleFile:
+    path: "{{env.APP_PUBLIC}}/forms/date.yml"
+  multipleFiles:
+    - path: "{{env.APP_PUBLIC}}/forms/reply.yml"
+    - path: "{{env.APP_PUBLIC}}/logos/lumetrium.png"
+    - path: "{{env.APP_PUBLIC}}/logos/definer.png"
+
+i18n:
+  en:
+    file:
+      description: Please upload
+      selectedFile: Selected file
+      selectedFiles: Selected files
+      remove: Remove
+      fileNumber: File {index}
+      name: Name
+      size: Size
+      hash: SHA-256
+
+template: |
+  File contents:
+  ````
+  {{ singleFile.text }}
+  ````
+
+  Multiple files:
+  {% for f in multipleFiles %}
+  ````
+  {{ f.name }} ({{ f.size }} bytes)
+  {{ f.hash }}
+  ````
+  {% endfor %}

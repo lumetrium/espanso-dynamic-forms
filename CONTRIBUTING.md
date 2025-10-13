@@ -35,6 +35,11 @@ Install the dependencies with `yarn install`
 yarn dev
 ```
 
+With a specific form config:
+```
+.\run-dev.bat public\forms\reply.yml
+```
+
 ### Option 2: Run through Espanso
 Add a trigger to let Espanso run the app in development mode:
 ```yml
@@ -47,7 +52,7 @@ matches:
         type: script
         params:
           args:
-            - "C:/Projects/espanso-dynamic-forms/run-dev.bat" # Change the path accordingly
+            - "C:/Projects/espanso-dynamic-forms/run-dev-quiet.bat" # Change the path accordingly
             - "%CONFIG%/forms/dev.yml" # Make sure the form exists
 ```
 

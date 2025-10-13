@@ -22,9 +22,9 @@ const electronAPI = {
 	sendResult: (result: string) => {
 		ipcRenderer.send('result', result)
 	},
-	getClipboardText: () => {
-		return ipcRenderer.invoke('get-clipboard-text')
-	}
+	getClipboardText: () => ipcRenderer.invoke('get-clipboard-text'),
+	readFileFromPath: (filePath: string) =>
+		ipcRenderer.invoke('read-file-from-path', filePath)
 }
 
 // --------- Expose some API to the Renderer process ---------

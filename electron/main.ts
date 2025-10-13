@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain, clipboard } from 'electron'
+import { readFile, stat } from 'fs/promises'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -44,6 +45,7 @@ const envContent = parseEnvParams(args, {
 	...process.env,
 	APP_EXECUTABLE: app.getPath('exe'),
 	APP_INSTALLATION_DIR: path.dirname(app.getPath('exe')),
+	APP_PUBLIC: process.env.VITE_PUBLIC,
 	FORM_CONFIG_PATH: formFilePath,
 	FORM_CONFIG_PATH_REAL: getFormFilePathReal(formFilePath, ''),
 })
@@ -115,6 +117,27 @@ app.on('activate', () => {
 
 ipcMain.handle('get-clipboard-text', () => {
 	return clipboard.readText()
+})
+
+ipcMain.handle('read-file-from-path', async (_event, filePath: string) => {
+	try {
+		const buffer = await readFile(filePath)
+		const stats = await stat(filePath)
+		const parsed = path.parse(filePath)
+
+		const base64 = buffer.toString('base64')
+
+		return {
+			buffer: base64,
+			name: parsed.name,
+			ext: parsed.ext.slice(1),
+			size: stats.size,
+			path: filePath,
+		}
+	} catch (error) {
+		console.error('Error reading file:', error)
+		throw error
+	}
 })
 
 ipcMain.on('result', (_event, result: string) => {

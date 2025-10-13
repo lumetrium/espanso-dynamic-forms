@@ -89,8 +89,6 @@ The config file has four main sections:
 - **`data`** - Sets default values for form fields
 - **`template`** - Formats output using [Liquid templating](https://shopify.github.io/liquid/)
 
-<details>
-<summary><strong>CLICK HERE TO EXPAND DEMO FORM CONFIG</strong></summary>
 
 ````yaml
 schema:
@@ -192,8 +190,6 @@ template: |
   ```
   {% endif %}
 ````
-
-</details>
 
 ### 3. Try It Out
 

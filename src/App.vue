@@ -14,6 +14,7 @@
 							:uischema="uischema"
 							:renderers="renderers"
 							:i18n="jsonFormsI18n"
+							:ajv="ajv"
 							@change="onChange"
 						/>
 					</v-card-text>
@@ -23,9 +24,10 @@
 					class="submit-btn"
 					color="primary"
 					variant="elevated"
+					:disabled="!!errors.length"
 					@click="submitForm"
 				>
-					Submit
+					<span v-text="t('submit', 'Submit')" />
 				</v-btn>
 			</v-container>
 		</v-main>
@@ -37,7 +39,10 @@ import { extendedVuetifyRenderers } from '@jsonforms/vue-vuetify'
 import { storeToRefs } from 'pinia'
 import { markRaw, ref, watch } from 'vue'
 import { JsonForms } from '@jsonforms/vue'
-import { useJsonFormsI18n } from './hooks/useJsonFormsI18n.ts'
+import { ajv } from './ajv.ts'
+import { useJsonFormsI18n } from './i18n/useJsonFormsI18n.ts'
+import { multipleFilesRendererEntry } from './renderers/file/MultipleFilesRenderer.entry.ts'
+import { singleFileRendererEntry } from './renderers/file/SingleFileRenderer.entry.ts'
 import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
 import { useTemplater } from './templater/useTemplater.ts'
@@ -53,12 +58,16 @@ const {
 
 const { env } = storeToRefs(useEnvStore())
 
-const renderers = markRaw([...extendedVuetifyRenderers])
+const renderers = markRaw([
+	...extendedVuetifyRenderers,
+	multipleFilesRendererEntry,
+	singleFileRendererEntry,
+])
 
-const { jsonFormsI18n, setMessages, setLocale } = useJsonFormsI18n()
+const { t, jsonFormsI18n, setMessages, setLocale } = useJsonFormsI18n()
+const { render, renderDeep } = useTemplater()
 
-const { render } = useTemplater()
-
+const errors = ref([])
 const clipboardText = ref('')
 
 async function populateClipboardText() {
@@ -74,23 +83,20 @@ watch(i18nSchema, (i18n) => {
 })
 
 watch(initialData, async (initial) => {
-	await populateClipboardText()
 	if (!initial) return
 
-	const value = {} as any
-	Object.keys(initial).forEach((key) => {
-		const initialValue = initial[key]
-		value[key] =
-			typeof initialValue !== 'string'
-				? initialValue
-				: render(initial[key] || '', {
-						env: env.value,
-						clipboard: clipboardText.value,
-						...initial,
-					})
-	})
-	data.value = value
+	try {
+		await populateClipboardText()
+		data.value = renderDeep(initial, {
+			env: env.value,
+			clipboard: clipboardText.value,
+			...initial,
+		})
+	} catch (error) {
+		console.error('Failed to process initial data:', error)
+	}
 })
+
 
 async function submitForm() {
 	if (!template.value) {
@@ -110,6 +116,7 @@ async function submitForm() {
 
 function onChange(event: any) {
 	data.value = event.data
+	errors.value = event.errors
 }
 </script>
 

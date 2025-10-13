@@ -30,6 +30,39 @@ export function useTemplater() {
 		}
 	}
 
+	/**
+	 * Recursive helper function to render all strings deeply
+	 * @param value
+	 * @param data
+	 * @param throwOnError
+	 */
+	function renderDeep(
+		value: any,
+		data: Record<string, any>,
+		throwOnError = false,
+	): any {
+		// Handle strings - render them
+		if (typeof value === 'string') {
+			return render(value, data, throwOnError)
+		}
+
+		// Handle arrays - recursively process each item
+		if (Array.isArray(value)) {
+			return value.map(item => renderDeep(item, data, throwOnError))
+		}
+
+		// Handle objects - recursively process each property
+		if (value !== null && typeof value === 'object') {
+			return Object.entries(value).reduce((acc, [key, val]) => {
+				acc[key] = renderDeep(val, data, throwOnError)
+				return acc
+			}, {} as Record<string, any>)
+		}
+
+		// Return primitives as-is (numbers, booleans, null, etc.)
+		return value
+	}
+
 
 	function preprocess(template: string) {
 		return template
@@ -41,5 +74,6 @@ export function useTemplater() {
 
 	return {
 		render,
+		renderDeep,
 	}
 }
