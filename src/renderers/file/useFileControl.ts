@@ -2,7 +2,7 @@ import { useJsonFormsControl } from '@jsonforms/vue'
 import { useVuetifyControl } from '@jsonforms/vue-vuetify'
 import { ControlProps } from '@jsonforms/vue/src/jsonFormsCompositions.ts'
 import { watchOnce } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useJsonFormsControlI18n } from '../../i18n/useJsonFormsControlI18n.ts'
 import type { FileMetadata } from './types'
 import { useFilePathLoader } from './useFilePathLoader'
@@ -85,52 +85,59 @@ export function useFileControl(props: ControlProps, isMultiple: boolean) {
 		)
 	}
 
-	watchOnce(
-		() => vuetifyControl.control.value.data,
-		async (initialData) => {
-			if (initialData === undefined) return
+	async function processDefaultData(initialData: any) {
+		if (isLoadingDefaults.value) return
+		if (initialData === undefined) return
 
-			isLoadingDefaults.value = true
+		isLoadingDefaults.value = true
 
-			// Handle single file path
-			const singleFilePath = getFilePath(initialData)
-			if (!isMultiple && singleFilePath) {
+		// Handle single file path
+		const singleFilePath = getFilePath(initialData)
+		if (!isMultiple && singleFilePath) {
+			try {
+				const metadata = await loadFileFromPath(singleFilePath)
+				vuetifyControl.handleChange(vuetifyControl.control.value.path, metadata)
+			} catch (error) {
+				console.error('Failed to load default file:', error)
+			}
+			isLoadingDefaults.value = false
+			return
+		}
+
+		// Handle multiple file paths
+		if (isMultiple && Array.isArray(initialData)) {
+			const paths = initialData.map(getFilePath).filter(Boolean) as string[]
+			if (paths.length > 0) {
 				try {
-					const metadata = await loadFileFromPath(singleFilePath)
+					const metadataArray = await Promise.allSettled(
+						paths.map((path) => loadFileFromPath(path)),
+					)
 					vuetifyControl.handleChange(
 						vuetifyControl.control.value.path,
-						metadata,
+						metadataArray.reduce<FileMetadata[]>((acc, res) => {
+							if (res.status === 'fulfilled') acc.push(res.value)
+							return acc
+						}, []),
 					)
 				} catch (error) {
-					console.error('Failed to load default file:', error)
-				}
-				isLoadingDefaults.value = false
-				return
-			}
-
-			// Handle multiple file paths
-			if (isMultiple && Array.isArray(initialData)) {
-				const paths = initialData.map(getFilePath).filter(Boolean) as string[]
-				if (paths.length > 0) {
-					try {
-						const metadataArray = await Promise.allSettled(
-							paths.map((path) => loadFileFromPath(path)),
-						)
-						vuetifyControl.handleChange(
-							vuetifyControl.control.value.path,
-							metadataArray.reduce<FileMetadata[]>((acc, res) => {
-								if (res.status === 'fulfilled') acc.push(res.value)
-								return acc
-							}, []),
-						)
-					} catch (error) {
-						console.error('Failed to load default files:', error)
-					}
+					console.error('Failed to load default files:', error)
 				}
 			}
+		}
 
-			isLoadingDefaults.value = false
-		},
+		isLoadingDefaults.value = false
+	}
+
+	onMounted(() => {
+		const currentData = vuetifyControl.control.value.data
+		if (currentData !== undefined) {
+			processDefaultData(currentData)
+		}
+	})
+
+	watchOnce(
+		() => vuetifyControl.control.value.data,
+		(initialData) => processDefaultData(initialData),
 	)
 
 	return {

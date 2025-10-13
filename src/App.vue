@@ -180,4 +180,8 @@ function onChange(event: any) {
 .fixed-cell-small {
 	vertical-align: top;
 }
+
+.vertical-layout-item:empty, .v-row:has(> .v-col:empty) {
+	display: none;
+}
 </style>
