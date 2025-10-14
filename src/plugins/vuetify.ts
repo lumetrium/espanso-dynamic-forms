@@ -23,6 +23,12 @@ export const vuetify = createVuetify({
 	defaults: {
 		global: {
 		},
+		VCheckbox: {
+			hideDetails: true,
+		},
+		VRadioGroup: {
+			hideDetails: true,
+		},
 		VTabs: {
 			grow: true,
 		},
