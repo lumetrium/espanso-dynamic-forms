@@ -32,6 +32,12 @@ export const vuetify = createVuetify({
 		VTabs: {
 			grow: true,
 		},
+		VTabsWindowItem: {
+			eager: true,
+		},
+		VWindowItem: {
+			eager: true,
+		},
 		VTextField: {
 			density: 'compact',
 			hideDetails: 'auto',

@@ -128,13 +128,7 @@ export function useFileControl(props: ControlProps, isMultiple: boolean) {
 		isLoadingDefaults.value = false
 	}
 
-	onMounted(() => {
-		const currentData = vuetifyControl.control.value.data
-		if (currentData !== undefined) {
-			processDefaultData(currentData)
-		}
-	})
-
+	onMounted(() => processDefaultData(vuetifyControl.control.value.data))
 	watchOnce(
 		() => vuetifyControl.control.value.data,
 		(initialData) => processDefaultData(initialData),

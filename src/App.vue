@@ -1,10 +1,10 @@
 <template>
 	<v-app theme="dark">
 		<v-main>
-			<v-container class="pa-0 pb-8">
+			<v-container class="pa-0 pb-15">
 				<v-card
 					width="100%"
-					class="mx-auto"
+					class="mx-auto elevation-0"
 				>
 					<v-card-text class="pa-0">
 						<json-forms
@@ -121,6 +121,12 @@ function onChange(event: any) {
 </script>
 
 <style>
+.v-main {
+	background: rgb(var(--v-theme-surface));
+}
+
+
+
 .v-container {
 	padding: 0;
 	max-width: none !important;
@@ -138,6 +144,10 @@ function onChange(event: any) {
 
 .vertical-layout-item:has(> .horizontal-layout-item) {
 	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.vertical-layout-item {
 	padding-bottom: 0;
 }
 
