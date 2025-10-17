@@ -8,6 +8,14 @@
 
 <br/>
 
+<div align="center">
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
+
+</div>
+
+<br/>
+
 <p align="center">
 
 <img src="./public/logos/edf.png" height="140"/>
@@ -20,13 +28,7 @@
  insert the templated output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
 </p>
 
-<br/>
 
-<div align="center">
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
-
-</div>
 
 
 ## About
