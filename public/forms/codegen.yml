@@ -1,0 +1,57 @@
+schema:
+  type: object
+  properties:
+    eventName:
+      type: string
+    variables:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+          name:
+            type: string
+  required:
+    - eventName
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/eventName"
+      label: Event Name
+      options:
+        focus: true
+    - type: Control
+      scope: "#/properties/variables"
+      label: Variables
+      options:
+        detail:
+          type: HorizontalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/type"
+              label: Type
+            - type: Control
+              scope: "#/properties/name"
+              label: Variable Name
+
+data:
+  variables:
+    - type: ""
+      name: ""
+
+template: |
+  public class {{eventName}}EventArgs : EventArgs
+  {
+  {% for v in variables %}{% if v.type != blank and v.name != blank %}
+      public readonly {{v.type}} {{v.name}};
+  {% endif %}{% endfor %}
+      public {{eventName}}EventArgs({% assign firstParam = true %}{% for v in variables %}{% if v.type != blank and v.name != blank %}{% unless firstParam %}, {% endunless %}{{v.type}} {{v.name}}{% assign firstParam = false %}{% endif %}{% endfor %})
+      {
+  {% for v in variables %}{% if v.type != blank and v.name != blank %}
+          this.{{v.name}} = {{v.name}};
+  {% endif %}{% endfor %}
+      }
+  }

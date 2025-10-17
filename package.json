@@ -1,6 +1,6 @@
 {
 	"name": "espanso-dynamic-forms",
-	"version": "1.4.5",
+	"version": "1.4.6",
 	"description": "Alternative to native Espanso Forms feature using JSON Forms.",
 	"author": "Lumetirum <contact@lumetirum.com>",
 	"license": "GPL-3.0-only",

@@ -36,7 +36,7 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
 	? path.join(process.env.APP_ROOT, 'public')
 	: RENDERER_DIST
 
-const args = process.argv.slice(2)
+const args = process.argv.slice(1)
 
 const formFilePath = getFormFilePath(args, '')
 const formFileContent = parseFormConfig(args, defaultYamlForm)

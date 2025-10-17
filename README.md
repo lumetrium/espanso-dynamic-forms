@@ -70,7 +70,6 @@ matches:
         params:
           args:
             - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe" # on Linux use "/usr/bin/espanso-dynamic-forms"
-            - -- 
             - --form-config
             - "%CONFIG%/forms/demo.yml"
 ```
@@ -82,13 +81,51 @@ Create a form config file at `%CONFIG%/forms/demo.yml`.
 It can be named anything and placed anywhere, 
 just update the `--form-config` path in the Espanso trigger accordingly.
 
-The config file has four main sections:
+Minimal example:
 
-- **`schema`** - Defines data structure and validation rules
-- **`uischema`** - Defines form layout and UI components
-- **`data`** - Sets default values for form fields
-- **`template`** - Formats output using [Liquid templating](https://shopify.github.io/liquid/)
+````yaml
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+    priority:
+      type: string
+      enum:
+        - High
+        - Medium
+        - Low
+  required:
+    - subject
 
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+      label: Subject
+    - type: Control
+      scope: "#/properties/priority"
+      label: Priority
+
+data:
+  subject: "{{clipboard}}"
+  priority: Medium
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority | upcase}}
+````
+
+This configuration:
+
+1. **schema**: Defines two fields (`subject` as string, `priority` as enum), marks `subject` as required
+2. **uischema**: Arranges fields vertically, each as a `Control` pointing to a schema property via `scope`
+3. **data**: Sets `subject` to clipboard content, `priority` to "Medium"
+4. **template**: Formats output using [Liquid syntax](https://shopify.github.io/liquid/), applying `upcase` filter to priority
+
+<details>
+<summary><strong>CLICK HERE TO SEE A MORE ADVANCED EXAMPLE</strong></summary>
 
 ````yaml
 schema:
@@ -190,6 +227,8 @@ template: |
   ```
   {% endif %}
 ````
+
+</details>
 
 ### 3. Try It Out
 

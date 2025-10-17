@@ -1,0 +1,31 @@
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+    priority:
+      type: string
+      enum:
+        - High
+        - Medium
+        - Low
+  required:
+    - subject
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+      label: Subject
+    - type: Control
+      scope: "#/properties/priority"
+      label: Priority
+
+data:
+  subject: "{{clipboard}}"
+  priority: Medium
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority | upcase}}

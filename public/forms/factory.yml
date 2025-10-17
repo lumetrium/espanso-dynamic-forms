@@ -1,0 +1,443 @@
+schema:
+  type: object
+  properties:
+    description:
+      type: string
+    details:
+      type: string
+    layout:
+      type: string
+      enum:
+        - single-page
+        - multi-tab
+        - stepper
+    existingConfigFile:
+      type: object
+      format: file
+    existingConfigText:
+      type: string
+    maxTabs:
+      type: integer
+      minimum: 1
+      maximum: 8
+      default: 4
+    complexity:
+      type: string
+      enum:
+        - simple
+        - moderate
+        - complex
+    stylingFramework:
+      type: string
+    namingConvention:
+      type: string
+      enum:
+        - camelCase
+        - PascalCase
+        - snake_case
+        - kebab-case
+    schema:
+      type: string
+    uischema:
+      type: string
+    defaults:
+      type: string
+    template:
+      type: string
+    templateRequirements:
+      type: array
+      items:
+        type: string
+    exampleFiles:
+      type: array
+      format: file
+    includeI18n:
+      type: boolean
+      default: false
+    supportedLanguages:
+      type: array
+      items:
+        type: string
+    includeRules:
+      type: boolean
+      default: false
+    rules:
+      type: array
+      items:
+        type: string
+    outputFormat:
+      type: string
+      enum:
+        - yaml
+        - json
+      default: yaml
+    emitComments:
+      type: boolean
+      default: false
+  required:
+    - description
+    - layout
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Overview
+      elements:
+        - type: Control
+          scope: "#/properties/description"
+          label: Description
+          options:
+            multi: true
+            focus: true
+            vuetify:
+              v-textarea:
+                rows: 6
+                persistentHint: true
+                placeholder: E.g., Collect a description of an issue or feature request, along with steps to reproduce and expected behavior.
+        - type: Control
+          scope: "#/properties/details"
+          label: Details (optional)
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 6
+                persistentHint: true
+                placeholder: E.g., This form is intended for users to submit detailed bug reports for our software application.
+        - type: Control
+          scope: "#/properties/complexity"
+          options:
+            format: radio
+            vuetify:
+              v-radio-group:
+                inline: true
+                hideDetails: true
+        - type: Control
+          scope: "#/properties/layout"
+          options:
+            format: radio
+            vuetify:
+              v-radio-group:
+                inline: true
+                hideDetails: true
+        - type: Control
+          scope: "#/properties/maxTabs"
+          options:
+            slider: true
+          rule:
+            effect: SHOW
+            label: Tabs limit
+            condition:
+              scope: "#/properties/layout"
+              schema:
+                enum:
+                  - multi-tab
+                  - stepper
+        - type: Control
+          scope: "#/properties/outputFormat"
+          label: "Output format"
+          options:
+            format: radio
+            vuetify:
+              v-radio-group:
+                inline: true
+                hideDetails: true
+        - type: Control
+          scope: "#/properties/existingConfigFile"
+          options:
+            accept: '.yml,.yaml,.json'
+            vuetify:
+              v-file-input:
+                persistentHint: true
+        - type: Control
+          scope: "#/properties/existingConfigText"
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 3
+                persistentHint: true
+                placeholder: "shema:\n  type: object\n  properties:"
+
+    - type: Category
+      label: Schema
+      elements:
+        - type: Control
+          scope: "#/properties/schema"
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 5
+                persistentHint: true
+                placeholder: E.g., A text field for name, a date picker for birthdate, and a dropdown for country.
+        - type: Control
+          scope: "#/properties/uischema"
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 5
+                persistentHint: true
+                placeholder: E.g., Use a multi-tab layout with sections for personal info, preferences, and feedback.
+        - type: Control
+          scope: "#/properties/defaults"
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 5
+                persistentHint: true
+                placeholder: E.g., Pre-fill the country field with "United States" and the newsletter checkbox as checked.
+        - type: Control
+          scope: '#/properties/includeRules'
+        - type: Control
+          scope: '#/properties/rules'
+          rule:
+            effect: SHOW
+            condition:
+              scope: '#/properties/includeRules'
+              schema:
+                const: true
+    - type: Category
+      label: Output
+      elements:
+        - type: Control
+          scope: "#/properties/template"
+          options:
+            multi: true
+            vuetify:
+              v-textarea:
+                rows: 5
+                persistentHint: true
+                placeholder: E.g., Generate a summary of the user's input data using Markdown, then list everything in a table.
+        - type: Control
+          scope: "#/properties/templateRequirements"
+    - type: Category
+      label: Other
+      elements:
+        - type: Control
+          scope: "#/properties/exampleFiles"
+          options:
+            accept: '.yml,.yaml,.json'
+            vuetify:
+              v-file-input:
+                persistentHint: true
+        - type: Control
+          scope: '#/properties/emitComments'
+          options:
+            vuetify:
+              persistentHint: true
+          rule:
+            effect: SHOW
+            condition:
+              scope: '#/properties/outputFormat'
+              schema:
+                const: yaml
+        - type: Control
+          scope: '#/properties/includeI18n'
+        - type: Control
+          scope: '#/properties/supportedLanguages'
+          rule:
+            effect: SHOW
+            condition:
+              scope: '#/properties/includeI18n'
+              schema:
+                const: true
+
+
+
+data:
+  layout: single-page
+  maxTabs: 4
+  complexity: simple
+  stylingFramework: Vuetify 3
+  namingConvention: camelCase
+  outputFormat: yaml
+  schema: ""
+  uischema: ""
+  defaults: ""
+  includeRules: false
+  rules:
+    - Make all fields on the first tab required
+    - For optional array fields, first show a checkbox that toggles visibility of the array control
+  template: ""
+  templateRequirements:
+    - Use Liquid templating syntax.
+    - Use XML-like tags for sections and formatting.
+    - XML sections can reference each other, but avoid deeply nested structures.
+    - Use Markdown for text formatting.
+    - Use loops and conditionals to handle dynamic content.
+    - If no data is provided for a section, omit that section from the output.
+    - Ensure the output is clean and well-structured.
+  includeI18n: false
+  emitComments: false
+  supportedLanguages:
+    - en
+    - ru
+  exampleFiles:
+    - path: "{{env.APP_PUBLIC}}/forms/reply.yml"
+    - path: "{{env.APP_PUBLIC}}/forms/code.yml"
+    - path: "{{env.APP_PUBLIC}}/forms/file.yml"
+    - path: "{{env.APP_PUBLIC}}/forms/date.yml"
+    - path: "{{env.APP_PUBLIC}}/forms/checkbox.yml"
+
+
+i18n:
+  en:
+    description:
+      label: Description
+      description: A clear, high-level description of the form's purpose.
+    details:
+      label: Details (optional)
+      description: Additional context or instructions for the form
+    complexity:
+      label: Complexity Level
+      description: The overall complexity of the form
+    layout:
+      label: UI Layout Type
+      description: The overall layout style of the form
+    existingConfigFile:
+      label: Existing config file (optional)
+      description: Upload an existing JSON Forms config file for reference
+    existingConfigText:
+      label: Or paste existing config text (optional)
+      description: Paste an existing JSON Forms config for reference
+    schema:
+      label: Schema (optional)
+      description: Describe what fields your form will need
+    uischema:
+      label: UI schema (optional)
+      description: Describe how the form should be laid out and styled
+    defaults:
+      label: Default data (optional)
+      description: Describe any default values the form should load with
+    template:
+      label: Template (optional)
+      description: Describe your desired output (what the form should generate when you click "Submit")
+    exampleFiles:
+      label: Example config files (optional)
+      description: Upload existing YAML/JSON configs for the AI to reference
+    includeI18n:
+      label: Include Internationalization (i18n)?
+      description: Whether to include an i18n block with translations
+    supportedLanguages:
+      label: Supported languages
+      description: Language codes (e.g., en, de, fr)
+    includeRules:
+      label: Include validation and interactivity?
+      description: Describe any conditional fields or custom renderers the form should include
+    rules:
+      label: Validation and interactivity rules
+    emitComments:
+      label: Emit comments
+      description: Whether to include comments in the generated config to explain each section
+
+template: |
+  <prompt>
+  Generate a JSON Forms configuration based on the following requirements:
+  </prompt>
+
+  <description>
+  {{description}}
+  </description>
+
+  {% if details %}
+  <details>
+  {{details}}
+  </details>
+  {% endif %}
+
+  {% if existingConfigFile %}
+  <existing-form-config>
+  Modify or extend this existing configuration file:
+  ````{{existingConfigFile.extension}}
+  # {{existingConfigFile.fullName}}
+  {{existingConfigFile.text}}
+  ````
+  </existing-form-config>
+  {% elsif existingConfigText %}
+  <existing-form-config>
+  Modify or extend this existing configuration:
+  ````
+  {{existingConfigText}}
+  ````
+  </existing-form-config>
+  {% endif %}
+
+  <configuration>
+  - **Complexity Level:** {{complexity}}
+  - **Layout Type:** {{layout}}
+  - **Maximum Number of Tabs:** {% if layout == 'single-page' %}0{% else %}{{ maxTabs }}{% endif %}
+  - **Styling Framework:** {{stylingFramework}}
+  - **Naming Convention:** {{namingConvention}}
+  - **Output Format:** {{outputFormat}}
+  - **Include Comments:** {% if emitComments %}Yes{% else %}No{% endif %}
+  - **Include Validation and Interactivity:** {% if includeRules %}Yes{% else %}No{% endif %}
+  - **Include Internationalization (i18n):** {% if includeI18n %}Yes{% else %}No{% endif %}
+  </configuration>
+
+  {% if schema.size > 0 %}
+  <schema-requirements>
+  {{schema}}
+  </schema-requirements>
+  {% endif %}
+
+  {% if uischema.size > 0 %}
+  <uischema-requirements>
+  {{uischema}}
+  </uischema-requirements>
+  {% endif %}
+
+  {% if defaults.size > 0 %}
+  <default-values>
+  {{defaults}}
+  </default-values>
+  {% endif %}
+
+  {% if includeRules and rules.size > 0 %}
+  <rules>
+  {% for rule in rules %}
+  - {{rule}}
+  {% endfor %}
+  </rules>
+  {% endif %}
+
+  {% if includeI18n and supportedLanguages.size > 0 %}
+  <i18n-requirements>
+  - **Include Internationalization:** Yes
+  - **Supported Languages:** {{supportedLanguages | join: ', '}}
+  </i18n-requirements>
+  {% endif %}
+
+  {% if template.size > 0 %}
+  <output-template>
+  {{template}}
+  </output-template>
+  {% endif %}
+
+  {% if templateRequirements.size > 0 %}
+  <template-requirements>
+  {% for requirement in templateRequirements %}
+  - {{requirement}}
+  {% endfor %}
+  </template-requirements>
+  {% endif %}
+
+  {% if exampleFiles.size > 0 %}
+  <example-files>
+  Please reference the following example configuration files:
+  {% for file in exampleFiles %}
+  <example-file-{{forloop.index}} name="{{file.fullName}}">
+  ````{{file.extension}}
+  {{file.text}}
+  ````
+  </example-file-{{forloop.index}}>
+  {% endfor %}
+  </example-files>
+  {% endif %}
+
+  <instructions>
+  Generate a complete JSON Forms configuration (schema, uischema, data{% if includeI18n %}, i18n{% endif %}{% if template %}, and template{% endif %}) in {{outputFormat | upcase}} format that meets all the requirements specified above.
+  </instructions>
