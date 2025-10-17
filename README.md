@@ -6,12 +6,6 @@
 
 </div>
 
-<div align="center">
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
-
-</div>
-
 <br/>
 
 <p align="center">
@@ -25,6 +19,12 @@
  Create powerful, interactive forms with <a href="https://jsonforms.io/" target="_blank">JSON Forms</a> and<br/>
  insert the templated output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
 </p>
+
+<div align="center">
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
+
+</div>
 
 
 ## About
