@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![](https://img.shields.io/github/v/release/lumetrium/espanso-dynamic-forms?style=for-the-badge)](https://github.com/lumetrium/espanso-dynamic-forms/releases/latest) ![](https://img.shields.io/github/downloads/lumetrium/espanso-dynamic-forms/total?style=for-the-badge) ![GitHub](https://img.shields.io/github/license/lumetrium/espanso-dynamic-forms?style=for-the-badge)
+[![](https://img.shields.io/github/v/release/lumetrium/espanso-dynamic-forms)](https://github.com/lumetrium/espanso-dynamic-forms/releases/latest) ![](https://img.shields.io/github/downloads/lumetrium/espanso-dynamic-forms/total) ![GitHub](https://img.shields.io/github/license/lumetrium/espanso-dynamic-forms) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
 
 </div>
 
@@ -20,11 +20,6 @@
  insert the templated output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
 </p>
 
-<div align="center">
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
-
-</div>
 
 
 ## About
