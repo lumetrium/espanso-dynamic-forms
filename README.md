@@ -6,8 +6,6 @@
 
 </div>
 
-<br/>
-
 <div align="center">
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
