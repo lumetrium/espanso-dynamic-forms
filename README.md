@@ -5,6 +5,13 @@
 [![](https://img.shields.io/github/v/release/lumetrium/espanso-dynamic-forms?style=for-the-badge)](https://github.com/lumetrium/espanso-dynamic-forms/releases/latest) ![](https://img.shields.io/github/downloads/lumetrium/espanso-dynamic-forms/total?style=for-the-badge) ![GitHub](https://img.shields.io/github/license/lumetrium/espanso-dynamic-forms?style=for-the-badge)
 
 </div>
+
+<div align="center">
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/lumetrium/espanso-dynamic-forms)
+
+</div>
+
 <br/>
 
 <p align="center">
