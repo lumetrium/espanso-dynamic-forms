@@ -76,7 +76,6 @@ schema:
       default: false
   required:
     - description
-    - layout
 
 uischema:
   type: Categorization
@@ -85,7 +84,7 @@ uischema:
       label: Overview
       elements:
         - type: Control
-          scope: "#/properties/description"
+          scope: '#/properties/description'
           label: Description
           options:
             multi: true
@@ -96,7 +95,7 @@ uischema:
                 persistentHint: true
                 placeholder: E.g., Collect a description of an issue or feature request, along with steps to reproduce and expected behavior.
         - type: Control
-          scope: "#/properties/details"
+          scope: '#/properties/details'
           label: Details (optional)
           options:
             multi: true
@@ -106,7 +105,7 @@ uischema:
                 persistentHint: true
                 placeholder: E.g., This form is intended for users to submit detailed bug reports for our software application.
         - type: Control
-          scope: "#/properties/complexity"
+          scope: '#/properties/complexity'
           options:
             format: radio
             vuetify:
@@ -114,7 +113,7 @@ uischema:
                 inline: true
                 hideDetails: true
         - type: Control
-          scope: "#/properties/layout"
+          scope: '#/properties/layout'
           options:
             format: radio
             vuetify:
@@ -122,21 +121,21 @@ uischema:
                 inline: true
                 hideDetails: true
         - type: Control
-          scope: "#/properties/maxTabs"
+          scope: '#/properties/maxTabs'
           options:
             slider: true
           rule:
             effect: SHOW
             label: Tabs limit
             condition:
-              scope: "#/properties/layout"
+              scope: '#/properties/layout'
               schema:
                 enum:
                   - multi-tab
                   - stepper
         - type: Control
-          scope: "#/properties/outputFormat"
-          label: "Output format"
+          scope: '#/properties/outputFormat'
+          label: 'Output format'
           options:
             format: radio
             vuetify:
@@ -144,14 +143,21 @@ uischema:
                 inline: true
                 hideDetails: true
         - type: Control
-          scope: "#/properties/existingConfigFile"
+          scope: '#/properties/existingConfigFile'
           options:
             accept: '.yml,.yaml,.json'
             vuetify:
               v-file-input:
                 persistentHint: true
         - type: Control
-          scope: "#/properties/existingConfigText"
+          scope: '#/properties/existingConfigText'
+          rule:
+            effect: HIDE
+            condition:
+              scope: '#/properties/existingConfigFile'
+              schema:
+                type: object
+                minProperties: 1
           options:
             multi: true
             vuetify:
@@ -164,7 +170,7 @@ uischema:
       label: Schema
       elements:
         - type: Control
-          scope: "#/properties/schema"
+          scope: '#/properties/schema'
           options:
             multi: true
             vuetify:
@@ -173,7 +179,7 @@ uischema:
                 persistentHint: true
                 placeholder: E.g., A text field for name, a date picker for birthdate, and a dropdown for country.
         - type: Control
-          scope: "#/properties/uischema"
+          scope: '#/properties/uischema'
           options:
             multi: true
             vuetify:
@@ -182,7 +188,7 @@ uischema:
                 persistentHint: true
                 placeholder: E.g., Use a multi-tab layout with sections for personal info, preferences, and feedback.
         - type: Control
-          scope: "#/properties/defaults"
+          scope: '#/properties/defaults'
           options:
             multi: true
             vuetify:
@@ -204,7 +210,7 @@ uischema:
       label: Output
       elements:
         - type: Control
-          scope: "#/properties/template"
+          scope: '#/properties/template'
           options:
             multi: true
             vuetify:
@@ -213,12 +219,12 @@ uischema:
                 persistentHint: true
                 placeholder: E.g., Generate a summary of the user's input data using Markdown, then list everything in a table.
         - type: Control
-          scope: "#/properties/templateRequirements"
+          scope: '#/properties/templateRequirements'
     - type: Category
       label: Other
       elements:
         - type: Control
-          scope: "#/properties/exampleFiles"
+          scope: '#/properties/exampleFiles'
           options:
             accept: '.yml,.yaml,.json'
             vuetify:
@@ -246,8 +252,6 @@ uischema:
               schema:
                 const: true
 
-
-
 data:
   layout: single-page
   maxTabs: 4
@@ -255,34 +259,32 @@ data:
   stylingFramework: Vuetify 3
   namingConvention: camelCase
   outputFormat: yaml
-  schema: ""
-  uischema: ""
-  defaults: ""
+  schema: ''
+  uischema: ''
+  defaults: ''
   includeRules: false
   rules:
     - Make all fields on the first tab required
     - For optional array fields, first show a checkbox that toggles visibility of the array control
-  template: ""
+  template: ''
   templateRequirements:
     - Use Liquid templating syntax.
-    - Use XML-like tags for sections and formatting.
-    - XML sections can reference each other, but avoid deeply nested structures.
-    - Use Markdown for text formatting.
+    - Use Markdown for sections and text formatting.
     - Use loops and conditionals to handle dynamic content.
     - If no data is provided for a section, omit that section from the output.
     - Ensure the output is clean and well-structured.
+    - Put your resulting config in a 5-backtick code block with the appropriate language tag (yaml or json).
   includeI18n: false
   emitComments: false
   supportedLanguages:
     - en
     - ru
   exampleFiles:
-    - path: "{{env.APP_PUBLIC}}/forms/reply.yml"
-    - path: "{{env.APP_PUBLIC}}/forms/code.yml"
-    - path: "{{env.APP_PUBLIC}}/forms/file.yml"
-    - path: "{{env.APP_PUBLIC}}/forms/date.yml"
-    - path: "{{env.APP_PUBLIC}}/forms/checkbox.yml"
-
+    - path: '{{env.APP_PUBLIC}}/forms/reply.yml'
+    - path: '{{env.APP_PUBLIC}}/forms/code.yml'
+    - path: '{{env.APP_PUBLIC}}/forms/file.yml'
+    - path: '{{env.APP_PUBLIC}}/forms/date.yml'
+    - path: '{{env.APP_PUBLIC}}/forms/checkbox.yml'
 
 i18n:
   en:
@@ -335,109 +337,94 @@ i18n:
       description: Whether to include comments in the generated config to explain each section
 
 template: |
-  <prompt>
   Generate a JSON Forms configuration based on the following requirements:
-  </prompt>
 
-  <description>
+  ## Description
   {{description}}
-  </description>
 
   {% if details %}
-  <details>
+  ## Details
   {{details}}
-  </details>
   {% endif %}
 
   {% if existingConfigFile %}
-  <existing-form-config>
+  ## Existing Form Configuration
   Modify or extend this existing configuration file:
+
   ````{{existingConfigFile.extension}}
   # {{existingConfigFile.fullName}}
   {{existingConfigFile.text}}
   ````
-  </existing-form-config>
-  {% elsif existingConfigText %}
-  <existing-form-config>
+
+  {% elsif existingConfigText != blank %}
+  ## Existing Form Configuration
   Modify or extend this existing configuration:
+
   ````
   {{existingConfigText}}
   ````
-  </existing-form-config>
   {% endif %}
 
-  <configuration>
-  - **Complexity Level:** {{complexity}}
-  - **Layout Type:** {{layout}}
-  - **Maximum Number of Tabs:** {% if layout == 'single-page' %}0{% else %}{{ maxTabs }}{% endif %}
-  - **Styling Framework:** {{stylingFramework}}
-  - **Naming Convention:** {{namingConvention}}
-  - **Output Format:** {{outputFormat}}
-  - **Include Comments:** {% if emitComments %}Yes{% else %}No{% endif %}
-  - **Include Validation and Interactivity:** {% if includeRules %}Yes{% else %}No{% endif %}
-  - **Include Internationalization (i18n):** {% if includeI18n %}Yes{% else %}No{% endif %}
-  </configuration>
+  ## Configuration
+
+  - Complexity Level: {{complexity}}
+  - Layout Type: {{layout}}
+  - Maximum Number of Tabs: {% if layout == 'single-page' %}0{% else %}{{ maxTabs }}{% endif %}
+  - Styling Framework: {{stylingFramework}}
+  - Naming Convention: {{namingConvention}}
+  - Output Format: {{outputFormat}}
+  - Include Comments: {% if emitComments %}Yes{% else %}No{% endif %}
+  - Include Validation and Interactivity: {% if includeRules %}Yes{% else %}No{% endif %}
+  - Include Internationalization (i18n): {% if includeI18n %}Yes{% else %}No{% endif %}
 
   {% if schema.size > 0 %}
-  <schema-requirements>
+  ## Schema Requirements
   {{schema}}
-  </schema-requirements>
   {% endif %}
 
   {% if uischema.size > 0 %}
-  <uischema-requirements>
+  ## UI Schema Requirements
   {{uischema}}
-  </uischema-requirements>
   {% endif %}
 
   {% if defaults.size > 0 %}
-  <default-values>
+  ## Default Values
   {{defaults}}
-  </default-values>
   {% endif %}
 
   {% if includeRules and rules.size > 0 %}
-  <rules>
-  {% for rule in rules %}
-  - {{rule}}
-  {% endfor %}
-  </rules>
+  ## Rules
+  - {{ rules | join: "\n- " }}
   {% endif %}
 
   {% if includeI18n and supportedLanguages.size > 0 %}
-  <i18n-requirements>
-  - **Include Internationalization:** Yes
-  - **Supported Languages:** {{supportedLanguages | join: ', '}}
-  </i18n-requirements>
+  ## Internationalization Requirements
+  - Include Internationalization (i18n): Yes
+  - Supported Languages: {{supportedLanguages | join: ', '}}
   {% endif %}
 
   {% if template.size > 0 %}
-  <output-template>
+  ## Output Template
   {{template}}
-  </output-template>
   {% endif %}
 
   {% if templateRequirements.size > 0 %}
-  <template-requirements>
-  {% for requirement in templateRequirements %}
-  - {{requirement}}
-  {% endfor %}
-  </template-requirements>
+  ## Template Requirements
+  - {{ templateRequirements | join: "\n- " }}
   {% endif %}
 
   {% if exampleFiles.size > 0 %}
-  <example-files>
-  Please reference the following example configuration files:
+  ## Example Files
+  Reference the following example config files for syntax, structure, and style:
+
   {% for file in exampleFiles %}
-  <example-file-{{forloop.index}} name="{{file.fullName}}">
+  ### Example File {{forloop.index}}: {{file.fullName}}
+
   ````{{file.extension}}
   {{file.text}}
   ````
-  </example-file-{{forloop.index}}>
   {% endfor %}
-  </example-files>
   {% endif %}
 
-  <instructions>
-  Generate a complete JSON Forms configuration (schema, uischema, data{% if includeI18n %}, i18n{% endif %}{% if template %}, and template{% endif %}) in {{outputFormat | upcase}} format that meets all the requirements specified above.
-  </instructions>
+  ## Instructions
+  Generate a complete JSON Forms configuration (schema, uischema, data{% if includeI18n %}, i18n{% endif %}, and template) in {{outputFormat | upcase}} format that meets all the requirements specified above.

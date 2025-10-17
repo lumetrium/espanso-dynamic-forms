@@ -1,7 +1,7 @@
 schema:
   type: object
   properties:
-    task_type:
+    taskType:
       type: string
       enum:
         - discuss
@@ -16,9 +16,10 @@ schema:
         - suggest_alternatives
         - generate_types
         - add_feature
+        - write
+        - finish
     code:
       type: string
-      default: "{{clipboard}}"
     language:
       type: string
       enum:
@@ -43,36 +44,56 @@ schema:
         - django
         - other
         - none
-    file_context:
+    fileContext:
       type: string
-    error_message:
+    errorMessage:
       type: string
     issue:
       type: string
-    expected_behavior:
+    expectedBehavior:
       type: string
     context:
       type: string
-    related_code:
+    relatedCode:
       type: string
+    contextFiles:
+      type: array
+      format: file
     requirements:
       type: array
       items:
         type: string
-    output_format:
+        enum:
+          - No regressions to existing behavior
+          - Match existing code style in the file
+          - Keep functions small and focused
+          - Prefer clear names over comments
+          - Keep API backward compatible unless stated otherwise
+          - Avoid external dependencies unless justified
+      uniqueItems: true
+    customRequirements:
+      type: array
+      items:
+        type: string
+    outputFormat:
+      type: array
+      items:
+        type: string
+        enum:
+          - Provide complete, runnable code examples
+          - Include brief explanations for complex logic
+          - Explain the specific changes made
+          - Show before/after comparisons when refactoring
+      uniqueItems: true
+    customOutputFormat:
       type: array
       items:
         type: string
   required:
-    - task_type
-    - code
+    - taskType
 
 uischema:
   type: Categorization
-  options:
-    vuetify:
-      v-tabs:
-        grow: true
   elements:
     - type: Category
       label: Code & Task
@@ -80,7 +101,7 @@ uischema:
         - type: VerticalLayout
           elements:
             - type: Control
-              scope: "#/properties/task_type"
+              scope: '#/properties/taskType'
               label: What do you need help with?
               options:
                 format: radio
@@ -95,7 +116,7 @@ uischema:
                     padding: 0
               elements:
                 - type: Control
-                  scope: "#/properties/language"
+                  scope: '#/properties/language'
                   label: Language
                   options:
                     format: select
@@ -103,7 +124,7 @@ uischema:
                       v-autocomplete:
                         hideDetails: true
                 - type: Control
-                  scope: "#/properties/framework"
+                  scope: '#/properties/framework'
                   label: Framework/Library
                   options:
                     format: select
@@ -111,7 +132,7 @@ uischema:
                       v-autocomplete:
                         hideDetails: true
             - type: Control
-              scope: "#/properties/issue"
+              scope: '#/properties/issue'
               label: Specific issue or question
               options:
                 multi: true
@@ -119,24 +140,15 @@ uischema:
                   v-textarea:
                     rows: 5
             - type: Control
-              scope: "#/properties/error_message"
+              scope: '#/properties/errorMessage'
               label: Error message or stack trace
               options:
                 multi: true
-            #              rule:
-            #                effect: SHOW
-            #                condition:
-            #                  scope: "#/properties/task_type"
-            #                  schema:
-            #                    enum:
-            #                      - debug
-            #                      - fix
-            #                      - suggest_alternatives
             - type: Control
-              scope: "#/properties/file_context"
+              scope: '#/properties/fileContext'
               label: File context (filename, line numbers, function name)
             - type: Control
-              scope: "#/properties/code"
+              scope: '#/properties/code'
               label: Code
               options:
                 multi: true
@@ -144,104 +156,184 @@ uischema:
                   v-textarea:
                     rows: 20
     - type: Category
-      label: Context & Requirements
+      label: Context
       elements:
         - type: VerticalLayout
           elements:
             - type: Control
-              scope: "#/properties/expected_behavior"
+              scope: '#/properties/expectedBehavior'
               label: Expected behavior (what should this code do?)
               options:
                 multi: true
             - type: Control
-              scope: "#/properties/context"
+              scope: '#/properties/context'
               label: Additional context (project details, constraints, dependencies)
               options:
                 multi: true
             - type: Control
-              scope: "#/properties/related_code"
+              scope: '#/properties/relatedCode'
               label: Related code or files
               options:
                 multi: true
             - type: Control
-              scope: "#/properties/requirements"
-              label: Specific requirements or constraints
+              scope: '#/properties/contextFiles'
+              label: Upload context files
+              options:
+                accept: '*'
     - type: Category
-      label: Output Preferences
+      label: Output & Requirements
       elements:
         - type: VerticalLayout
           elements:
             - type: Control
-              scope: "#/properties/output_format"
+              scope: '#/properties/requirements'
+              label: Specific requirements or constraints
+              options:
+                format: checkbox
+                vuetify:
+                  v-input:
+                    class: vertical
+            - type: Control
+              scope: '#/properties/customRequirements'
+              label: Additional custom requirements
+            - type: Control
+              scope: '#/properties/outputFormat'
               label: Output preferences
+              options:
+                format: checkbox
+                vuetify:
+                  v-input:
+                    class: vertical
+            - type: Control
+              scope: '#/properties/customOutputFormat'
+              label: Additional custom output preferences
+
+data:
+  taskType: discuss
+  code: '{{clipboard}}'
+  language: typescript
+  requirements: []
+  customRequirements:
+    - ""
+  outputFormat: []
+  customOutputFormat:
+    - ""
+  contextFiles: []
 
 template: |
-  Help me {{task_type}} this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% case taskType %}
+  {% when 'discuss' %}
+  I'd like to discuss this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code with you:
+  {% when 'explain' %}
+  Explain how this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code works:
+  {% when 'fix' %}
+  Help me fix this broken {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'improve' %}
+  Help me improve this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'document' %}
+  Help me document this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'debug' %}
+  Help me debug this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'review' %}
+  Please review this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'refactor' %}
+  Help me refactor this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'optimize' %}
+  Help me optimize this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'suggest_alternatives' %}
+  Suggest alternative approaches for this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'generate_types' %}
+  Generate TypeScript types for this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'add_feature' %}
+  Help me add a new feature to this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'write' %}
+  Help me write {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% when 'finish' %}
+  Help me finish this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% else %}
+  Help me {{taskType}} this {{language}}{% if framework and framework != 'none' %} ({{framework}}){% endif %} code:
+  {% endcase %}
 
-  {% if file_context %}
-  **File:** {{file_context}}
+  {% if fileContext %}
+  ## File
+  {{fileContext}}
   {% endif %}
 
-  ```{{language}}
+  {% if code != blank %}
+  ````{{language}}
   {{code}}
-  ```
+  ````
+  {% endif %}
 
-  {% if error_message %}
-  **Error/Stack Trace:**
-  ```
-  {{error_message}}
-  ```
+  {% if errorMessage %}
+  ## Error/Stack Trace
+  ````
+  {{errorMessage}}
+  ````
   {% endif %}
 
   {% if issue %}
-  **Issue/Question:**
+  {% case taskType %}
+  {% when 'fix' or 'debug' %}
+  ## Problem Description
+  {% when 'add_feature' %}
+  ## Feature Requirements
+  {% when 'review' %}
+  ## Review Focus
+  {% when 'optimize' %}
+  ## Performance Concerns
+  {% when 'refactor' %}
+  ## Refactoring Goals
+  {% when 'document' %}
+  ## Documentation Focus
+  {% when 'write' %}
+  ## Main Requirements
+  {% when 'finish' %}
+  ## Completion Goals
+  {% else %}
+  ## Question
+  {% endcase %}
   {{issue}}
   {% endif %}
 
-  {% if expected_behavior %}
-  **Expected Behavior:**
-  {{expected_behavior}}
+
+  {% if expectedBehavior %}
+  ## Expected Behavior
+  {{expectedBehavior}}
   {% endif %}
 
   {% if context %}
-  **Context:**
+  ## Context
   {{context}}
   {% endif %}
 
-  {% if related_code %}
-  **Related Code:**
-  ```
-  {{related_code}}
-  ```
+  {% if relatedCode %}
+  ## Related Code
+  ````
+  {{relatedCode}}
+  ````
   {% endif %}
 
-  {% if requirements.size > 0 %}
-  **Requirements:**
-  - {{requirements | join: '\n- '}}
+  {% if contextFiles.size > 0 %}
+  ## Files for Context
+  {% for file in contextFiles %}
+  {{file.fullName}}
+  ````
+  {{file.text}}
+  ````
+  {% endfor %}
   {% endif %}
 
-  {% if testing_requirements and testing_requirements != 'no_tests_needed' %}
-  **Testing:** {{testing_requirements | replace: '_', ' '}}
+  {% assign allRequirements = requirements | concat: customRequirements %}
+  {% assign filteredRequirements = allRequirements | where_exp: "item", "item != ''" %}
+  {% if filteredRequirements.size > 0 %}
+  ## Requirements
+  - {{filteredRequirements | join: '\n- '}}
   {% endif %}
 
-  {% if output_format and output_format.size > 0 %}
-  **Output Preferences:**
-  - {{output_format | join: '\n- '}}
+  {% assign allOutputFormat = outputFormat | concat: customOutputFormat %}
+  {% assign filteredOutputFormat = allOutputFormat | where_exp: "item", "item != ''" %}
+  {% if filteredOutputFormat.size > 0 %}
+  ## Output Preferences
+  - {{filteredOutputFormat | join: '\n- '}}
   {% endif %}
-
-data:
-  task_type: discuss
-  code: "{{clipboard}}"
-  language: typescript
-  requirements:
-    - No regressions to existing behavior
-    - Match existing code style in the file
-    - Keep functions small and focused
-    - Prefer clear names over comments
-    - Keep API backward compatible unless stated otherwise
-    - Avoid external dependencies unless justified
-  output_format:
-    - Provide complete, runnable code examples
-    - Include brief explanations for complex logic
-    - Explain the specific changes made
-    - Show before/after comparisons when refactoring
