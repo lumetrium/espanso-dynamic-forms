@@ -58,6 +58,7 @@ envParams = {
 	// deprecated, will be removed in future versions
 	APP_EXECUTABLE: envParams.EDF_EXECUTABLE,
 	APP_INSTALLATION_DIR: envParams.EDF_INSTALLATION_DIR,
+	APP_PUBLIC: envParams.EDF_RESOURCES,
 	FORM_CONFIG_PATH: envParams.EDF_FORM_CONFIG_PATH,
 	FORM_CONFIG_PATH_REAL: envParams.EDF_FORM_CONFIG_PATH_REAL,
 }
