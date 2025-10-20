@@ -1,4 +1,5 @@
 import { JsonSchema4, JsonSchema7, UISchemaElement } from '@jsonforms/core'
+import { FormMeta } from './form-meta.ts'
 
 export type FormSchemaI18n = { [locale: string]: Record<string, string> }
 
@@ -13,4 +14,6 @@ export interface FormSchema {
 	i18n?: FormSchemaI18n
 	/** Output template for rendering result with Liquid */
 	template?: string | string[]
+	/** Metadata about the form */
+	meta?: FormMeta
 }

@@ -11,11 +11,14 @@
 			:hint="control.description"
 			:persistent-hint="persistentHint()"
 			:required="control.required"
-			v-bind="vuetifyProps('v-file-input')"
+			:dirty="!!boundSingle"
 			show-size
 			clearable
-			:loading="isLoadingDefaults"
+			persistent-clear
 			:accept="acceptedTypes || undefined"
+			v-bind="vuetifyProps('v-file-input')"
+			:loading="isLoadingDefaults"
+			@click:clear="clearAll"
 			@update:modelValue="onFileChange"
 			@focus="isFocused = true"
 			@blur="isFocused = false"

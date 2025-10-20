@@ -1,8 +1,8 @@
 import fs from 'node:fs'
-import { FORM_CONFIG } from '../main.ts'
 
 // @ts-ignore
 import { load as loadYaml } from 'js-yaml'
+import { FormSchema } from '../../src/models/form-schema.ts'
 
 export function getFormFilePath<F>(args: string[], fallback: F) {
 	let formFileIndex = args.indexOf('--form-config')
@@ -19,12 +19,14 @@ export function getFormFilePathReal(formFilePath: string, fallback = '') {
 	}
 }
 
-export function parseFormConfig(args: string[], fallback = '') {
-	let formFileContent = 'EMPTY'
-	let formFilePath = getFormFilePath(args, FORM_CONFIG)
+export function parseFormConfig(
+	formFilePath: string,
+	fallback?: FormSchema,
+): FormSchema {
+	let formFileContent
 
 	if (formFilePath && fs.existsSync(formFilePath)) {
-		formFileContent = fs.readFileSync(formFilePath, 'utf-8')
+		formFileContent = fs.readFileSync(formFilePath, 'utf-8') as FormSchema
 	}
 
 	if (!formFilePath || !fs.existsSync(formFilePath)) {
@@ -38,13 +40,8 @@ export function parseFormConfig(args: string[], fallback = '') {
 			formFilePath?.endsWith('.yaml') ||
 			formFilePath?.endsWith('.yml'))
 	) {
-		try {
-			const doc = loadYaml(formFileContent)
-			formFileContent = JSON.stringify(doc, null, 2)
-		} catch (e) {
-			console.error('Error parsing YAML file:', e)
-		}
+		formFileContent = loadYaml(formFileContent) as FormSchema
 	}
 
-	return formFileContent
+	return formFileContent ?? fallback ?? {}
 }

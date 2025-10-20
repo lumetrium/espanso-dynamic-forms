@@ -1,13 +1,14 @@
+
 /**
  * Parses environment variable assignments from command-line parameters
  * @param args - Array of arguments
  * @param mixin - Optional object to include
- * @returns Stringified JSON containing all env vars
+ * @returns Object containing all env vars
  */
 export function parseEnvParams(
 	args: string[],
 	mixin: Record<string, string | undefined> = {},
-): string {
+): Record<string, any> {
 	const envVars: Record<string, string | undefined> = {}
 
 	for (let i = 0; i < args.length; i++) {
@@ -19,17 +20,11 @@ export function parseEnvParams(
 				envVars[key] = `${value}`
 			}
 
-			i++;
+			i++
 		}
 	}
 
-	try {
-		const finalEnv = JSON.stringify({ ...mixin, ...envVars })
-		return finalEnv
-	} catch (e) {
-		console.error('Error stringifying env vars:', e)
-		return '{}'
-	}
+	return { ...mixin, ...envVars }
 }
 
 /**
@@ -37,7 +32,9 @@ export function parseEnvParams(
  * @param assignment - String like "KEY=value"
  * @returns Tuple of [key, value]
  */
-function parseEnvAssignment(assignment: string): [string | null, string | null] {
+function parseEnvAssignment(
+	assignment: string,
+): [string | null, string | null] {
 	const equalIndex = assignment.indexOf('=')
 
 	if (equalIndex === -1) {
@@ -49,4 +46,3 @@ function parseEnvAssignment(assignment: string): [string | null, string | null] 
 
 	return [key, value]
 }
-

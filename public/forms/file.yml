@@ -27,11 +27,11 @@ uischema:
 
 data:
   singleFile:
-    path: "{{env.APP_PUBLIC}}/forms/date.yml"
+    path: "{{env.EDF_FORMS}}/date.yml"
   multipleFiles:
-    - path: "{{env.APP_PUBLIC}}/forms/reply.yml"
-    - path: "{{env.APP_PUBLIC}}/logos/lumetrium.png"
-    - path: "{{env.APP_PUBLIC}}/logos/definer.png"
+    - path: "{{env.EDF_FORMS}}/reply.yml"
+    - path: "{{env.EDF_RESOURCES}}/logos/lumetrium.png"
+    - path: "{{env.EDF_RESOURCES}}/logos/definer.png"
 
 i18n:
   en:

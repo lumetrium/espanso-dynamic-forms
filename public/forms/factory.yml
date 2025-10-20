@@ -280,11 +280,11 @@ data:
     - en
     - ru
   exampleFiles:
-    - path: '{{env.APP_PUBLIC}}/forms/reply.yml'
-    - path: '{{env.APP_PUBLIC}}/forms/code.yml'
-    - path: '{{env.APP_PUBLIC}}/forms/file.yml'
-    - path: '{{env.APP_PUBLIC}}/forms/date.yml'
-    - path: '{{env.APP_PUBLIC}}/forms/checkbox.yml'
+    - path: '{{env.EDF_FORMS}}/reply.yml'
+    - path: '{{env.EDF_FORMS}}/code.yml'
+    - path: '{{env.EDF_FORMS}}/file.yml'
+    - path: '{{env.EDF_FORMS}}/date.yml'
+    - path: '{{env.EDF_FORMS}}/checkbox.yml'
 
 i18n:
   en:

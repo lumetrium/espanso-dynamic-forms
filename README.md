@@ -23,7 +23,7 @@
 
 <p align="center">
  Create powerful, interactive forms with <a href="https://jsonforms.io/" target="_blank">JSON Forms</a> and<br/>
- insert the templated output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
+ insert <a href="https://shopify.github.io/liquid/" target="_blank">Liquid templated</a> output anywhere with <a href="https://espanso.org/" target="_blank">Espanso</a>.
 </p>
 
 
@@ -31,15 +31,15 @@
 
 ## About
 
-**Espanso Dynamic Forms** is a helper application that bridges the gap between [Espanso](https://espanso.org/)'s powerful text expansion engine and the sophisticated UI capabilities of [JSON Forms](https://jsonforms.io/).
+**Espanso Dynamic Forms** is a helper application that bridges the gap between [Espanso](https://espanso.org/)'s powerful text expansion engine, the sophisticated UI capabilities of [JSON Forms](https://jsonforms.io/), and the flexible templating features of [Liquid](https://shopify.github.io/liquid/).
 
 The workflow:
 
 1. **Trigger**: You type a keyword in any application (e.g., `:email`).
 2. **Form Appears**: Espanso runs this application, which displays a rich, interactive form defined by you in either **YAML** or **JSON**.
 3. **Fill & Submit**: You fill out the form fields (text inputs, dropdowns, date pickers, etc.) and click "Submit".
-4. **Formatted Output**: The app takes your data, formats it using your [Liquid template](https://liquidjs.com), and passes the final text back to Espanso.
-5. **Insertion**: Espanso pastes the beautifully formatted text right where you typed your trigger.
+4. **Formatted Output**: The app takes your data, renders it using your [Liquid template](https://liquidjs.com), and passes the final text back to Espanso.
+5. **Insertion**: Espanso pastes the rendered text right where you typed your trigger.
 
 
 <p align="center">
@@ -47,15 +47,6 @@ The workflow:
 <video src="https://github.com/user-attachments/assets/be458a30-e3f3-423e-8b40-cf0d0f21f49a" loop="true" autoplay="autoplay" controls muted />
 
 </p>
-
-
-## Feature Highlights
-- **Complete JSON Forms Support**: Anything you can do with JSON Forms, you can do here.
-- **Advanced Validation**: Required fields, pattern matching (regex), min/max length, and more.
-- **Conditional Visibility**: Show or hide form fields based on the values of other fields.
-- **Modern UI Components**: Use tabs, date/time pickers, toggles, sliders, and more thanks to the [Vuetify renderer](https://jsonforms.io/docs/renderer-sets#vue-vuetify-renderer-set).
-- **Complex Data Structures**: Easily handle arrays and nested objects.
-- **Flexible Output**: Use Liquid templating's logic (`if/else`, `case`) and filters to transform your data into any format you need.
 
 ## Installation
 
@@ -66,9 +57,14 @@ The workflow:
 
 ### 1. Create an Espanso Trigger
 
-Add this configuration to your Espanso config file (`~/.config/espanso/match/base.yml` on Linux/macOS or `%APPDATA%\espanso\match\base.yml` on Windows):
+Add a trigger configuration to your Espanso config file. The file location varies by platform:
 
-```yaml
+- **Linux/macOS**: `~/.config/espanso/match/base.yml`
+- **Windows**: `%APPDATA%\espanso\match\base.yml`
+
+Example trigger configuration:
+
+```yml
 matches:
   - trigger: ":demo"
     replace: "{{output}}"
@@ -78,21 +74,56 @@ matches:
         type: script
         params:
           args:
-            - "C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe" # on Linux use "/usr/bin/espanso-dynamic-forms"
+            - C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe
             - --form-config
-            - "%CONFIG%/forms/demo.yml"
+            - \{\{env.EDF_FORMS}}/reply.yml
 ```
 
-### 2. Create a Form Config
+> On Linux use the path `/usr/bin/espanso-dynamic-forms` instead of the Windows path to `.exe` shown above
 
-Create a form config file at `%CONFIG%/forms/demo.yml`.
+|Configuration Key|Purpose|
+|---|---|
+|`trigger`|The text pattern to match (e.g., `:demo`)|
+|`replace`|Template for output, uses `{{output}}` variable|
+|`force_mode: clipboard`|Required for multiline output insertion|
+|`type: script`|Tells Espanso to execute an external program|
+|`args`|Command-line arguments passed to the executable|
 
-It can be named anything and placed anywhere, 
-just update the `--form-config` path in the Espanso trigger accordingly.
 
-Minimal example:
+### 2. Test Demo Form
 
-````yaml
+1. Type `:demo` in any text field (e.g., text editor, browser input)
+2. The **Espanso Dynamic Forms** window appears
+3. Fill out the form fields
+4. Click the **Submit** button
+5. The formatted output is inserted at your cursor position
+
+### 3. Create a Custom Form Config
+
+The main power of **Espanso Dynamic Forms** is in creating and using your own custom forms.
+So let's create a form config and reference it in the Espanso trigger.
+
+Create a YAML file anywhere (e.g., `C:/forms/test.yml`).
+Now, update the `--form-config` argument in the trigger to point to your new form config file.
+
+```yml
+matches:
+  - trigger: ":demo"
+    replace: "{{output}}"
+    force_mode: clipboard
+    vars:
+      - name: output
+        type: script
+        params:
+          args:
+            - C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe
+            - --form-config
+            - C:/forms/demo.yml # <-- create a .yml file and put the path here
+```
+
+Let's try this minimal `demo.yml` form config:
+
+```yml
 schema:
   type: object
   properties:
@@ -124,14 +155,19 @@ data:
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}
-````
+```
 
-This configuration:
+You can copy the above YAML content into your own config file and tweak it as needed.
 
-1. **schema**: Defines two fields (`subject` as string, `priority` as enum), marks `subject` as required
-2. **uischema**: Arranges fields vertically, each as a `Control` pointing to a schema property via `scope`
-3. **data**: Sets `subject` to clipboard content, `priority` to "Medium"
-4. **template**: Formats output using [Liquid syntax](https://shopify.github.io/liquid/), applying `upcase` filter to priority
+| Keyword    | Description                                                                                           |
+|------------|---------------------------------------------------------------------------------------------------|
+| **schema** | Defines two fields (`subject` as string, `priority` as enum), marks `subject` as required         |
+| **uischema** | Arranges fields vertically, each as a `Control` pointing to a schema property via `scope`        |
+| **data**   | Sets `subject` to clipboard content, `priority` to "Medium"                                        |
+| **template** | Formats output using Liquid syntax, applying `upcase` filter to priority                          |
+
+> Any field in your `schema` becomes available in the `template`.  
+> You can also use special tokens like `{{clipboard}}` and `{{env}}`.
 
 <details>
 <summary><strong>CLICK HERE TO SEE A MORE ADVANCED EXAMPLE</strong></summary>
@@ -238,13 +274,6 @@ template: |
 ````
 
 </details>
-
-### 3. Try It Out
-
-1. Type `:demo` anywhere in your system
-2. Fill out the form that appears
-3. Click "Submit" to insert the generated output at your cursor
-
 
 ## Compare
 The following examples show a native Espanso form and its equivalent in Espanso Dynamic Forms config.
@@ -363,22 +392,7 @@ template: |
 
 </details>
 
-## More examples
-
 Browse the [examples folder](./public/forms) for more sample form configs.
-
-
-## Tips and notes
-- **Liquid variables**: Any field in your schema becomes available in the template. You can also pass special tokens like `{{clipboard}}` as defaults and then render them.
-- **Multiline output**: Use "[force_mode: clipboard](https://espanso.org/docs/matches/basics/#injection-mechanism)" to avoid truncation.
-
-## Platforms
-This application is available for:
-- **Windows**
-- **Linux**
-
-> This app has **NOT** been built or tested on **macOS**. 
-> However, since this is an Electron app, you may be able to build it for macOS yourself following the standard Electron build process.
 
 
 ## References
@@ -386,6 +400,16 @@ This application is available for:
 - **Output Formatting**: Explore [Liquid templating](https://shopify.github.io/liquid/) for dynamic output formatting
 - **Trigger Configuration**: Review the [Espanso documentation](https://espanso.org/docs/) for advanced trigger setup
 - **UI Components**: Browse [Examples with Vuetify Renderers](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) for component inspiration (note: examples use Vuetify 2, while Espanso Dynamic Forms uses Vuetify 3, but core concepts still apply)
+
+
+## Platforms
+This application is available for:
+- **Windows**
+- **Linux**
+
+> This app has **NOT** been built or tested on **macOS**.
+> However, since this is an Electron app, you may be able to build it for macOS yourself following the standard Electron build process.
+
 ---
 
 **Questions or issues?** Please [open an issue](https://github.com/lumetrium/espanso-dynamic-forms/issues/new) on GitHub.

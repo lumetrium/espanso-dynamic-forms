@@ -11,12 +11,15 @@
 			:hint="control.description"
 			:persistent-hint="persistentHint()"
 			:required="control.required"
-			v-bind="vuetifyProps('v-file-input')"
+			:dirty="boundArray?.length > 0"
 			show-size
 			clearable
 			multiple
+			persistent-clear
 			:accept="acceptedTypes || undefined"
+			v-bind="vuetifyProps('v-file-input')"
 			:loading="isLoadingDefaults"
+			@click:clear="clearAll"
 			@update:modelValue="onFileChange"
 			@focus="isFocused = true"
 			@blur="isFocused = false"
@@ -77,6 +80,7 @@ const {
 	removeSelectedAt,
 	isLoadingDefaults,
 	localPreviews,
+	clearAll,
 	t,
 } = useFileControl(props, true)
 </script>

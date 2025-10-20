@@ -47,21 +47,33 @@ export function useFileControl(props: ControlProps, isMultiple: boolean) {
 	})
 
 	async function onFileChange(payload: File | File[] | null | undefined) {
-		if (!payload || (Array.isArray(payload) && payload.length === 0)) {
-			return clearAll()
-		}
+		console.warn('onFileChange payload:', payload)
+		if (!payload || (Array.isArray(payload) && payload.length === 0)) return
 
 		const payloadArray = Array.isArray(payload) ? payload : [payload]
-		files.value = isMultiple ? payloadArray : payloadArray.slice(0, 1)
-		buildPreviews(files.value)
 
-		const metadata = await Promise.all(
-			files.value.map((f) => fileToMetadata(f)),
-		)
-		vuetifyControl.handleChange(
-			vuetifyControl.control.value.path,
-			isMultiple ? metadata : metadata[0],
-		)
+		if (isMultiple) {
+			const existingFiles = files.value || []
+			files.value = [...existingFiles, ...payloadArray]
+			buildPreviews(files.value)
+			const newMetadata = await Promise.all(
+				payloadArray.map((f) => fileToMetadata(f)),
+			)
+			const mergedMetadata = [...boundArray.value, ...newMetadata]
+			vuetifyControl.handleChange(
+				vuetifyControl.control.value.path,
+				mergedMetadata,
+			)
+		} else {
+			files.value = payloadArray.slice(0, 1)
+			buildPreviews(files.value)
+
+			const metadata = await fileToMetadata(files.value[0])
+			vuetifyControl.handleChange(
+				vuetifyControl.control.value.path,
+				metadata,
+			)
+		}
 	}
 
 	function clearAll() {
