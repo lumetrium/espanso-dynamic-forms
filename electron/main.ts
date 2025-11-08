@@ -39,7 +39,10 @@ let envParams = parseEnvParams(args, {
 })
 
 const formFilePath = getFormFilePath(args, '') || FORM_CONFIG
-const formFilePathRendered = render(formFilePath, { env: envParams })
+const formFilePathRendered = render(formFilePath, {
+	env: envParams,
+	clipboard: clipboard.readText(),
+})
 
 const formFileContent = parseFormConfig(
 	formFilePathRendered,
@@ -49,7 +52,7 @@ const formFileContent = parseFormConfig(
 envParams = {
 	...envParams,
 	EDF_FORM_CONFIG_PATH: formFilePath,
-	EDF_FORM_CONFIG_PATH_RENDERED: formFilePath,
+	EDF_FORM_CONFIG_PATH_RENDERED: formFilePathRendered,
 	EDF_FORM_CONFIG_PATH_REAL: getFormFilePathReal(formFilePathRendered, ''),
 }
 
@@ -104,6 +107,10 @@ async function createWindow() {
 		// win.loadFile('dist/index.html')
 		await win.loadFile(path.join(RENDERER_DIST, 'index.html'))
 	}
+
+	win.once('show', () => {
+		win?.focus()
+	})
 
 	win.show()
 	win.focus()

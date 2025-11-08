@@ -11,6 +11,26 @@ export function useTemplater() {
 	engine.filters['url_encode'] = (value: string) => encodeURIComponent(value)
 	engine.filters['url_decode'] = (value: string) => decodeURIComponent(value)
 
+	engine.filters['render_template'] = function (
+		template: string,
+		context: any,
+	) {
+		if (!template) return ''
+		try {
+			const compiled = engine.parse(preprocess(template))
+			const fullData = {
+				...utilVariables,
+				...this.context.getAll(),
+				...context,
+			}
+			const rendered = engine.renderSync(compiled, fullData)
+			return postprocess(rendered)
+		} catch (e) {
+			console.error('Error rendering nested template:', e)
+			return template
+		}
+	}
+
 	function render(
 		template: string,
 		data?: Record<string, any>,
@@ -48,21 +68,23 @@ export function useTemplater() {
 
 		// Handle arrays - recursively process each item
 		if (Array.isArray(value)) {
-			return value.map(item => renderDeep(item, data, throwOnError))
+			return value.map((item) => renderDeep(item, data, throwOnError))
 		}
 
 		// Handle objects - recursively process each property
 		if (value !== null && typeof value === 'object') {
-			return Object.entries(value).reduce((acc, [key, val]) => {
-				acc[key] = renderDeep(val, data, throwOnError)
-				return acc
-			}, {} as Record<string, any>)
+			return Object.entries(value).reduce(
+				(acc, [key, val]) => {
+					acc[key] = renderDeep(val, data, throwOnError)
+					return acc
+				},
+				{} as Record<string, any>,
+			)
 		}
 
 		// Return primitives as-is (numbers, booleans, null, etc.)
 		return value
 	}
-
 
 	function preprocess(template: string) {
 		return template

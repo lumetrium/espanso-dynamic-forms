@@ -1,0 +1,219 @@
+schema:
+  type: object
+  properties:
+    description:
+      type: string
+    templateSelector:
+      type: string
+      enum:
+        - Simple
+        - Markdown List
+        - Table Summary
+        - Code Context
+        - File Manifest
+        - Archive Contents
+    simpleTemplate:
+      type: string
+    markdownListTemplate:
+      type: string
+    tableSummaryTemplate:
+      type: string
+    codeContextTemplate:
+      type: string
+    fileManifestTemplate:
+      type: string
+    archiveContentsTemplate:
+      type: string
+    files:
+      type: array
+      format: file
+  required:
+    - files
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Files
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/description"
+              label: What do you want to do with these files?
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 8
+            - type: Control
+              scope: "#/properties/files"
+              label: Select files
+              options:
+                accept: "*"
+    - type: Category
+      label: Template
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/templateSelector"
+              label: Select a template
+              options:
+                format: radio
+                vuetify:
+                  v-radio-group:
+                    inline: true
+                    hideDetails: true
+            - type: Control
+              scope: "#/properties/simpleTemplate"
+              label: "Simple Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: Simple
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 8
+            - type: Control
+              scope: "#/properties/markdownListTemplate"
+              label: "Markdown List Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: Markdown List
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 8
+            - type: Control
+              scope: "#/properties/tableSummaryTemplate"
+              label: "Table Summary Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: Table Summary
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+            - type: Control
+              scope: "#/properties/codeContextTemplate"
+              label: "Code Context Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: Code Context
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 12
+            - type: Control
+              scope: "#/properties/fileManifestTemplate"
+              label: "File Manifest Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: File Manifest
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+            - type: Control
+              scope: "#/properties/archiveContentsTemplate"
+              label: "Archive Contents Template"
+              rule:
+                effect: SHOW
+                condition:
+                  scope: "#/properties/templateSelector"
+                  schema:
+                    const: Archive Contents
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 8
+
+data:
+  description: ""
+  templateSelector: Simple
+  simpleTemplate: |
+    {% raw %}# File {{forloop.index}}: {{file.fullName}}
+    ````{{file.extension}}
+    {{file.text}}
+    ````{% endraw %}
+  markdownListTemplate: |
+    {% raw %}### {{forloop.index}}. {{file.name}}.{{file.extension}}
+    **Type:** {{file.mime}}
+    **Size:** {{file.size}} bytes
+    **Hash:** `{{file.hash}}`
+
+    ````{{file.extension}}
+    {{file.text}}
+    ````{% endraw %}
+  tableSummaryTemplate: |
+    {% raw %}{% if forloop.first %}| # | Filename | Extension | Size | MIME Type | SHA-256 |
+    |---|----------|-----------|------|-----------|---------|
+    {% endif %}| {{forloop.index}} | {{file.name}} | {{file.extension}} | {{file.size}} | {{file.mime}} | `{{file.hash}}` |
+    {% endraw %}
+  codeContextTemplate: |
+    {% raw %}## File {{forloop.index}}: `{{file.fullName}}`
+
+    **Size:** {{file.size}} bytes ({{file.size | divided_by: 1024.0 | round: 2}} KB)
+    **Type:** {{file.mime}}
+    **Hash:** `{{file.hash}}`
+
+    ````{{file.extension}}
+    {{file.text}}
+    ````{% endraw %}
+  fileManifestTemplate: |
+    {% raw %}- **{{file.fullName}}**
+      - Size: {{file.size}} bytes
+      - Type: {{file.mime}}
+      - SHA-256: `{{file.hash}}`{% endraw %}
+  archiveContentsTemplate: |
+    {% raw %}{{forloop.index}}. {{file.fullName}} ({{file.size}} bytes, {{file.mime}}){% endraw %}
+  files: []
+
+template: |
+  {% if description %}
+  {{description}}
+
+  {% endif %}
+  {% if files.size > 0 %}
+  {% case templateSelector %}
+  {% when 'Simple' %}
+  {% assign activeTemplate = simpleTemplate %}
+  {% when 'Markdown List' %}
+  {% assign activeTemplate = markdownListTemplate %}
+  {% when 'Table Summary' %}
+  {% assign activeTemplate = tableSummaryTemplate %}
+  {% when 'Code Context' %}
+  {% assign activeTemplate = codeContextTemplate %}
+  {% when 'File Manifest' %}
+  {% assign activeTemplate = fileManifestTemplate %}
+  {% when 'Archive Contents' %}
+  {% assign activeTemplate = archiveContentsTemplate %}
+  {% else %}
+  {% assign activeTemplate = simpleTemplate %}
+  {% endcase %}
+  {% for file in files -%}
+  {{activeTemplate | render_template: file}}
+  {% endfor %}
+  {% endif %}
