@@ -23,6 +23,27 @@
 			@focus="isFocused = true"
 			@blur="isFocused = false"
 		/>
+
+		<RecentFilesSection
+			v-if="recentFilesEnabled"
+			:entries="recentFilesEntries"
+			:selected-entry-ids="selectedRecentIds"
+			:disabled="!control.enabled"
+			:loading-entry-id="loadingRecentEntryId"
+			:t="t"
+			:presets="presets"
+			:stash="presetsStash"
+			@select="selectRecentEntry"
+			@deselect="deselectRecentEntry"
+			@add-selected="addSelectedRecentFiles"
+			@remove-entry="removeRecentEntry"
+			@clear-all="clearRecentHistory"
+			@save-preset="savePreset"
+			@load-preset="loadPreset"
+			@delete-preset="deletePreset"
+			@restore-stash="restorePresetsStash"
+		/>
+
 		<template v-if="!isLoadingDefaults">
 			<div
 				v-if="boundSingle"
@@ -39,6 +60,7 @@
 						:width="220"
 						:height="120"
 						cover
+						:disabled="!control.enabled"
 						@remove="clearAll"
 					/>
 				</div>
@@ -52,6 +74,7 @@ import { type ControlElement } from '@jsonforms/core'
 import { rendererProps } from '@jsonforms/vue'
 import { VFileInput } from 'vuetify/components'
 import FilePreview from './FilePreview.vue'
+import RecentFilesSection from './RecentFilesSection.vue'
 import { useFileControl } from './useFileControl'
 
 const props = defineProps(rendererProps<ControlElement>())
@@ -71,9 +94,21 @@ const {
 	localPreviews,
 	clearAll,
 	t,
+	recentFilesEnabled,
+	recentFilesEntries,
+	selectedRecentIds,
+	loadingRecentEntryId,
+	selectRecentEntry,
+	deselectRecentEntry,
+	addSelectedRecentFiles,
+	removeRecentEntry,
+	clearRecentHistory,
+	// Presets
+	presets,
+	presetsStash,
+	savePreset,
+	loadPreset,
+	deletePreset,
+	restorePresetsStash,
 } = useFileControl(props, false)
 </script>
-
-<style scoped>
-
-</style>

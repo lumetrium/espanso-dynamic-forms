@@ -39,7 +39,7 @@ uischema:
         - type: VerticalLayout
           elements:
             - type: Control
-              scope: "#/properties/description"
+              scope: '#/properties/description'
               label: What do you want to do with these files?
               options:
                 multi: true
@@ -47,17 +47,20 @@ uischema:
                   v-textarea:
                     rows: 8
             - type: Control
-              scope: "#/properties/files"
+              scope: '#/properties/files'
               label: Select files
               options:
-                accept: "*"
+                accept: '*'
+                recentFiles:
+                  enabled: true
+                  maxItems: 100
     - type: Category
       label: Template
       elements:
         - type: VerticalLayout
           elements:
             - type: Control
-              scope: "#/properties/templateSelector"
+              scope: '#/properties/templateSelector'
               label: Select a template
               options:
                 format: radio
@@ -66,12 +69,12 @@ uischema:
                     inline: true
                     hideDetails: true
             - type: Control
-              scope: "#/properties/simpleTemplate"
-              label: "Simple Template"
+              scope: '#/properties/simpleTemplate'
+              label: 'Simple Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: Simple
               options:
@@ -80,12 +83,12 @@ uischema:
                   v-textarea:
                     rows: 8
             - type: Control
-              scope: "#/properties/markdownListTemplate"
-              label: "Markdown List Template"
+              scope: '#/properties/markdownListTemplate'
+              label: 'Markdown List Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: Markdown List
               options:
@@ -94,12 +97,12 @@ uischema:
                   v-textarea:
                     rows: 8
             - type: Control
-              scope: "#/properties/tableSummaryTemplate"
-              label: "Table Summary Template"
+              scope: '#/properties/tableSummaryTemplate'
+              label: 'Table Summary Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: Table Summary
               options:
@@ -108,12 +111,12 @@ uischema:
                   v-textarea:
                     rows: 10
             - type: Control
-              scope: "#/properties/codeContextTemplate"
-              label: "Code Context Template"
+              scope: '#/properties/codeContextTemplate'
+              label: 'Code Context Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: Code Context
               options:
@@ -122,12 +125,12 @@ uischema:
                   v-textarea:
                     rows: 12
             - type: Control
-              scope: "#/properties/fileManifestTemplate"
-              label: "File Manifest Template"
+              scope: '#/properties/fileManifestTemplate'
+              label: 'File Manifest Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: File Manifest
               options:
@@ -136,12 +139,12 @@ uischema:
                   v-textarea:
                     rows: 10
             - type: Control
-              scope: "#/properties/archiveContentsTemplate"
-              label: "Archive Contents Template"
+              scope: '#/properties/archiveContentsTemplate'
+              label: 'Archive Contents Template'
               rule:
                 effect: SHOW
                 condition:
-                  scope: "#/properties/templateSelector"
+                  scope: '#/properties/templateSelector'
                   schema:
                     const: Archive Contents
               options:
@@ -151,7 +154,7 @@ uischema:
                     rows: 8
 
 data:
-  description: ""
+  description: ''
   templateSelector: Simple
   simpleTemplate: |
     {% raw %}# File {{forloop.index}}: {{file.fullName}}

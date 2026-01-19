@@ -146,7 +146,7 @@ const emit = defineEmits<{
 	(e: 'remove'): void
 }>()
 
-const { formatFileSize: formatSize } = useFileUtils()
+const { formatFileSize: formatSize, getFileIcon } = useFileUtils()
 
 const mime = computed(
 	() => props.metadata?.mime || mimeTypes.getType(props.src) || undefined,
@@ -222,11 +222,7 @@ const decodedText = computed(() => {
 
 // Dynamic icon based on file type
 const fileIcon = computed(() => {
-	if (isPdf.value) return 'mdi-file-pdf-box'
-	if (isVideo.value) return 'mdi-video'
-	if (isAudio.value) return 'mdi-music'
-	if (isText.value) return 'mdi-file-code'
-	return 'mdi-file-document-outline'
+	return getFileIcon(props.metadata?.fullName, mime.value)
 })
 </script>
 

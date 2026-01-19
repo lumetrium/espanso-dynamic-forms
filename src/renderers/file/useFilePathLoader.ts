@@ -7,8 +7,10 @@ export function useFilePathLoader() {
 
 	function getFilePath(value: any): string | null {
 		if (!value) return null
-		if (typeof value === 'object' && ('path' in value)) return value.path
-		return typeof value === 'string' && value.length > 0 && !value.startsWith('data:')
+		if (typeof value === 'object' && 'path' in value) return value.path
+		return typeof value === 'string' &&
+			value.length > 0 &&
+			!value.startsWith('data:')
 			? value.trim()
 			: null
 	}
@@ -33,7 +35,12 @@ export function useFilePathLoader() {
 			}
 			const arrayBuffer = uint8Array.buffer
 			const fullFileName = `${fileData.name}.${fileData.ext}`
-			const mimeType = mime.getType(fullFileName) ?? ''
+			let mimeType = mime.getType(fullFileName) ?? ''
+
+			if (fileData.ext.toLowerCase() === 'ts') {
+				mimeType = 'text/typescript'
+			}
+
 			const dataUrl = `data:${mimeType};base64,${base64}`
 
 			const text = isTextFile(mimeType)
@@ -52,6 +59,7 @@ export function useFilePathLoader() {
 				dataUrl,
 				base64,
 				hash,
+				path: filePath,
 			}
 		} catch (error) {
 			console.error('Error loading file from path:', filePath, error)

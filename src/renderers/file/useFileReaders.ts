@@ -87,6 +87,7 @@ export function useFileReaders() {
 				dataUrl,
 				base64,
 				hash,
+				path: file.path,
 			}
 		} catch (error) {
 			console.error('Error reading file:', error)
@@ -102,6 +103,7 @@ export function useFileReaders() {
 				dataUrl: '',
 				base64: '',
 				hash: '',
+				path: file.path,
 			}
 		}
 	}

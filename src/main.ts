@@ -6,8 +6,9 @@ import index from './i18n'
 import { vuetify } from './plugins/vuetify.ts'
 import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate'
 
-const pinia = createPinia()
+const pinia = createPinia().use(piniaPluginPersistedState)
 const app = createApp(App).use(pinia).use(vuetify).use(index)
 
 if (window.electronAPI) {

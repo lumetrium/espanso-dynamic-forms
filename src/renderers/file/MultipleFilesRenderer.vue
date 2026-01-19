@@ -25,6 +25,28 @@
 			@blur="isFocused = false"
 		/>
 
+		<RecentFilesSection
+			v-if="recentFilesEnabled"
+			:entries="recentFilesEntries"
+			:selected-entry-ids="selectedRecentIds"
+			:disabled="!control.enabled"
+			:loading-entry-id="loadingRecentEntryId"
+			:t="t"
+			:presets="presets"
+			:stash="presetsStash"
+			@select="selectRecentEntry"
+			@deselect="deselectRecentEntry"
+			@add-selected="addSelectedRecentFiles"
+			@remove-entry="removeRecentEntry"
+			@clear-all="clearRecentHistory"
+			@select-all="selectAllRecent"
+			@deselect-all="deselectAllRecent"
+			@save-preset="savePreset"
+			@load-preset="loadPreset"
+			@delete-preset="deletePreset"
+			@restore-stash="restorePresetsStash"
+		/>
+
 		<template v-if="!isLoadingDefaults">
 			<div
 				v-if="boundArray?.length"
@@ -41,13 +63,12 @@
 						<FilePreview
 							:src="localPreviews[i] || metadata.dataUrl"
 							:t="t"
-							:fallback-text="
-								t('fileNumber', 'File {index}', { index: i + 1 })
-							"
+							:fallback-text="t('fileNumber', 'File {index}', { index: i + 1 })"
 							:metadata="metadata"
 							:width="220"
 							:height="120"
 							cover
+							:disabled="!control.enabled"
 							@remove="removeSelectedAt(i)"
 						/>
 					</div>
@@ -62,6 +83,7 @@ import { type ControlElement } from '@jsonforms/core'
 import { rendererProps } from '@jsonforms/vue'
 import { VFileInput } from 'vuetify/components'
 import FilePreview from './FilePreview.vue'
+import RecentFilesSection from './RecentFilesSection.vue'
 import { useFileControl } from './useFileControl'
 
 const props = defineProps(rendererProps<ControlElement>())
@@ -82,5 +104,23 @@ const {
 	localPreviews,
 	clearAll,
 	t,
+	recentFilesEnabled,
+	recentFilesEntries,
+	selectedRecentIds,
+	loadingRecentEntryId,
+	selectRecentEntry,
+	deselectRecentEntry,
+	addSelectedRecentFiles,
+	removeRecentEntry,
+	clearRecentHistory,
+	selectAllRecent,
+	deselectAllRecent,
+	// Presets
+	presets,
+	presetsStash,
+	savePreset,
+	loadPreset,
+	deletePreset,
+	restorePresetsStash,
 } = useFileControl(props, true)
 </script>
