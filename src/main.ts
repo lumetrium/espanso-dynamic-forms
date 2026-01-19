@@ -8,20 +8,24 @@ import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
 
 const pinia = createPinia()
-const app = createApp(App)
+const app = createApp(App).use(pinia).use(vuetify).use(index)
 
-app
-	.use(pinia)
-	.use(vuetify)
-	.use(index)
-	.mount('#app')
-	.$nextTick(() => {
-		window.electronAPI.on(
-			'main-process-message',
-			(_event, data: { form: string; env: string }) => {
-				// console.log(schema)
-				useEnvStore().setEnv(data.env)
-				useFormSchemaStore().setFullSchema(data.form)
-			},
-		)
-	})
+if (window.electronAPI) {
+	window.electronAPI.on(
+		'main-process-message',
+		(_event, data: { form: string; env: string }) => {
+			useEnvStore().setEnv(data.env)
+			useFormSchemaStore().setFullSchema(data.form)
+		},
+	)
+}
+
+function mountApp() {
+	app.mount('#app')
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', mountApp)
+} else {
+	mountApp()
+}

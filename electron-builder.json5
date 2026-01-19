@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
 	"appId": "espanso-dynamic-forms",
 	"asar": true,
-	"productName": "EspansoDynamicForms",
+	"productName": "Espanso Dynamic Forms",
 	"directories": {
 		"output": "release/${version}"
 	},
@@ -14,7 +14,7 @@
 		"target": [
 			"dmg"
 		],
-		"artifactName": "${productName}-Mac-${version}-Installer.${ext}"
+		"artifactName": "Espanso-Dynamic-Forms-Mac-Installer.${ext}"
 	},
 	"win": {
 		"target": [
@@ -33,10 +33,10 @@
 		"allowToChangeInstallationDirectory": true,
 		"deleteAppDataOnUninstall": false,
 		"runAfterFinish": false,
-		"artifactName": "${productName}-${version}-Windows-Setup.${ext}"
+		"artifactName": "Espanso-Dynamic-Forms-Win-Setup.${ext}"
 	},
 	"portable": {
-		"artifactName": "${productName}-${version}-Windows-Portable.${ext}"
+		"artifactName": "Espanso-Dynamic-Forms-Win-Portable.${ext}"
 	},
 	"linux": {
 		"target": [
@@ -55,7 +55,7 @@
 		"description": "Dynamic form creation tool for Espanso text expander"
 	},
 	"deb": {
-		"artifactName": "${productName}-${version}-Linux.${ext}",
+		"artifactName": "Espanso-Dynamic-Forms-Linux.${ext}",
 		"depends": [
 			"libgtk-3-0",
 			"libnotify4",
@@ -74,6 +74,6 @@
 		]
 	},
 	"appImage": {
-		"artifactName": "${productName}-${version}-Linux.${ext}"
+		"artifactName": "Espanso-Dynamic-Forms-Linux.${ext}"
 	}
 }

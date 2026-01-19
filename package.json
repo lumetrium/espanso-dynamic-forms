@@ -1,6 +1,6 @@
 {
 	"name": "espanso-dynamic-forms",
-	"version": "1.5.2",
+	"version": "2.0.0",
 	"description": "Create interactive forms with JSON Forms and insert Liquid templated output anywhere with Espanso",
 	"author": "Lumetirum <contact@lumetirum.com>",
 	"license": "GPL-3.0-only",

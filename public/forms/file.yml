@@ -40,10 +40,6 @@ i18n:
       selectedFile: Selected file
       selectedFiles: Selected files
       remove: Remove
-      fileNumber: File {index}
-      name: Name
-      size: Size
-      hash: SHA-256
 
 template: |
   File contents:

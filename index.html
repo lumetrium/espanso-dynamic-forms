@@ -1,11 +1,130 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+	<head>
+		<script
+			async
+			type="module"
+			src="/src/main.ts"
+		></script>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<style>
+			@keyframes fade-in {
+				to {
+					opacity: 1;
+				}
+			}
+
+			@keyframes svg-pulse {
+				0% {
+					width: 9px;
+					height: 9px;
+					transform: translate(0px, 0px);
+				}
+				11.428% {
+					width: 11px;
+					height: 11px;
+					transform: translate(-1px, -1px);
+				}
+				57.142% {
+					width: 9px;
+					height: 9px;
+					transform: translate(0px, 0px);
+				}
+				100% {
+					width: 9px;
+					height: 9px;
+					transform: translate(0px, 0px);
+				}
+			}
+
+			.loader-overlay {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #212121;
+				z-index: 9999;
+				opacity: 0;
+				animation: fade-in 800ms ease-out forwards;
+				animation-delay: 200ms;
+			}
+
+			.loader-rect {
+				animation-name: svg-pulse;
+				animation-duration: 1.05s;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite;
+			}
+
+			.rect-1 {
+				animation-delay: 0s;
+			}
+			.rect-2 {
+				animation-delay: 0.15s;
+			}
+			.rect-3 {
+				animation-delay: 0.3s;
+			}
+			.rect-4 {
+				animation-delay: 0.45s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="loader-overlay">
+				<svg
+					width="15%"
+					height="15%"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<rect
+						class="loader-rect rect-1"
+						fill="#ffbf09"
+						x="1.5"
+						y="1.5"
+						rx="1"
+						width="9"
+						height="9"
+					/>
+					<rect
+						class="loader-rect rect-2"
+						fill="#71db96"
+						x="13.5"
+						y="1.5"
+						rx="1"
+						width="9"
+						height="9"
+					/>
+					<rect
+						class="loader-rect rect-3"
+						fill="#31b4dd"
+						x="13.5"
+						y="13.5"
+						rx="1"
+						width="9"
+						height="9"
+					/>
+					<rect
+						class="loader-rect rect-4"
+						fill="#796fdd"
+						x="1.5"
+						y="13.5"
+						rx="1"
+						width="9"
+						height="9"
+					/>
+				</svg>
+			</div>
+		</div>
+	</body>
 </html>

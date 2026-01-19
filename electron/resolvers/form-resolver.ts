@@ -11,6 +11,13 @@ export function getFormFilePath<F>(args: string[], fallback: F) {
 		: fallback
 }
 
+export function getTimingOption<F>(args: string[], fallback: F) {
+	let timingIndex = args.indexOf('--show-timing')
+	return timingIndex !== -1 && args.length > timingIndex + 1
+		? args[timingIndex + 1]
+		: fallback
+}
+
 export function getFormFilePathReal(formFilePath: string, fallback = '') {
 	try {
 		return fs.realpathSync(formFilePath)

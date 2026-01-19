@@ -3,6 +3,9 @@ import { computed, ref } from 'vue'
 import { FormSchema } from '../models/form-schema.ts'
 
 export const useFormSchemaStore = defineStore('form-schema', () => {
+	const initialized = ref<number | null>(null)
+	const error = ref<string | null>(null)
+
 	const fullSchema = ref<FormSchema>()
 	const schema = computed(() => fullSchema.value?.schema)
 	const uischema = computed(() => fullSchema.value?.uischema)
@@ -13,6 +16,7 @@ export const useFormSchemaStore = defineStore('form-schema', () => {
 	const isValid = computed(() => !!schema.value && !!uischema.value)
 
 	function setFullSchema(newSchema: string) {
+		if (!initialized.value) initialized.value = Date.now()
 		try {
 			fullSchema.value = JSON.parse(newSchema)
 			console.log('Schema updated', fullSchema.value)
@@ -24,6 +28,9 @@ export const useFormSchemaStore = defineStore('form-schema', () => {
 	}
 
 	return {
+		initialized,
+		error,
+
 		fullSchema,
 		schema,
 		uischema,

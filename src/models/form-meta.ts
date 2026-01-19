@@ -21,4 +21,15 @@ export interface FormMeta {
 	x?: number
 	/** Initial window Y position */
 	y?: number
+
+	// TODO implement these
+	/** Keyboard shortcuts */
+	hotkeys: {
+		/** Hotkey to submit the form */
+		submit?: string
+		/** Hotkey to reset the form */
+		reset?: string
+		/** Hotkey to close the form */
+		close?: string
+	}
 }

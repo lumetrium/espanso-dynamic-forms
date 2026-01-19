@@ -97,7 +97,6 @@ watch(initialData, async (initial) => {
 	}
 })
 
-
 async function submitForm() {
 	if (!template.value) {
 		window.electronAPI.sendResult(JSON.stringify(data.value))
@@ -124,8 +123,6 @@ function onChange(event: any) {
 .v-main {
 	background: rgb(var(--v-theme-surface));
 }
-
-
 
 .v-container {
 	padding: 0;
@@ -191,7 +188,8 @@ function onChange(event: any) {
 	vertical-align: top;
 }
 
-.vertical-layout-item:empty, .v-row:has(> .v-col:empty) {
+.vertical-layout-item:empty,
+.v-row:has(> .v-col:empty) {
 	display: none;
 }
 </style>
