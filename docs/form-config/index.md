@@ -4,34 +4,32 @@ outline: [1, 4]
 
 # Form Config
 
-In Espanso Dynamic Forms, the form is defined using a configuration file written in either **YAML** or **JSON** format.
+A form config file defines everything about your form: what fields it has, how they look, what default values they contain, and how the output is formatted.
 
-This file specifies the fields, their types, labels, default values, validation rules, and other properties that determine how the form behaves and appears.
+You write form configs in **YAML** or **JSON** format and pass them to Espanso Dynamic Forms using the `--form-config` command-line argument. See [Getting Started](../getting-started/) for setup instructions.
 
-The path to the config file must be provided through the `--form-config` option when launching EDF from an Espanso trigger. See [Getting Started](../getting-started/) for more details.
+## Structure Overview
 
-## Structure
+Every form config file can have up to **six sections**. Three are required for the form to work, and three are optional:
 
-There are exactly **6** main sections in a Form Config file: [`schema`](./schema), [`uischema`](./uischema), [`template`](./template), [`data`](./data), [`meta`](./meta), and [`i18n`](./i18n).
+| Section | Required | Purpose |
+|---------|----------|---------|
+| [`schema`](./schema) | ✅ Yes | Defines form fields, their types, and validation rules. Based on [JSON Schema](../json-forms/). |
+| [`uischema`](./uischema) | ✅ Yes | Controls layout and appearance—how fields are arranged and styled. |
+| [`template`](./template) | ✅ Yes | Defines the output format using [Liquid](../liquid/) templating. |
+| [`data`](./data) | ❌ No | Sets default values for form fields. Supports dynamic tokens like `{{clipboard}}`. |
+| [`meta`](./meta) | ❌ No | Window properties (title, size, position) and form metadata (name, version). |
+| [`i18n`](./i18n) | ❌ No | Translations for multi-language support. |
 
-Each section serves a specific purpose, and only `schema`, `uischema`, and `template` are required for the form to function properly.
+[IMAGE: Annotated form config file in a code editor showing all six sections with colored highlights and labels indicating which section controls what aspect of the form: schema highlighted in blue with arrow pointing to "Defines fields", uischema in green with arrow to "Controls layout", template in orange with arrow to "Formats output", data in purple with arrow to "Sets defaults", meta in yellow with arrow to "Window settings", and i18n in pink with arrow to "Translations"]
 
-TODO: turn into a table for better readability
-
-- [`schema`](./schema) - **required** - defines form's fields and their, follows [JSON Forms](../json-forms/)
-- [`uischema`](./uischema) - **required** - defines form's layout and appearance, follows [JSON Forms](../json-forms/)
-- [`data`](./data) - _optional_ - provides initial values for the form's fields
-- [`template`](./template) - **required** - defines how the form's data will be used to generate the final output, uses [Liquid](../liquid/) templating language
-- [`i18n`](./i18n) - _optional_ - localization strings for different languages
-- [`meta`](./meta) - _optional_ - additional metadata about the form
+---
 
 ## Examples
 
-Let's see a couple of examples of Form Config files.
+### Minimal Form
 
-### Minimal
-
-Simple form that asks for a name and greets the user:
+This is the simplest possible form—just enough to work:
 
 ```yml
 schema:
@@ -51,21 +49,25 @@ template: |
   Hello, {{ name }}!
 ```
 
-### Realistic
+This form:
+- Has one text field called `name`
+- Displays it in a simple vertical layout
+- Outputs "Hello, [whatever you typed]!" when submitted
 
-A more complex form that collects user information and generates a formatted output, we'll use all sections this time:
+---
 
-````yml
+### Complete Form
+
+Here's a more realistic example using all six sections:
+
+```yml
 meta:
   name: File Text Extractor
   description: Extracts and outputs text content from a selected file.
   version: 1.0.0
   title: Extract Text from File
-  opacity: 1
-  height: 500
   width: 500
-  x: 0
-  y: 0
+  height: 400
 
 schema:
   type: object
@@ -87,26 +89,45 @@ uischema:
 
 data:
   singleFile:
-    path: "C:/Windows/System32/drivers/etc/hosts"
+    path: ""
 
 i18n:
   en:
     myFile:
-      description: Please upload
+      description: Please upload a text file
       selectedFile: Selected file
-      fileNumber: File {index}
       remove: Remove
   ru:
     myFile:
-      description: Пожалуйста, загрузите
+      description: Пожалуйста, загрузите текстовый файл
       selectedFile: Выбранный файл
-      fileNumber: Файл {index}
       remove: Удалить
 
 template: |
   {{singleFile.text}}
-````
+```
 
-### Catalog
+This form:
+- Opens in a 500×400 window titled "Extract Text from File"
+- Has a required file upload field that accepts text files
+- Supports English and Russian languages
+- Outputs the raw text content of the selected file
 
-You can find a collection of ready-to-use configs in the [Forms Catalog](../library/).
+---
+
+## Ready-Made Forms
+
+Browse the [Forms Library](../library/) for pre-built form configs you can use as starting points for your own forms.
+
+---
+
+## Learn More
+
+Dive deeper into each section:
+
+- **[schema](./schema)** — Field types, validation, arrays, and nested objects
+- **[uischema](./uischema)** — Layouts, styling, conditional visibility, and Vuetify options
+- **[template](./template)** — Liquid syntax, filters, loops, and conditionals
+- **[data](./data)** — Static defaults and dynamic tokens (`{{clipboard}}`, `{{env}}`)
+- **[meta](./meta)** — Window size, position, title, and opacity
+- **[i18n](./i18n)** — Multi-language translations

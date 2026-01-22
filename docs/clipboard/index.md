@@ -4,22 +4,20 @@ outline: [1, 4]
 
 # Clipboard
 
-Espanso Dynamic Forms can read from the system clipboard on launch and 
-insert its contents into your Liquid templates using the `{{clipboard}}` variable.
+Espanso Dynamic Forms reads your system clipboard when the form opens and makes its contents available via the `{{clipboard}}` variable. This lets you pre-fill fields or include copied text in your output.
 
-## Purpose
-The `{{clipboard}}` variable is useful when you want to create forms that adapt
-based on the current clipboard contents. For example, you might want to pre-fill
-a form field with text you've copied, or use clipboard data to determine
-which form to display.
+> [!NOTE] Clipboard is read once
+> The clipboard is captured when the form first opens. If you copy new text while the form is open, `{{clipboard}}` still contains the original value.
 
+[VIDEO: User copies the text "Refactor authentication module" from a browser, switches to a text editor, types :task trigger, the form opens with the Task Description field already containing "Refactor authentication module", user fills in the remaining fields and submits, output includes the clipboard content]
 
-## Examples
+---
 
-You can use the `{{clipboard}}` variable in both the `data` and `template`
-sections of your form config file, as well as in your Espnaso trigger.
+## Using Clipboard in Forms
 
-### Form Config: Data and Template
+You can use `{{clipboard}}` in both the `data` and `template` sections of your form config.
+
+### Pre-filling Form Fields
 
 ```yml
 schema:
@@ -52,7 +50,7 @@ clipboard as the default input.
 In the `template` section, the clipboard contents are also inserted
 directly into the output.
 
-### Espanso Trigger: --form-config Argument
+### Using Clipboard in Espanso Triggers
 
 You can also reference the `{{clipboard}}` variable in your Espanso trigger
 when launching Espanso Dynamic Forms inside the `--form-config` argument, like so:

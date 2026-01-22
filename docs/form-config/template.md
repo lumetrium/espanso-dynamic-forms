@@ -3,41 +3,127 @@ outline: [1, 4]
 ---
 
 # template
-The `template` top-level key of the [form config](./index) defines a [Liquid template](../liquid/) that generates the final output when the form is submitted.
-This output is then returned to Espanso for insertion at the cursor position.
 
-This template can include static text, dynamic expressions, and references to form field values.
-All properties defined in the form's [`schema`](./schema.md) section become available as variables in the template context.
+The `template` section defines what text gets inserted when you submit the form. It uses the [Liquid templating language](../liquid/) to combine your form data into formatted output.
 
-> [!warning] Required Section
-> This section is **mandatory**. Every form config must include a valid `template` definition.
+Every field from your [`schema`](./schema) becomes a variable you can use in the template.
+
+> [!WARNING] Required Section
+> Every form config must include a `template`. This is the output of your form.
+
+---
 
 ## Basic Structure
+
+Use `{{fieldName}}` to insert field values:
 
 ```yml
 template: |
   Subject: {{subject}}
-  Priority: {{priority | upcase}}
-	
-  Hi {{contact_name | capitalize}},
-	
+  Priority: {{priority}}
+  
+  Hi {{contact_name}},
+  
   Just following up on our conversation about {{subject}}.
 ```
 
+The `|` after `template:` enables multi-line text. Each line becomes part of your output.
 
+---
+
+## Using Filters
+
+Filters transform values before inserting them. Apply filters with the pipe symbol `|`:
+
+```yml
+template: |
+  Name: {{name | capitalize}}
+  Priority: {{priority | upcase}}
+  Word count: {{content | split: ' ' | size}}
+```
+
+**Common filters:**
+
+| Filter | What It Does | Example |
+|--------|--------------|---------|
+| `upcase` | UPPERCASE | `{{text \| upcase}}` → `HELLO` |
+| `downcase` | lowercase | `{{text \| downcase}}` → `hello` |
+| `capitalize` | First letter uppercase | `{{text \| capitalize}}` → `Hello` |
+| `strip` | Remove leading/trailing whitespace | `{{text \| strip}}` |
+| `size` | Count characters or array items | `{{text \| size}}` → `5` |
+| `default` | Fallback if empty | `{{name \| default: 'Anonymous'}}` |
+
+[IMAGE: Split view showing template code on the left with Liquid syntax highlighted, and the rendered output on the right after a form submission, demonstrating how {{subject}} becomes "Project Update" and {{priority | upcase}} becomes "HIGH"]
+
+---
+
+## Conditionals
+
+Show content only when conditions are met:
+
+```yml
+template: |
+  Subject: {{subject}}
+  {% if priority == 'High' %}
+  ⚠️ URGENT: Please review immediately
+  {% endif %}
+  
+  {% if notes != blank %}
+  Notes:
+  {{notes}}
+  {% endif %}
+```
+
+Use `blank` to check for empty strings. Use `nil` to check for missing values.
+
+---
+
+## Loops
+
+Iterate over arrays:
+
+```yml
+template: |
+  Selected items:
+  {% for item in selections %}
+  - {{item}}
+  {% endfor %}
+```
+
+---
+
+## Special Variables
+
+Beyond your form fields, you can access:
+
+| Variable | Description |
+|----------|-------------|
+| `{{clipboard}}` | System clipboard content at form load |
+| `{{env.VARIABLE_NAME}}` | Environment variables |
+
+```yml
+template: |
+  User: {{env.USERNAME}}
+  Original text: {{clipboard}}
+  Your response: {{response}}
+```
+
+---
 
 ## Best Practices
 
-| Practice | Rationale | Example |
-|----------|-----------|---------|
-| Check for `blank` before rendering | Prevents empty sections in output | `{% if code != blank %}` |
-| Use `size > 0` for arrays | Ensures array has content | `{% if array.size > 0 %}` |
-| Filter empty strings from arrays | Creates clean lists | `where_exp: "item", "item != ''"` |
-| Assign complex expressions | Improves readability | `{% assign filtered = arr \| where_exp: ... %}` |
-| Use case for multiple branches | Cleaner than multiple if/elsif | `{% case taskType %}` |
-| Handle first-item logic in loops | Controls delimiters properly | `{% assign firstParam = true %}` |
+| Practice | Why | Example |
+|----------|-----|---------|
+| Check for `blank` before rendering | Prevents empty sections | `{% if notes != blank %}` |
+| Use `size > 0` for arrays | Ensures array has items | `{% if items.size > 0 %}` |
+| Use `default` filter | Provides fallback values | `{{name \| default: 'N/A'}}` |
+| Use `strip` on user input | Removes accidental whitespace | `{{input \| strip}}` |
 
+---
 
+## Learn More
 
-
+- **[Liquid Templating](../liquid/)** — Full syntax reference
+- **[Environment Variables](../env/)** — Passing dynamic data via `{{env}}`
+- **[Clipboard](../clipboard/)** — Using clipboard content
 

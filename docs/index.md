@@ -30,7 +30,7 @@ features:
     details: Collection of ready-made and boilerplate forms created by the community
     link: /library
   - title: Compare to Espanso Forms
-    details: See how Espanso Dynamic Forms compares to the built-in forms in Espnaso
+    details: See how Espanso Dynamic Forms compares to the built-in forms in Espanso
     link: /compare-to-espanso-forms
 
 

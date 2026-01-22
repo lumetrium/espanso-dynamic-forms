@@ -4,31 +4,37 @@ outline: [1, 4]
 
 # uischema
 
-The `uischema` top-level key of the [form config](./index) defines the layout and appearance of the form fields.
+The `uischema` section controls how your form looks—the layout, styling, and behavior of each field. While [`schema`](./schema) defines *what* fields exist, `uischema` defines *how* they appear.
 
-> [!warning] Required Section
-> This section is **mandatory**. Every form config must include a valid `uischema` definition.
+> [!WARNING] Required Section
+> Every form config must include a `uischema`. Without it, fields won't render.
 
-## UI Schema Structure
+## How It Works
 
-UI Schema is a hierarchical structure that maps [`schema`](./schema) properties to visual components. 
-The [JSON Forms](../json-forms/) renderer processes the UI Schema to generate the form's layout and controls.
+The UI Schema is a tree structure where you arrange your fields using layouts and controls:
 
-## Root UI Schema Properties
+- **Layouts** organize fields visually (vertical stacking, horizontal rows, or tabs)
+- **Controls** connect to schema properties and render as input fields
 
-Every UI Schema must have a `type` property that determines the root layout structure.
+[IMAGE: Side-by-side comparison showing the same three fields rendered with different uischema configurations: left side shows VerticalLayout with fields stacked top-to-bottom, middle shows HorizontalLayout with fields arranged in a row, right side shows Categorization with fields split across two tabs labeled "Basic" and "Advanced"]
 
-| Property   | Type   | Required | Description                                                                |
-| ---------- | ------ | -------- | -------------------------------------------------------------------------- |
-| `type`     | string | Yes      | The layout type: `VerticalLayout`, `HorizontalLayout`, or `Categorization` |
-| `elements` | array  | Yes      | Child elements (layouts or controls)                                       |
-| `label`    | string | No       | Display label (used with `Category` elements)                              |
-| `options`  | object | No       | Configuration options passed to the renderer                               |
-| `rule`     | object | No       | Conditional visibility rule                                                |
+## Root Properties
 
+Every UI Schema starts with these properties:
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | string | Yes | Layout type: `VerticalLayout`, `HorizontalLayout`, or `Categorization` |
+| `elements` | array | Yes | Child layouts or controls |
+| `label` | string | No | Label text (used with `Category` type) |
+| `options` | object | No | Renderer configuration options |
+| `rule` | object | No | Conditional visibility rule |
+
+---
 
 ## Layout Types
-Layout elements organize controls visually. They can contain other layouts or control elements.
+
+Layouts organize how controls appear. You can nest layouts inside each other for complex arrangements.
 
 ### VerticalLayout
 

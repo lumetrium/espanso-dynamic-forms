@@ -3,12 +3,17 @@ outline: [1, 4]
 ---
 
 # data
-The `data` top-level key of the [form config](./index) defines default values for form fields. 
-These defaults can be static values or dynamic expressions that are evaluated when the form loads.
 
-> [!note] Optional Section
-> If omitted, all fields start with empty or null values based on their schema types.
+The `data` section sets default values for your form fields. When the form opens, fields are pre-filled with these values instead of being empty.
 
+You can use static values (like `"Hello"` or `42`) or dynamic tokens that are evaluated when the form loads (like `{{clipboard}}` to grab clipboard content).
+
+> [!NOTE] Optional Section
+> If you skip this section, fields start empty or with their schema-defined defaults.
+
+[IMAGE: Form with three fields showing pre-filled default values: a text field labeled "Subject" containing "Meeting notes from clipboard", a dropdown labeled "Priority" with "Medium" selected, and an empty text area labeled "Notes" with placeholder text]
+
+---
 
 ## Basic Structure
 
@@ -16,9 +21,9 @@ These defaults can be static values or dynamic expressions that are evaluated wh
 data:
   fieldName: "static value"
   anotherField: 42
-  checkboxes: []
+  checkboxField: true
+  arrayField: []
   dynamicField: "{{clipboard}}"
-  dateField: "{{ 'now' | date: '%Y-%m-%d' }}"
 ```
 
 

@@ -4,22 +4,32 @@ outline: [2, 4]
 
 # Getting Started
 
-## Prerequisites
-Before using Espanso Dynamic Forms, you must have:
+This guide walks you through creating your first Espanso trigger that launches a dynamic form. By the end, you'll have a working form that captures input and inserts formatted text.
 
-1. [Espanso](https://espanso.org/) installed and running on your system ([GitHub](https://github.com/espanso/espanso))
-2. [Espanso Dynamic Forms](https://github.com/lumetrium/espanso-dynamic-forms) installed, see [Installation guide](../install/) for details
+## Prerequisites
+
+Before starting, make sure you have:
+
+1. **[Espanso](https://espanso.org/)** installed and running ([GitHub](https://github.com/espanso/espanso))
+2. **[Espanso Dynamic Forms](https://github.com/lumetrium/espanso-dynamic-forms)** installed (see [Installation guide](../install/))
+
+> [!TIP] Verify Espanso is working
+> Type a simple trigger like `:espanso` in any text field. If Espanso expands it to "Hi there!", you're ready to continue.
+
+---
 
 ## Quick Start 
 
-### 1. Create an Espanso Trigger
+### Step 1: Create an Espanso Trigger
 
-Add a trigger configuration to your Espanso config file. The file location varies by platform:
+Add a trigger to your Espanso config file. The file location depends on your operating system:
 
-- **Windows**: `%APPDATA%\espanso\match\base.yml`
-- **Linux**: `~/.config/espanso/match/base.yml`
+| Platform | Config File Location |
+|----------|---------------------|
+| Windows | `%APPDATA%\espanso\match\base.yml` |
+| Linux | `~/.config/espanso/match/base.yml` |
 
-Example trigger configuration:
+Open the file in a text editor and add this trigger configuration:
 
 ```yml
 matches:
@@ -31,55 +41,55 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
             - --form-config
             - \{\{env.EDF_FORMS}}/demo.yml
 ```
 
-> [!note] Linux
-> Use the path `/usr/bin/espanso-dynamic-forms` instead of the Windows path to `.exe` shown above
+> [!NOTE] Linux users
+> Replace the Windows executable path with `/usr/bin/espanso-dynamic-forms`
 
-|Configuration Key|Purpose|
-|---|---|
-|`trigger`|The text pattern to match (e.g., `:demo`)|
-|`replace`|Template for output, uses `{{output}}` variable|
-|`force_mode: clipboard`|Required for multiline output insertion|
-|`type: script`|Tells Espanso to execute an external program|
-|`args`|Command-line arguments passed to the executable|
+**What each setting does:**
 
+| Setting | Purpose |
+|---------|---------|
+| `trigger` | The text pattern that activates this form (`:demo`) |
+| `replace` | The template for output—uses the `{{output}}` variable from the script |
+| `force_mode: clipboard` | Required for multi-line output to paste correctly |
+| `type: script` | Tells Espanso to run an external program |
+| `args` | Command-line arguments: the executable path and the form config file |
 
-### 2. Test Demo Form
+> [!WARNING] Why `force_mode: clipboard`?
+> Without this setting, multi-line output may not insert correctly in all applications. Always include it for Espanso Dynamic Forms triggers.
 
-1. Type `:demo` in any text field (e.g., text editor, browser input)
-2. The **Espanso Dynamic Forms** window appears
+---
+
+### Step 2: Test the Demo Form
+
+1. Open any application with a text field (text editor, browser, email client)
+2. Type `:demo` and wait for the form to appear
 3. Fill out the form fields
 4. Click the **Submit** button
-5. The formatted output is inserted at your cursor position
+5. The formatted output appears at your cursor position
 
-### 3. Create a Custom Form Config
+[VIDEO: User opens VS Code with an empty file, types the characters :demo in the editor, the Espanso Dynamic Forms window appears with a form containing a Subject text field and a Priority dropdown, user types "Project meeting notes" in the Subject field, selects "High" from the Priority dropdown, clicks the blue Submit button, the form window closes, and the formatted text "Subject: Project meeting notes\nPriority: HIGH" appears in the VS Code editor at the cursor position]
 
-The main power of **Espanso Dynamic Forms** is in creating and using your own custom forms.
-So let's create a form config and reference it in the Espanso trigger.
+> [!TIP] Form not appearing?
+> - Make sure Espanso is running (check your system tray)
+> - Restart Espanso after editing the config file
+> - Check the executable path matches your installation location
 
-Create a YAML file anywhere and specify the path to it in the `--form-config` argument (e.g., `C:/forms/test.yml`). 
-Now, update the trigger to point to your new form config file.
+---
 
-```yml
-matches:
-  - trigger: ":demo"
-    replace: "{{output}}"
-    force_mode: clipboard
-    vars:
-      - name: output
-        type: script
-        params:
-          args:
-            - C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe
-            - --form-config
-            - C:/forms/test.yml # <-- create a .yml file and put the path here
-```
+### Step 3: Create Your Own Form
 
-Here's how the example `demo.yml` form config looks:
+The real power of Espanso Dynamic Forms is creating custom forms tailored to your workflow. Let's create a simple one.
+
+**1. Create a form config file**
+
+Create a new file anywhere on your system (e.g., `C:/forms/test.yml` on Windows or `~/forms/test.yml` on Linux).
+
+**2. Add this content to the file:**
 
 ```yml
 schema:
@@ -115,20 +125,41 @@ template: |
   Priority: {{priority | upcase}}
 ```
 
-You can copy the above YAML content into your own config file and tweak it as needed.
+**3. Update your Espanso trigger** to point to your new file:
 
-| Keyword    | Description                                                                                           |
-|------------|---------------------------------------------------------------------------------------------------|
-| **schema** | Defines two fields (`subject` as string, `priority` as enum), marks `subject` as required         |
-| **uischema** | Arranges fields vertically, each as a `Control` pointing to a schema property via `scope`        |
-| **data**   | Sets `subject` to clipboard content, `priority` to "Medium"                                        |
-| **template** | Formats output using Liquid syntax, applying `upcase` filter to priority                          |
+```yml
+matches:
+  - trigger: ":myform"
+    replace: "{{output}}"
+    force_mode: clipboard
+    vars:
+      - name: output
+        type: script
+        params:
+          args:
+            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - --form-config
+            - C:/forms/test.yml
+```
 
+**Understanding the form config:**
 
+| Section | What It Does |
+|---------|--------------|
+| `schema` | Defines the form fields and their types. Here we have a required text field (`subject`) and an optional dropdown (`priority`) with three choices. |
+| `uischema` | Controls how fields appear. `VerticalLayout` stacks them vertically, and each `Control` connects to a field defined in the schema. |
+| `data` | Sets default values. `{{clipboard}}` pre-fills the subject with your clipboard contents. |
+| `template` | Defines the output format using [Liquid syntax](../liquid/). The `upcase` filter converts priority to uppercase. |
+
+---
 
 ## Next Steps
 
-After successfully running your first form, explore:
+Now that you have a working form, explore these topics to build more powerful forms:
 
-- [Form Definition Structure](https://deepwiki.com/lumetrium/espanso-dynamic-forms/3.1-form-definition-structure) - Deep dive into the four-section configuration format
-- [Example Forms Gallery](https://deepwiki.com/lumetrium/espanso-dynamic-forms/5.5-example-forms-gallery) - Browse pre-built forms for common use cases
+- **[Form Config](../form-config/)** — Deep dive into all six sections of a form config file
+- **[Schema](../form-config/schema)** — Learn about field types, validation, and complex data structures
+- **[UI Schema](../form-config/uischema)** — Create tabbed interfaces, conditional fields, and custom layouts
+- **[Liquid Templating](../liquid/)** — Master filters, conditionals, and loops for dynamic output
+- **[Environment Variables](../env/)** — Pass dynamic data into your forms
+- **[Example Forms](../library/)** — Browse ready-made forms for common use cases

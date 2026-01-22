@@ -5,27 +5,32 @@ outline: [1, 4]
 
 # Installation
 
-Get Espanso Dynamic Forms installed on your system using the appropriate method for your operating system.
+This guide helps you install Espanso Dynamic Forms on your system. The installation takes just a few minutes.
+
+## Before You Begin
+
+Make sure [Espanso](https://espanso.org/) is already installed and working. You can verify by typing a test trigger in any text field. If Espanso expands your text, you're ready to continue.
+
+> [!TIP] New to Espanso?
+> Visit [espanso.org](https://espanso.org/) to install it first. Espanso Dynamic Forms extends Espanso's capabilities—it doesn't work without it.
 
 ## Choose Your Platform
 
 ### Windows
-- **[Install on Windows](./windows)** - Simple installer for quick setup
+**[Install on Windows](./windows)** — Download and run the installer. Takes about 2 minutes.
 
 ### Linux
-- **[Install on Linux](./linux)** - Multiple installation options (.deb package or .AppImage)
+**[Install on Linux](./linux)** — Choose between a `.deb` package (Debian/Ubuntu) or a universal `.AppImage`.
 
 ### macOS
-macOS is currently not supported.
+macOS is not officially supported yet. 
 
-This app is based on Electron (which does support macOS), 
-but the project currently lacks a Mac environment for building and testing.
-
-Contributions are welcome – feel free to open a pull request on GitHub if you'd like to help with macOS support!
+Since Espanso Dynamic Forms is built with Electron (which supports macOS), you may be able to build it yourself from source. Contributions to add macOS support are welcome—feel free to [open a pull request](https://github.com/lumetrium/espanso-dynamic-forms) on GitHub!
 
 ## After Installation
 
-Once you've installed Espanso Dynamic Forms, the application will **NOT** start automatically. You need to integrate it with Espanso by configuring a trigger.
+The application does **not** start automatically after installation. Espanso Dynamic Forms is designed to be launched by Espanso triggers, not run as a standalone app.
 
-See the [Getting Started](../getting-started/) guide for instructions on how to set up your first trigger and start using Espanso Dynamic Forms.
+**Next step:** Follow the [Getting Started](../getting-started/) guide to create your first trigger and test your installation.
 
+[VIDEO: Quick walkthrough showing the complete installation process on Windows: downloading the installer from GitHub releases, running the installer with default settings, then jumping to a text editor to type :demo trigger, seeing the form appear, filling in sample data, clicking Submit, and seeing the formatted output inserted at the cursor position]

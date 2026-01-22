@@ -4,78 +4,75 @@ outline: [2, 4]
 
 # Environment Variables
 
-Espanso Dynamic Forms provides the `{{env}}` object to your Liquid templates.
-This includes the `template` and `data` sections of your form config YAML file.
+Environment variables let you pass dynamic data into your forms without hardcoding values. You can access them in your form config using `{{env.VARIABLE_NAME}}`.
 
-This object contains all variables from your system's environment,
-as well as any custom environment variables you pass in via the `--env` argument
-when launching the EDF executable from your Espanso trigger.
+Espanso Dynamic Forms gives you access to:
+- **System environment variables** (like `USERNAME`, `HOME`, `PATH`)
+- **Custom variables** you pass via the `--env` argument
+- **Built-in EDF variables** (prefixed with `EDF_`)
 
-Espanso Dynamic Forms also provides its own set of environment variables prefixed with `EDF_`.
-You'll find a full list of these at the bottom of this page.
+---
 
-## Why and Where to Use Environment Variables?
+## Using Environment Variables
 
-Using environment variables allows you to inject dynamic data into your forms without hardcoding values.
+### In the Data Section
 
-### Data Section
-
-For example, within your form config, you might want to set a default value for a text input based on an environment variable:
+Pre-fill form fields with environment variable values:
 
 ```yml
 schema:
   type: object
   properties:
-    name:
+    author:
       type: string
 
 uischema:
   type: VerticalLayout
   elements:
     - type: Control
-      scope: "#/properties/name"
+      scope: "#/properties/author"
 
 data:
-	name: "{{env.USERNAME}}"  # Default value from environment variable
+  author: "{{env.USERNAME}}"
 
 template: |
-  Your name is: {{name}}
+  Author: {{author}}
 ```
 
-In this example, the `name` field is pre-populated with the value of the `USERNAME` environment variable from the system,
-so when the form is displayed, the user will see their own username as the default input.
+When the form opens, the `author` field is pre-filled with the current user's name.
 
-### Template Section
+### In the Template Section
 
-Another place to use environment variables is within the `template` section to customize the output based on environment data:
-
-TODO: improve example (make it more relevant)
+Include environment data directly in your output:
 
 ```yml
 schema:
-	type: object
-	properties:
-		project:
-			type: string
+  type: object
+  properties:
+    message:
+      type: string
 
 uischema:
-	type: VerticalLayout
-	elements:
-		- type: Control
-			scope: "#/properties/proejct"
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/message"
 
 data:
-	project: "MyProject"
+  message: ""
 
 template: |
-	Project: {{env.LOCALAPPDATA}}
+  From: {{env.USERNAME}}
+  Machine: {{env.COMPUTERNAME}}
+  
+  {{message}}
 ```
 
-TODO: write an explanation for the above example
+This adds the username and computer name to every output, regardless of what the user types.
 
-### Espanso Trigger
+### In Espanso Triggers
 
-Additionally, you can use environment variables in your Espanso trigger configuration to dynamically set paths or other parameters:
+Reference environment variables in your trigger's `--form-config` path:
 
 ```yml
 matches:
@@ -87,28 +84,26 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/EspansoDynamicForms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
             - --form-config
-            - \{\{env.EDF_FORMS}}/demo.yml # <-- using EDF_FORMS environment variable
+            - \{\{env.EDF_FORMS}}/demo.yml
 ```
 
-In this example, the `EDF_FORMS` environment variable is used to specify the path one of the example form configs bundled with Espanso Dynamic Forms.
-It will resolve to the actual path on your system where the form configs are located.
+The `EDF_FORMS` variable points to the bundled example forms, so this trigger loads the demo form from the installation directory.
 
-> [!note] Why the backslashes before the curly braces?
-> The curly braces are escaped in this example (`\{\{env.EDF_FORMS}}`) 
-> so that Espanso correctly interprets them as part of the command line arguments passed to Espanso Dynamic Forms.
-> Without escaping, Espanso would try to process them itself using its own variable syntax, which is not what we want here.
-> Alternatively, you can use `inject_vars: false` in your Espanso trigger.
-> See [Espanso's documentation](https://espanso.org/docs/matches/variables/#disabling-variable-injection) for more details.
+> [!NOTE] Why the backslashes?
+> The backslashes (`\{\{`) escape the curly braces so Espanso passes them literally to Espanso Dynamic Forms instead of trying to process them itself.
+> Alternatively, add `inject_vars: false` to your trigger. See [Espanso's documentation](https://espanso.org/docs/matches/variables/#disabling-variable-injection) for details.
 
-## Passing Environment Variables from Espanso Triggers
+---
 
-You can pass custom environment variables to Espanso Dynamic Forms directly from your Espanso trigger using the `--env` argument.
+## Passing Custom Environment Variables
+
+Use the `--env` argument to pass custom variables from your Espanso trigger:
 
 ```yml
 matches:
-  - trigger: ':demo'
+  - trigger: ':project'
     replace: '{{output}}'
     force_mode: clipboard
     vars:
@@ -116,38 +111,45 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
+            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
             - --form-config
-            - C:/path/to/your/form-config.yml
+            - C:/forms/project-note.yml
             - --env
-            - FOO=Bar
-						- --env
-						- BAZ=Qux
+            - PROJECT_NAME=MyApp
+            - --env
+            - TEAM=Backend
 ```
 
-In this example, the custom environment variable `FOO` with the value `Bar` is passed to Espanso Dynamic Forms.
-You can then access this variable in your form config using <code v-pre>{{env.FOO}}</code>.
+In your form config, access these with `{{env.PROJECT_NAME}}` and `{{env.TEAM}}`.
 
-To pass multiple environment variables you must repeat the `--env` argument for each variable you want to set.
+> [!TIP] Multiple variables
+> Repeat `--env` for each variable you want to pass.
 
-## Viewing Current Environment Variables
-While the form is open, press `Ctrl+Shift+I` to open the Developer Tools.
-Then, go to the **Console** tab and you'll see all available environment variables and their current values.
+---
 
-IMAGE
+## Debugging Environment Variables
 
-## List of Environment Variables
+To see all available environment variables while a form is open:
 
-Here are the built-in environment variables provided by Espanso Dynamic Forms:
+1. Press `Ctrl+Shift+I` to open Developer Tools
+2. Look in the **Console** tab for the logged environment object
 
+[IMAGE: Developer Tools console showing a JavaScript object containing environment variables like EDF_EXECUTABLE, EDF_FORMS, USERNAME, and custom variables, with their values displayed as key-value pairs]
 
-| Variable name                    | Description                                                                                                                                 | Example value                                                                 |
-|----------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------- |-------------------------------------------------------------------------------|
-| All content from system env vars | TODO                                                                                                                                        | ???                                                                           |
-| `EDF_EXECUTABLE`                 | Path to the executable file of the Espanso Dynamic Forms                                                                                    | C:/Program Files/Espanso Dynamic Forms/EDF.exe                                |
-| `EDF_INSTALLATION_DIR`           | Path to the installation directory of the Espanso Dynamic Forms                                                                             | C:/Program Files/Espanso Dynamic Forms                                        |
-| `EDF_RESOURCES`                  | Path to                                                                                                                                     | C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist                |
-| `EDF_FORMS`                      | Path to the directory containing example form configs that come bundled with Espanso Dynamic Forms                                          | C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist/forms          |
-| `EDF_FORM_CONFIG_PATH`           |                                                                                                                                             | <span v-pre>{{env.EDF_FORMS}}</span>/demo.yml                                 |
-| `EDF_FORM_CONFIG_PATH_RENDERED`  | Rendered form config path. It will be different from `EDF_FORM_CONFIG_PATH` only if you use Liquid syntax in there                          | C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist/forms/demo.yml |
-| `EDF_FORM_CONFIG_PATH_REAL`      | Resolved form config path. It will differ from `EDF_FORM_CONFIG_PATH` and `EDF_FORM_CONFIG_PATH_RENDERED` if you're using symlinks in there |                                                                               |
+---
+
+## Built-in EDF Variables
+
+Espanso Dynamic Forms provides these variables automatically:
+
+| Variable | Description | Example Value |
+|----------|-------------|---------------|
+| `EDF_EXECUTABLE` | Full path to the EDF executable | `C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe` |
+| `EDF_INSTALLATION_DIR` | Installation directory | `C:/Program Files/Espanso Dynamic Forms` |
+| `EDF_RESOURCES` | Path to bundled resources | `C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist` |
+| `EDF_FORMS` | Path to bundled example forms | `C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist/forms` |
+| `EDF_FORM_CONFIG_PATH` | The raw `--form-config` value you passed | `\{\{env.EDF_FORMS}}/demo.yml` |
+| `EDF_FORM_CONFIG_PATH_RENDERED` | The path after Liquid processing | `C:/.../dist/forms/demo.yml` |
+| `EDF_FORM_CONFIG_PATH_REAL` | The resolved path (resolves symlinks) | `C:/.../dist/forms/demo.yml` |
+
+You also have access to all system environment variables like `USERNAME`, `HOME`, `PATH`, `COMPUTERNAME`, etc.

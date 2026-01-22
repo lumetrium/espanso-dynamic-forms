@@ -2,9 +2,9 @@
 outline: [1, 4]
 ---
 
-# Frequently Asked Questions (FAQ)
+# FAQ
 
-This FAQ covers the most common questions about Espanso Dynamic Forms. 
+Quick answers to common questions about Espanso Dynamic Forms.
 
 ## General Questions
 
@@ -85,4 +85,8 @@ Please [open an issue](https://github.com/lumetrium/espanso-dynamic-forms/issues
 - **Form syntax**: [JSON Forms documentation](https://jsonforms.io/docs)
 - **Output formatting**: [Liquid templating](https://shopify.github.io/liquid/)
 - **Trigger configuration**: [Espanso documentation](https://espanso.org/docs/)
-- **UI components**: [Vuetify Renderers examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) 
+- **UI components**: [Vuetify Renderers examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main)
+
+### How do I debug my forms?
+
+Press `Ctrl+Shift+I` while a form is open to access Developer Tools. The Console tab shows environment variables and any errors. This is helpful for troubleshooting template issues or checking what data is available.

@@ -4,69 +4,90 @@ outline: [1, 4]
 
 # Install on Linux
 
-Espanso Dynamic Forms offers two main installation methods for Linux. 
+Espanso Dynamic Forms offers two installation methods for Linux. Choose the one that best fits your distribution.
 
-The `.deb` package is recommended for Debian, Ubuntu, and derivative distributions for better system integration. 
+| Method | Best For | Pros |
+|--------|----------|------|
+| `.deb` package | Debian, Ubuntu, Linux Mint, Pop!_OS | System integration, automatic updates via apt |
+| `.AppImage` | Any Linux distribution | Universal, no installation required, portable |
 
-The `.AppImage` is a universal package that should run on most modern Linux distributions.
+---
 
-## Option 1: Using the .deb Package (Debian/Ubuntu)
+## Option 1: Using the .deb Package
+
+This method is recommended for Debian-based distributions. The package installs the executable to `/usr/bin/espanso-dynamic-forms`.
 
 ### Download
 
-Use `wget` in the terminal:
-```bash 
+Open a terminal and run:
+
+```bash
 wget https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download/Espanso-Dynamic-Forms-Linux.deb
 ```
 
-> [!tip] Older versions
-> If you want to install a specific version, visit the [Releases page](https://github.com/lumetrium/espanso-dynamic-forms/releases) on GitHub
+> [!TIP] Need a specific version?
+> Visit the [Releases page](https://github.com/lumetrium/espanso-dynamic-forms/releases) on GitHub to download older versions.
 
 ### Install
-In your terminal:
-- Navigate to the directory where you downloaded the file (e.g., `cd ~/Downloads`)
-- Run the following command:
 
+Run the following command to install:
 
 ```bash
-sudo apt install Espanso-Dynamic-Forms-Linux.deb
+sudo apt install ./Espanso-Dynamic-Forms-Linux.deb
 ```
 
-## Option 2: Using the .AppImage (Universal)
+### Verify Installation
+
+Confirm the installation succeeded:
+
+```bash
+which espanso-dynamic-forms
+```
+
+This should output `/usr/bin/espanso-dynamic-forms`. If you see this path, you're ready to continue.
+
+---
+
+## Option 2: Using the .AppImage
+
+AppImages are portable executables that work on most Linux distributions without installation.
 
 ### Download
 
-Use `wget` in the terminal:
-```bash 
+Open a terminal and run:
+
+```bash
 wget https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download/Espanso-Dynamic-Forms-Linux.AppImage
 ```
 
-### Install
+### Make It Executable
 
-In your terminal:
-- Navigate to the directory where you downloaded the file (e.g., `cd ~/Downloads`)
-- Make the AppImage executable:
+Before you can run the AppImage, you need to make it executable:
 
 ```bash
 chmod +x Espanso-Dynamic-Forms-Linux.AppImage
 ```
 
-- Run the application:
+### Run the Application
+
+You can now run the application directly:
 
 ```bash
-./Espanso-Dynamic-Forms-Linux.AppImage
+./Espanso-Dynamic-Forms-Linux.AppImage --help
 ```
 
-> [!tip] Optional: Integration with system
-> You can move the AppImage to a dedicated location and create a desktop entry for easier access:
+> [!TIP] Optional: Move to a Permanent Location
+> For easier access, move the AppImage to a location in your PATH:
 > ```bash
 > mkdir -p ~/.local/bin
-> mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/
+> mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/espanso-dynamic-forms
 > ```
+> Make sure `~/.local/bin` is in your PATH. You can then reference `espanso-dynamic-forms` in your Espanso triggers.
 
-## After Installation
+---
 
-Once you've installed Espanso Dynamic Forms, the application will **NOT** start automatically. You need to integrate it with Espanso by configuring a trigger.
+## What's Next?
 
-See the [Getting Started](../getting-started/) guide for instructions on how to set up your first trigger and start using Espanso Dynamic Forms.
+The application does **not** start automatically. Espanso Dynamic Forms is designed to be launched by Espanso triggers.
 
+**Next step:** Follow the [Getting Started](../getting-started/) guide to create your first trigger and test your installation.

@@ -4,21 +4,21 @@ outline: [1, 4]
 
 # meta
 
+The `meta` section controls the form window itself—its title, size, position, and opacity. It also lets you add documentation metadata like the form's name and version.
 
-The `meta` top-level key of the [form config](./index) provides metadata about the form,
-such as its name, description, version, author, and window properties.
+> [!NOTE] Optional Section
+> If you skip this section, the window uses default settings (800×800 pixels, fully opaque, centered).
 
-> [!note] Optional Section
-> If omitted, default values will be used for window properties.
+---
 
-## Purpose
-At a high level, `meta` answers two fundamental questions about your form:
+## What Meta Controls
 
-**1. "What is this form?"** - Documentation properties like `name`, `description`, `version`, and `author` help you (and others) understand what the form does and who maintains it. This is especially valuable when you have many forms and need to organize or share them.
+Think of `meta` as answering two questions:
 
-**2. "How should this form appear?"** - Window properties like `title`, `width`, `height`, `opacity`, and position (`x`, `y`) control the user experience when the form opens. For example, a quick note-taking form might be small and semi-transparent, while a detailed data entry form might be larger and fully opaque.
+1. **What is this form?** — Name, description, version, author (useful when you have many forms)
+2. **How should the window appear?** — Title bar text, window size, position, transparency
 
-It's conceptually distinct from the other top-level keys because it's about the **form container**, not the **form content**.
+[IMAGE: Two form windows side by side demonstrating different meta settings: left window is small (400x300), semi-transparent with title "Quick Note", positioned in top-right corner; right window is larger (800x600), fully opaque with title "Detailed Report", centered on screen]
 
 ## Example Usage
 

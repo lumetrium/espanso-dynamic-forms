@@ -3,16 +3,15 @@ outline: [2, 4]
 ---
 
 # JSON Forms
-[JSON Forms](https://jsonforms.io) is a declarative framework that generates forms from JSON Schema definitions. 
 
-Espanso Dynamic Forms uses JSON Forms to display dynamic and customizable forms based entirely on user-defined schemas.
+[JSON Forms](https://jsonforms.io) is an open-source library that generates forms from JSON Schema definitions. Espanso Dynamic Forms uses it under the hood to render your forms.
 
-This allows you to define the structure and validation of forms using just config files, making it easy to create complex forms without writing any code.
+**The good news:** You don't need to learn JSON Forms in depth. This documentation covers everything you need. But if you want to explore advanced features, the official JSON Forms docs are a great resource.
 
+> [!NOTE] YAML Works Too
+> Despite the name "JSON Forms," you can write your form configs in YAML (which is easier to read). Espanso Dynamic Forms converts YAML to JSON internally.
 
-> [!NOTE] YAML Support
-> Despite the name, JSON Forms is not limited to JSON data. It can also handle other data formats, such as YAML, by converting them to JSON internally.
-> In fact, all throughout the docs, we'll be using YAML syntax for better readability and in line with Espanso.
+[IMAGE: Diagram showing the flow from YAML form config file to JSON Forms library to rendered Vuetify form, with arrows indicating the transformation at each step]
 
 ## How it works
 
@@ -84,6 +83,7 @@ To learn more about the available form elements, check out the [Form Elements](.
 - [JSON Forms Vuetify examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) – Examples specifically using the Vuetify renderer. Examples there use Vuetify 2, but all the same concepts still apply to Vuetify 3.
 
 ## Further Reading
-- [Form Config](../form-config/) – Detailed explanations of each top-level property in a form config file
-- [Form Elements](../form-elements/) – Overview of available form elements in Espanso Dynamic
-- [Forms Catalog](../forms-catalog/) – Collection of ready-made form configs for common use cases
+
+- **[Form Config](../form-config/)** — Detailed explanations of each section in a form config file
+- **[Form Elements](../form-elements/)** — Overview of available controls and layouts
+- **[Forms Library](../library/)** — Collection of ready-made form configs for common use cases

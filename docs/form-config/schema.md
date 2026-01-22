@@ -4,27 +4,27 @@ outline: [1, 4]
 
 # schema
 
-The `schema` top-level key of the [form config](./index) defines the form fields, their types, and validation rules.
+The `schema` section defines what fields your form has, what type of data each field accepts, and what validation rules apply.
 
-It's processed by the [JSON Forms](../json-forms/) core library and [AJV validator](https://ajv.js.org) to generate form controls and enforce validation rules.
-All form definitions begin with a root object that contains properties defining each form field.
+Under the hood, Espanso Dynamic Forms uses [JSON Forms](../json-forms/) to render form controls and [AJV](https://ajv.js.org) to validate input. You don't need deep knowledge of either library—this page covers everything you need.
 
-> [!warning] Required Section
-> This section is **mandatory**. Every form config must include a valid `schema` definition.
+> [!WARNING] Required Section
+> Every form config must include a `schema`. Without it, the form won't render.
 
-## Root Schema Structure
-Every form schema must define a root object with properties:
+## Basic Structure
+
+Every schema starts with a root `object` that contains your form fields:
+
 ```yml
 schema:
   type: object
   properties:
-    # field definitions here
+    # your field definitions go here
   required:
-    # optional array of required field names
+    # list of required field names (optional)
 ```
 
-Each property in the `properties` object defines a form field that will be 
-used in [`uischema`](./uischema), [`data`](./data), and [`template`](./template) sections of the form config.
+Each property you define in `properties` becomes a form field. You'll reference these same names in the [`uischema`](./uischema) to control how they appear, in [`data`](./data) to set defaults, and in [`template`](./template) to format output.
 
 ## Example Schema
 
@@ -55,22 +55,21 @@ schema:
 
 ## Field Types
 
-The schema supports standard JSON Schema primitive types. 
+Choose the right type for each field—it determines how the field looks, what input it accepts, and what data you get in your template.
 
-Using the correct type is important - it determines how the field is rendered in the form,
-what kind of data it accepts, how it's validated, and what you eventually get in the [`template`](./template) section.
+| Type | Renders As | Use For |
+|------|------------|----------|
+| `string` | Text input, textarea, or dropdown | Names, descriptions, selections |
+| `number` | Numeric input (decimals allowed) | Prices, ratings, percentages |
+| `integer` | Numeric input (whole numbers only) | Counts, IDs, quantities |
+| `boolean` | Checkbox | Toggles, confirmations |
+| `array` | Multi-select, checkboxes, or dynamic list | Multiple selections, file uploads |
+| `object` | Grouped fields or special controls | File metadata, nested structures |
 
-|Type|Description|Example Usage|
-|---|---|---|
-|`string`|Text input, textarea, or selection|Subject line, error message, code snippet|
-|`number`|Numeric input with decimal values|Price, rating, percentage|
-|`integer`|Whole number input|Count, index, ID|
-|`boolean`|Checkbox for true/false values|Enable feature, accept terms|
-|`array`|Collection of items (checkboxes, multi-select, or dynamic lists)|Selected options, file uploads, variable definitions|
-|`object`|Nested structure for complex data|Address, configuration block|
+[IMAGE: Form showing six different field types rendered side by side: a text input for string, a number spinner for number, a checkbox for boolean, a group of checkboxes for array with enum, a file upload button for object with format:file, and a nested card containing multiple fields for a plain object]
 
-> [!note] Avj JSON Schema Data Types
-> For all allowed types and their configurations, refer to the [Avj JSON schema data types](https://ajv.js.org/json-schema.html#json-data-type).
+> [!NOTE] Full Type Reference
+> For all JSON Schema types and options, see the [AJV JSON Schema documentation](https://ajv.js.org/json-schema.html#json-data-type).
 
 ### String Fields
 

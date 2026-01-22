@@ -2,15 +2,17 @@
 outline: [1, 4]
 ---
 
-# The Liquid Template Engine
+# Liquid Templating
 
-Espanso Dynamic Forms uses [LiquidJS](https://liquidjs.com/) as its template engine. 
-LiquidJS is a JavaScript implementation of the 
-[Liquid template language](https://shopify.github.io/liquid/), originally created by Shopify.
+Espanso Dynamic Forms uses [LiquidJS](https://liquidjs.com/) to process templates. Liquid is a simple yet powerful template language originally created by Shopify.
 
+You'll use Liquid syntax in two places:
+- **[`template`](../form-config/template)** — To format the final output
+- **[`data`](../form-config/data)** — To set dynamic default values
 
-You can provide a Liquid template in the [`template`](../form-config/template) and [`data`](../form-config/data) top-level keys
-of the [form config](../form-config/), and in the path to the form config via the `--form-config` CLI argument.
+You can also use Liquid in the `--form-config` path to dynamically select which form to load.
+
+[IMAGE: Code editor showing a template section with Liquid syntax highlighted in different colors: variables in orange {{name}}, filters in blue | upcase, and control tags in green {% if condition %}]
 
 ## Example
 

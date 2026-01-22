@@ -4,31 +4,45 @@ outline: [1, 4]
 
 # Install on Windows
 
-Use the Windows installer to get Espanso Dynamic Forms up and running with a few clicks. 
-Then hook it into Espanso by configuring a trigger.
+Follow these steps to install Espanso Dynamic Forms using the Windows installer.
 
-## 1. Download the Installer
+## Step 1: Download the Installer
 
-Use the direct link below to get the latest version:  
-[Espanso-Dynamic-Forms-Win-Setup.exe](https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download/Espanso-Dynamic-Forms-Win-Setup.exe)
+Download the latest version directly:  
+**[Espanso-Dynamic-Forms-Win-Setup.exe](https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download/Espanso-Dynamic-Forms-Win-Setup.exe)**
 
-> [!tip] Older versions
-> If you want to install a specific version, visit the [Releases page](https://github.com/lumetrium/espanso-dynamic-forms/releases) on GitHub
+> [!TIP] Need a specific version?
+> Visit the [Releases page](https://github.com/lumetrium/espanso-dynamic-forms/releases) on GitHub to download older versions.
 
-## 2. Run the Installer
-- Double-click the downloaded `.exe` file
-- If Windows SmartScreen appears, click "More info" then "Run anyway"
-- The installer will guide you through the setup process
+## Step 2: Run the Installer
 
-## 3. Choose Installation Location
-- By default, the app installs to `C:/Program Files/Espanso Dynamic Forms`
-- You can change this location if needed
+1. Double-click the downloaded `.exe` file
+2. If Windows SmartScreen appears with a warning, click **"More info"** then **"Run anyway"**
 
-## 4. Complete Installation
-- Click **"Install"** to begin the installation
-- Wait for the process to complete
-- Click **"Finish"** to exit the installer
+> [!NOTE] About SmartScreen
+> Windows may show a warning because the installer isn't signed with an expensive code-signing certificate. The application is safe to install—you can [review the source code](https://github.com/lumetrium/espanso-dynamic-forms) on GitHub.
 
-The application will **NOT** start automatically after installation.
-You need to hook it into Espanso by configuring an Espanso trigger,
-see [Getting Started](../getting-started/) for more details.
+## Step 3: Choose Installation Location
+
+The default installation folder is:
+```
+C:/Program Files/Espanso Dynamic Forms
+```
+
+You can change this location if needed, but the default works for most users.
+
+[IMAGE: Windows installer wizard window showing the installation directory selection screen with "C:/Program Files/Espanso Dynamic Forms" as the default path in the text field, a Browse button to the right, and Install and Cancel buttons at the bottom of the window]
+
+## Step 4: Complete Installation
+
+1. Click **"Install"** to begin
+2. Wait for the installation to finish (usually takes a few seconds)
+3. Click **"Finish"** to close the installer
+
+The application does **not** start automatically. You'll launch it through Espanso triggers instead.
+
+## What's Next?
+
+Now that Espanso Dynamic Forms is installed, you need to configure Espanso to use it.
+
+**Next step:** Follow the [Getting Started](../getting-started/) guide to create your first trigger.

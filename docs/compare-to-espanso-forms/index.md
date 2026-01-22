@@ -4,9 +4,11 @@ outline: [1, 4]
 
 # Compare to Espanso Forms
 
-Espanso offers its own built-in forms feature: https://espanso.org/docs/matches/forms
+Espanso has its own [built-in forms feature](https://espanso.org/docs/matches/forms). This page explains the differences and helps you decide which to use.
 
-While both built-in forms and Espanso Dynamic Forms serve the same purpose, there are some very significant differences between the two.
+**TL;DR:** Use built-in Espanso forms for simple input (1-3 basic fields). Use Espanso Dynamic Forms when you need validation, complex layouts, file uploads, or Liquid templating.
+
+[IMAGE: Two windows side by side - left shows native Espanso form with basic text layout "Subject: [[subject]]" and simple grey input fields, right shows Espanso Dynamic Forms with Material Design styling, labeled text field, styled dropdown for priority, and a blue Submit button]
 
 ## Key Differences
 
@@ -81,7 +83,7 @@ schema:
         - High
         - Medium
         - Low
-		contactName:
+    contactName:
       type: string
 
 uischema:
@@ -119,7 +121,17 @@ template: |
   Me
 ```
 
-## Conclusion
-Espanso Dynamic Forms provides a much more powerful and flexible solution for creating complex forms with advanced features. 
+---
 
-If you need more than just basic input fields and want to leverage the full capabilities of JSON Schema and Liquid templating, Espanso Dynamic Forms is the better choice.
+## When to Use Which
+
+| Scenario | Recommendation |
+|----------|---------------|
+| Quick text input (1-2 fields) | Built-in Espanso forms |
+| Need validation (required fields, patterns) | Espanso Dynamic Forms |
+| Complex layout (tabs, groups, conditional fields) | Espanso Dynamic Forms |
+| File uploads or date pickers | Espanso Dynamic Forms |
+| Multi-language support | Espanso Dynamic Forms |
+| Liquid templating with filters and loops | Espanso Dynamic Forms |
+
+Espanso Dynamic Forms is more powerful, but built-in forms are simpler for basic needs. Choose based on your specific requirements.
