@@ -23,7 +23,9 @@
 		"build": "vue-tsc && vite build && electron-builder",
 		"build:linux": "vue-tsc && vite build && electron-builder --linux",
 		"build:mac": "vue-tsc && vite build && electron-builder --mac",
-		"build:win": "vue-tsc && vite build && electron-builder --win"
+		"build:win": "vue-tsc && vite build && electron-builder --win",
+		"install:silent": "node scripts/silent-install.js",
+		"build:install": "npm run build && npm run install:silent"
 	},
 	"dependencies": {
 		"@jsonforms/core": "^3.6.0",
