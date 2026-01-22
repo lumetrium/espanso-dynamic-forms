@@ -21,7 +21,39 @@ Every form config file can have up to **six sections**. Three are required for t
 | [`meta`](./meta) | ❌ No | Window properties (title, size, position) and form metadata (name, version). |
 | [`i18n`](./i18n) | ❌ No | Translations for multi-language support. |
 
-[IMAGE: Annotated form config file in a code editor showing all six sections with colored highlights and labels indicating which section controls what aspect of the form: schema highlighted in blue with arrow pointing to "Defines fields", uischema in green with arrow to "Controls layout", template in orange with arrow to "Formats output", data in purple with arrow to "Sets defaults", meta in yellow with arrow to "Window settings", and i18n in pink with arrow to "Translations"]
+```mermaid
+graph TD
+    classDef required fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef optional fill:#f5f5f5,stroke:#9e9e9e,stroke-dasharray: 5 5;
+
+    Config[Form Config Object]
+    
+    subgraph Core[Required Sections]
+        Schema[schema]:::required
+        UISchema[uischema]:::required
+        Template[template]:::required
+    end
+    
+    subgraph Opt[Optional Sections]
+        Data[data]:::optional
+        Meta[meta]:::optional
+        I18n[i18n]:::optional
+    end
+
+    Config --> Schema
+    Config --> UISchema
+    Config --> Template
+    Config --> Data
+    Config --> Meta
+    Config --> I18n
+
+    Schema -->|Defines| Fields[Fields & Validation]
+    UISchema -->|Controls| Layout[Layout & Appearance]
+    Template -->|Formats| Output[Final Output]
+    Data -->|Sets| Defaults[Default Values]
+    Meta -->|Configures| Window[Window Properties]
+    I18n -->|Provides| Trans[Translations]
+```
 
 ---
 

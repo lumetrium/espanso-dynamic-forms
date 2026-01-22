@@ -34,7 +34,7 @@ Get help with code—debugging, explaining, refactoring, or writing new code.
       type: script
       params:
         args:
-          - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+          - C:/Program Files/Espanso Dynamic Forms/EDF.exe
           - --form-config
           - \{\{env.EDF_FORMS}}/code.yml
 ```

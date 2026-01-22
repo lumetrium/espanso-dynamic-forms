@@ -34,7 +34,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - \{\{env.EDF_FORMS}}/factory.yml
 ```
@@ -215,14 +215,14 @@ The paste-config field hides when a file is uploaded:
 
 The template includes full file contents for context:
 
-```yml
+`````yml
 {% for file in exampleFiles %}
 ### Example File {{forloop.index}}: {{file.fullName}}
 ````{{file.extension}}
 {{file.text}}
 ````
 {% endfor %}
-```
+`````
 
 ---
 
@@ -232,3 +232,20 @@ The template includes full file contents for context:
 - Modify default template requirements for your team's style
 - Add project-specific field type presets
 - Include custom validators or renderers as requirements
+
+## Troubleshooting
+
+### AI generates invalid YAML
+Sometimes AI models (especially smaller ones) might generate invalid YAML indentation.
+- **Fix:** Paste the output into a code editor (like VS Code) to highlight syntax errors before saving.
+- **Tip:** Ask the AI explicitly to "Double check the YAML indentation" in your prompt.
+
+### "Form not found" error
+If you save the config but Espanso can't find it:
+- **Verify Path:** Ensure the path in your trigger matches the actual file location.
+- **Verify Extension:** Ensure the file ends in `.yml` (not `.yaml` if your trigger specifies `.yml`).
+
+### Fields not showing up
+First, verify that the field is defined in the **Schema** section. It won't appear unless it is also listed in the **UI Schema** section.
+
+Second, check for typos. Ensure the `scope` property in **UI Schema** matches the property name in **Schema** exactly (e.g., `#/properties/myField`).

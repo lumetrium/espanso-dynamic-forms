@@ -59,6 +59,21 @@ rule:
 
 ## Condition Schemas
 
+The `condition.schema` property supports standard JSON Schema validation keywords.
+
+### Supported Keywords
+
+| Keyword | Description | Use Case |
+|---------|-------------|----------|
+| `const` | Matches exact value | Checkboxes, exact enum matches |
+| `enum` | Matches one of several values | Multi-option fields |
+| `minLength` | Minimum string length | Check if text input has content |
+| `minProperties` | Min object properties | Check if file is uploaded |
+| `minimum` | Minimum number value | Range checks |
+| `maximum` | Maximum number value | Range checks |
+| `pattern` | Regex pattern | Complex string matching |
+| `type` | Data type check | Check if value is string/number/etc |
+
 ### Match Exact Value
 
 Show when field equals a specific value:

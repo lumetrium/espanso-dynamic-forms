@@ -13,6 +13,15 @@ You can use static values (like `"Hello"` or `42`) or dynamic tokens that are ev
 
 [IMAGE: Form with three fields showing pre-filled default values: a text field labeled "Subject" containing "Meeting notes from clipboard", a dropdown labeled "Priority" with "Medium" selected, and an empty text area labeled "Notes" with placeholder text]
 
+## Variable Precedence
+
+When determining the initial value of a field, Espanso Dynamic Forms follows this order of precedence (highest to lowest):
+
+1.  **Data Section**: Values defined in `data` (including those resolved from `{{tokens}}`).
+2.  **Schema Defaults**: Values defined by the `default` keyword in the `schema`.
+
+If a field is not present in `data` and has no `default` in `schema`, it starts empty (null/undefined).
+
 ---
 
 ## Basic Structure

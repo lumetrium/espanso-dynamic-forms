@@ -84,7 +84,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - \{\{env.EDF_FORMS}}/demo.yml
 ```
@@ -111,7 +111,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - C:/forms/project-note.yml
             - --env
@@ -146,7 +146,7 @@ Espanso Dynamic Forms provides these variables automatically:
 
 | Variable | Description | Example Value |
 |----------|-------------|---------------|
-| `EDF_EXECUTABLE` | Full path to the EDF executable | `C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe` |
+| `EDF_EXECUTABLE` | Full path to the EDF executable | `C:/Program Files/Espanso Dynamic Forms/EDF.exe` |
 | `EDF_INSTALLATION_DIR` | Installation directory | `C:/Program Files/Espanso Dynamic Forms` |
 | `EDF_RESOURCES` | Path to bundled resources | `C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist` |
 | `EDF_FORMS` | Path to bundled example forms | `C:/Program Files/Espanso Dynamic Forms/resources/app.asar/dist/forms` |

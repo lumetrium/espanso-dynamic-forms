@@ -41,7 +41,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - \{\{env.EDF_FORMS}}/demo.yml
 ```
@@ -137,7 +137,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - C:/forms/test.yml
 ```
@@ -151,9 +151,45 @@ matches:
 | `data` | Sets default values. `{{clipboard}}` pre-fills the subject with your clipboard contents. |
 | `template` | Defines the output format using [Liquid syntax](../liquid/). The `upcase` filter converts priority to uppercase. |
 
+### Troubleshooting
+
+If the form doesn't appear:
+1.  **Check Espanso Log:** In the Espanso menu, check "Log" for errors.
+2.  **Debug via Terminal:** You can run the command manually in a terminal to see if it works outside Espanso. See [CLI Reference](../reference/cli) for details.
+
+---
+
+## How It Works Under the Hood
+
+Understanding the data flow can help you troubleshoot and build advanced workflows:
+
+1.  **Trigger:** Espanso detects your keyword (e.g., `:demo`).
+2.  **Execute:** Espanso runs the `EspansoDynamicForms.exe` executable with the path to your form config.
+3.  **Render:** The app reads the `.yml` config, resolving any templated paths.
+4.  **Visualize:** The window opens, rendering the form controls defined in `schema` and `uischema`.
+5.  **Output:** When you click Submit, the app processes the `template` and prints the result to standard output (`stdout`).
+6.  **Capture:** Espanso captures this output and pastes it into your active application.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant App as Application
+    participant Espanso
+    participant EDF as Dynamic Forms
+
+    User->>App: Type Trigger (e.g. :demo)
+    App->>Espanso: Detect Trigger
+    Espanso->>EDF: Run Executable
+    EDF-->>User: Show Form Window
+    User->>EDF: Submit Form
+    EDF->>Espanso: Print Result (stdout)
+    Espanso->>App: Paste Text
+```
+
 ---
 
 ## Next Steps
+
 
 Now that you have a working form, explore these topics to build more powerful forms:
 

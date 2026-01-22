@@ -32,6 +32,9 @@ features:
   - title: Compare to Espanso Forms
     details: See how Espanso Dynamic Forms compares to the built-in forms in Espanso
     link: /compare-to-espanso-forms
+  - title: Reference
+    details: CLI arguments, architecture details, and verification
+    link: /reference/cli
 
 
 ---

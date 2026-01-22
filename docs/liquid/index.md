@@ -118,8 +118,8 @@ In addition to form field values, these utility variables are always available:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `newline` | A newline character (`\n`) | `{{ items | join: newline }}` |
-| `tab` | A tab character (`\t`) | `{{ tab }}Item 1` |
+| `newline` | A newline character (`\n`) | `&#123;&#123; items \| join: newline &#125;&#125;` |
+| `tab` | A tab character (`\t`) | `&#123;&#123; tab &#125;&#125;Item 1` |
 
 These are useful when you need to insert whitespace characters that are difficult to type directly in YAML.
 
@@ -149,3 +149,29 @@ The context object (`file` in this case) becomes available inside the template. 
 - [Liquid documentation](https://shopify.github.io/liquid/) – Official documentation for Liquid templating language
 - [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) – JavaScript implementation of Liquid that's used in Espanso Dynamic Forms
 
+## Debugging Templates
+
+When building complex templates, it's helpful to see exactly what data you're working with.
+
+### Inspecting Data
+
+Use the `json` filter to dump an entire object or variable as a JSON string:
+
+```liquid
+{{ variable | json }}
+```
+
+**Example:**
+To see all available form data:
+```liquid
+<pre>
+{{ self | json }}
+</pre>
+```
+*(Note: `self` refers to the root data object in LiquidJS)*
+
+### Common Errors
+
+- **Missing output:** Check if the variable name matches the schema property exactly (case-sensitive).
+- **Whitespace issues:** Use `{%-` and `-%}` to strip whitespace from control tags.
+- **Unexpected values:** Use `{{ variable | json }}` to check if you're getting a string, number, or array.

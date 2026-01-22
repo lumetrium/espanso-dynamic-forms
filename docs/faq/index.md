@@ -88,5 +88,10 @@ Please [open an issue](https://github.com/lumetrium/espanso-dynamic-forms/issues
 - **UI components**: [Vuetify Renderers examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main)
 
 ### How do I debug my forms?
+Press `Ctrl+Shift+I` while a form is open to access Developer Tools.
 
-Press `Ctrl+Shift+I` while a form is open to access Developer Tools. The Console tab shows environment variables and any errors. This is helpful for troubleshooting template issues or checking what data is available.
+For more issues (like forms not opening at all), try running the application from the command line to see output logs:
+```powershell
+EspansoDynamicForms.exe --form-config path/to/form.yml
+```
+See the [CLI Reference](../reference/cli) for more details.

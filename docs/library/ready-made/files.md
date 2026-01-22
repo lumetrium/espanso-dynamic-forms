@@ -221,7 +221,7 @@ matches:
         type: script
         params:
           args:
-            - C:/Program Files/Espanso Dynamic Forms/EspansoDynamicForms.exe
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
             - --form-config
             - \{\{env.EDF_FORMS}}/files.yml
 ```

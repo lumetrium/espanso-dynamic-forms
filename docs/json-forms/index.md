@@ -11,7 +11,22 @@ outline: [2, 4]
 > [!NOTE] YAML Works Too
 > Despite the name "JSON Forms," you can write your form configs in YAML (which is easier to read). Espanso Dynamic Forms converts YAML to JSON internally.
 
-[IMAGE: Diagram showing the flow from YAML form config file to JSON Forms library to rendered Vuetify form, with arrows indicating the transformation at each step]
+```mermaid
+flowchart LR
+    YAML[YAML Config] -->|Parse| JSON[JSON Object]
+    JSON -->|Pass to| JF[JSON Forms Core]
+    JF -->|Use| VR[Vuetify Renderers]
+    VR -->|Render| V3[Vuetify 3 Components]
+    V3 -->|Display| UI((Form UI))
+
+    classDef config fill:#e1f5fe,stroke:#01579b,color:black
+    classDef lib fill:#f3e5f5,stroke:#4a148c,color:black
+    classDef ui fill:#e8f5e9,stroke:#1b5e20,color:black
+    
+    class YAML,JSON config
+    class JF,VR lib
+    class V3,UI ui
+```
 
 ## How it works
 

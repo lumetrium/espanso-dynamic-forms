@@ -207,6 +207,30 @@ properties:
 		format: file
 ```
 
+## Reusable Definitions
+
+You can avoid repetition by defining properties once and referencing them with `$ref`.
+
+```yml
+schema:
+  definitions:
+    address:
+      type: object
+      properties:
+        street: { type: string }
+        city: { type: string }
+        zip: { type: string }
+  
+  type: object
+  properties:
+    billingAddress: 
+      $ref: "#/definitions/address"
+    shippingAddress:
+      $ref: "#/definitions/address"
+```
+
+This is standard JSON Schema functionality. Note that only internal references (starting with `#`) are supported.
+
 ## Common Patterns
 
 ### Multi-Line Text Fields

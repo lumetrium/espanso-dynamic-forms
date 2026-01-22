@@ -16,6 +16,25 @@ The UI Schema is a tree structure where you arrange your fields using layouts an
 - **Layouts** organize fields visually (vertical stacking, horizontal rows, or tabs)
 - **Controls** connect to schema properties and render as input fields
 
+### Hierarchy Visualization
+
+```mermaid
+graph TD
+    Root[uischema] --> V1[VerticalLayout]
+    V1 --> H1[HorizontalLayout]
+    H1 --> C1(Control: Name)
+    H1 --> C2(Control: Email)
+    
+    V1 --> Tabs[Categorization]
+    Tabs --> Cat1[Category: Options]
+    Cat1 --> V2[VerticalLayout]
+    V2 --> C3(Control: Theme)
+    
+    Tabs --> Cat2[Category: Advanced]
+    Cat2 --> V3[VerticalLayout]
+    V3 --> C4(Control: Debug Mode)
+```
+
 [IMAGE: Side-by-side comparison showing the same three fields rendered with different uischema configurations: left side shows VerticalLayout with fields stacked top-to-bottom, middle shows HorizontalLayout with fields arranged in a row, right side shows Categorization with fields split across two tabs labeled "Basic" and "Advanced"]
 
 ## Root Properties
