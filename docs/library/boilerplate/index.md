@@ -312,6 +312,7 @@ uischema:
         recentFiles:
           enabled: true
           maxItems: 50
+          namespace: "my-shared-history"
 ```
 
 ---

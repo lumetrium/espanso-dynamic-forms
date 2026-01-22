@@ -352,9 +352,11 @@ attachments:
 
 | Option | Type | Description |
 |--------|------|-------------|
-| `accept` | string | Allowed file types |
-| `recentFiles.enabled` | boolean | Show recent files |
-| `recentFiles.maxItems` | number | Max recent files to show |
+| `accept` | string | Allowed file types (e.g. `image/*, .pdf`) |
+| `recentFiles.enabled` | boolean | Enable recent files history |
+| `recentFiles.maxItems` | number | Max recent files to show (default: 10) |
+| `recentFiles.namespace` | string | Share history key between fields |
+| `recentFiles.historyKey` | string | Explicit storage key |
 
 ---
 

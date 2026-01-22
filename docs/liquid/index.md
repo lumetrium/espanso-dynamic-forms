@@ -112,8 +112,40 @@ You can chain multiple filters together:
 {{ myAwesomeFormField | strip | upcase }}
 ```
 
+## Special Variables
+
+In addition to form field values, these utility variables are always available:
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `newline` | A newline character (`\n`) | `{{ items | join: newline }}` |
+| `tab` | A tab character (`\t`) | `{{ tab }}Item 1` |
+
+These are useful when you need to insert whitespace characters that are difficult to type directly in YAML.
+
+## Custom Filters
+
+Espanso Dynamic Forms provides these additional filters beyond standard Liquid:
+
+| Filter | Description | Example |
+|--------|-------------|---------|
+| `url_encode` | URL-encode a string | `{{ query \| url_encode }}` |
+| `url_decode` | URL-decode a string | `{{ encoded \| url_decode }}` |
+| `render_template` | Render a template string with context | `{{ template \| render_template: file }}` |
+
+### The `render_template` Filter
+
+This filter lets you render a Liquid template stored in a variable:
+
+```yml
+{% for file in files %}
+{{ myTemplate | render_template: file }}
+{% endfor %}
+```
+
+The context object (`file` in this case) becomes available inside the template. This is useful for dynamic templates like in the [Files form](../library/ready-made/files).
+
 ## Official Resources
 - [Liquid documentation](https://shopify.github.io/liquid/) – Official documentation for Liquid templating language
 - [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) – JavaScript implementation of Liquid that's used in Espanso Dynamic Forms
-
 

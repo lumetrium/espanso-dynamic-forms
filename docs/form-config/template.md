@@ -100,12 +100,16 @@ Beyond your form fields, you can access:
 |----------|-------------|
 | `{{clipboard}}` | System clipboard content at form load |
 | `{{env.VARIABLE_NAME}}` | Environment variables |
+| `{{newline}}` | A newline character (`\n`) |
+| `{{tab}}` | A tab character (`\t`) |
 
 ```yml
 template: |
   User: {{env.USERNAME}}
   Original text: {{clipboard}}
   Your response: {{response}}
+  
+  Items:{{newline}}{{items | join: newline}}
 ```
 
 ---

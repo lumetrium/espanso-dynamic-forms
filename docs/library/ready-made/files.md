@@ -142,6 +142,36 @@ options:
     maxItems: 100
 ```
 
+#### Recent Files Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `enabled` | boolean | `false` | Enable the recent files feature |
+| `maxItems` | number | `10` | Maximum number of files to store in history |
+| `namespace` | string | — | Share history between fields with the same namespace |
+| `historyKey` | string | — | Explicit storage key for complete control over history scope |
+
+**Sharing history across fields:**
+
+Use `namespace` to share recent files between different file input fields:
+
+```yml
+# Both fields share the same recent files history
+- type: Control
+  scope: '#/properties/sourceFiles'
+  options:
+    recentFiles:
+      enabled: true
+      namespace: code-files
+
+- type: Control
+  scope: '#/properties/testFiles'
+  options:
+    recentFiles:
+      enabled: true
+      namespace: code-files
+```
+
 ### The `render_template` Filter
 This special filter renders a template string with a given context:
 

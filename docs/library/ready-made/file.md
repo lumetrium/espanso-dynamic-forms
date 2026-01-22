@@ -154,11 +154,13 @@ Access these properties for each file:
 | `file.text` | Full text content of the file |
 | `file.name` | Filename without extension |
 | `file.fullName` | Filename with extension |
-| `file.extension` | File extension |
+| `file.extension` | File extension (without dot) |
 | `file.size` | File size in bytes |
 | `file.hash` | SHA-256 hash of file contents |
 | `file.mime` | MIME type |
 | `file.path` | Full file path |
+| `file.base64` | Binary contents as base64 string |
+| `file.dataUrl` | Data URL of the file |
 
 ### Pre-loading Files
 Set default files using paths:

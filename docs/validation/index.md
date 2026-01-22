@@ -72,7 +72,7 @@ website:
   type: string
   format: uri
 
-birtdate:
+birthdate:
   type: string
   format: date
 ```

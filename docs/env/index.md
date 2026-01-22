@@ -138,7 +138,9 @@ To see all available environment variables while a form is open:
 
 ---
 
-## Built-in EDF Variables
+## Built-in Variables
+
+### EDF Variables
 
 Espanso Dynamic Forms provides these variables automatically:
 
@@ -152,4 +154,17 @@ Espanso Dynamic Forms provides these variables automatically:
 | `EDF_FORM_CONFIG_PATH_RENDERED` | The path after Liquid processing | `C:/.../dist/forms/demo.yml` |
 | `EDF_FORM_CONFIG_PATH_REAL` | The resolved path (resolves symlinks) | `C:/.../dist/forms/demo.yml` |
 
+### Espanso Variables
+
+If Espanso is installed and accessible, these variables are also available:
+
+| Variable | Description | Example Value |
+|----------|-------------|---------------|
+| `ESPANSO_CONFIG` | Path to Espanso's config directory | `C:/Users/YourName/AppData/Roaming/espanso` |
+| `ESPANSO_PACKAGES` | Path to Espanso's packages directory | `C:/Users/YourName/AppData/Roaming/espanso/match/packages` |
+| `ESPANSO_RUNTIME` | Path to Espanso's runtime directory | `C:/Users/YourName/AppData/Local/espanso` |
+
+### System Variables
+
 You also have access to all system environment variables like `USERNAME`, `HOME`, `PATH`, `COMPUTERNAME`, etc.
+

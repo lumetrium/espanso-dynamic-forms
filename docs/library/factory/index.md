@@ -71,8 +71,10 @@ Copy the AI's output to a `.yml` file and reference it in your Espanso trigger.
 | **Description** | Clear explanation of what the form should do |
 | **Details** | Additional context, constraints, or special requirements |
 | **Complexity** | Simple (few fields), Moderate (some logic), Complex (many features) |
-| **Layout** | Single-page, Multi-tab (Categorization), or Stepper |
+| **Layout** | Single-page, Multi-tab, or Stepper |
 | **Max Tabs** | For multi-tab/stepper, how many tabs maximum |
+| **Styling Framework** | CSS framework preference (e.g., Vuetify 3) |
+| **Naming Convention** | Variable naming style (camelCase, snake_case, etc.) |
 | **Output Format** | Generate YAML or JSON config |
 | **Existing Config** | Upload or paste an existing config to modify |
 
