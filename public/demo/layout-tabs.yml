@@ -1,0 +1,43 @@
+meta:
+  type: "layout-tabs"
+  description: "A demonstration of tabbed form layout."
+  window:
+    title: "Tabs Layout"
+    width: 500
+    height: 400
+
+schema:
+  type: object
+  properties:
+    name:
+      type: string
+      title: Name
+    email:
+      type: string
+      title: Email
+    theme:
+      type: string
+      title: Theme
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Personal Info
+      elements:
+        - type: Control
+          scope: "#/properties/name"
+        - type: Control
+          scope: "#/properties/email"
+    - type: Category
+      label: Preferences
+      elements:
+        - type: Control
+          scope: "#/properties/theme"
+
+data:
+  name: "User"
+  email: "user@example.com"
+
+template: |
+  User: {{name}}

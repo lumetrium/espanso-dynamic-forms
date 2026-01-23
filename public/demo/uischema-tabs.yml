@@ -1,0 +1,36 @@
+meta:
+  type: "uischema-tabs"
+  description: "A simple UI schema example using Categorization (Tabs)."
+  window:
+    title: "Tabs UI"
+    width: 500
+    height: 350
+
+schema:
+  type: object
+  properties:
+    field1:
+      type: string
+      title: Field 1
+    field2:
+      type: string
+      title: Field 2
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Basic
+      elements:
+        - type: Control
+          scope: "#/properties/field1"
+    - type: Category
+      label: Advanced
+      elements:
+        - type: Control
+          scope: "#/properties/field2"
+
+data: {}
+
+template: |
+  {{field1}}

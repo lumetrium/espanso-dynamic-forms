@@ -1,0 +1,27 @@
+meta:
+  type: "date-picker"
+  description: "A simple date picker example."
+  window:
+    title: "Select Date"
+    width: 300
+    height: 350
+
+schema:
+  type: object
+  properties:
+    date:
+      type: string
+      format: date
+      title: Select Date
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/date"
+
+data:
+  date: "2023-10-27"
+
+template: |
+  Date selected: {{date}}

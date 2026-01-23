@@ -1,0 +1,26 @@
+meta:
+  window:
+    width: 400
+    height: 300
+    title: "Quick Note"
+    opacity: 0.9
+
+schema:
+  type: object
+  properties:
+    note:
+      type: string
+      title: Note
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/note"
+      options:
+        multi: true
+
+data: {}
+
+template: |
+  Note: {{note}}

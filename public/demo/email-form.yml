@@ -1,0 +1,43 @@
+meta:
+  type: "email-form"
+  description: "An email composition form with custom window styling."
+  window:
+    title: "EDF Email"
+    opacity: 0.7
+    width: 500
+    height: 400
+
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+      title: Subject
+    priority:
+      type: string
+      title: Priority
+      enum: ["High", "Medium", "Low"]
+    contactName:
+      type: string
+      title: Contact Name
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+    - type: Control
+      scope: "#/properties/priority"
+      options:
+        format: radio
+    - type: Control
+      scope: "#/properties/contactName"
+
+data:
+  subject: "Meeting Request"
+  priority: "Medium"
+  contactName: "Alice Smith"
+
+template: |
+  To: {{contactName}}
+  Subject: [{{priority}}] {{subject}}

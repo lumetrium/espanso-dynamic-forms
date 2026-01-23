@@ -1,0 +1,73 @@
+meta:
+  type: "schema-types"
+  description: "A comprehensive demonstration of various schema field types."
+  window:
+    title: "Field Types"
+    width: 700
+    height: 600
+
+schema:
+  type: object
+  properties:
+    stringField:
+      type: string
+      title: String Input
+    numberField:
+      type: number
+      title: Number Spinner
+    booleanField:
+      type: boolean
+      title: Checkbox
+    arrayField:
+      type: array
+      title: Array (Checkboxes)
+      items:
+        type: string
+        enum: ["Option A", "Option B", "Option C"]
+      uniqueItems: true
+    fileField:
+      type: string
+      format: file
+      title: File Upload
+    objectField:
+      type: object
+      title: Nested Card
+      properties:
+        nestedProp1:
+          type: string
+          title: Property 1
+        nestedProp2:
+          type: string
+          title: Property 2
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/stringField"
+    - type: Control
+      scope: "#/properties/numberField"
+    - type: Control
+      scope: "#/properties/booleanField"
+    - type: Control
+      scope: "#/properties/arrayField"
+      options:
+        format: checkbox
+    - type: Control
+      scope: "#/properties/fileField"
+    - type: Group
+      label: "Nested Object"
+      elements:
+        - type: Control
+          scope: "#/properties/objectField/properties/nestedProp1"
+        - type: Control
+          scope: "#/properties/objectField/properties/nestedProp2"
+
+data:
+  stringField: "Hello"
+  numberField: 42
+  booleanField: true
+  arrayField: ["Option A"]
+
+template: |
+  String: {{stringField}}

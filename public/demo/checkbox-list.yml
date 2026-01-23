@@ -1,0 +1,35 @@
+meta:
+  type: "checkbox-list"
+  description: "A simple form demonstrating a list of checkboxes."
+  window:
+    title: "Checkbox Selection"
+    width: 500
+    height: 400
+
+schema:
+  type: object
+  properties:
+    choices:
+      type: array
+      title: Options
+      items:
+        type: string
+        enum: ["First choice", "Second choice", "Third choice", "Fourth choice"]
+      uniqueItems: true
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/choices"
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical
+
+data:
+  choices: ["First choice", "Third choice"]
+
+template: |
+  Selected: {{choices | join: ", "}}

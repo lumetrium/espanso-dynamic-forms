@@ -1,0 +1,39 @@
+meta:
+  type: "single-file-upload"
+  description: "A form for uploading single or multiple files."
+  window:
+    title: "File Upload"
+    width: 600
+    height: 500
+
+schema:
+  type: object
+  properties:
+    singleFile:
+      type: string
+      format: data-url
+      title: Single File
+    multipleFiles:
+      type: array
+      items:
+        type: string
+        format: data-url
+      title: Multiple Files
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/singleFile"
+      options:
+        format: file
+    - type: Control
+      scope: "#/properties/multipleFiles"
+      options:
+        format: file
+
+data: {}
+
+template: |
+  Single: {{singleFile}}
+  Multiple: {{multipleFiles | join: ", "}}

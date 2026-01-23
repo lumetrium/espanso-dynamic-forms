@@ -1,0 +1,53 @@
+meta:
+  type: "files-form"
+  description: "A form with file attachments and tabs."
+  window:
+    title: "File Attachments"
+    width: 600
+    height: 500
+
+schema:
+  type: object
+  properties:
+    description:
+      type: string
+      title: Description
+    files:
+      type: array
+      items:
+        type: string
+        format: file
+      title: Select Files
+    template:
+      type: string
+      title: Template Style
+      enum: ["Standard", "Minimal", "Detailed"]
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Files
+      elements:
+        - type: Control
+          scope: "#/properties/description"
+          options:
+            multi: true
+        - type: Control
+          scope: "#/properties/files"
+    - type: Category
+      label: Template
+      elements:
+        - type: Control
+          scope: "#/properties/template"
+          options:
+            format: radio
+
+data:
+  description: "Attached files for review."
+  template: "Standard"
+
+template: |
+  Description: {{description}}
+  Template: {{template}}
+  Files count: {{files.size}}

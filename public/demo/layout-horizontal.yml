@@ -1,0 +1,34 @@
+meta:
+  type: "layout-horizontal"
+  description: "A demonstration of horizontal field layout."
+  window:
+    title: "Horizontal Layout"
+    width: 500
+    height: 250
+
+schema:
+  type: object
+  properties:
+    firstName:
+      type: string
+      title: First Name
+    lastName:
+      type: string
+      title: Last Name
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: HorizontalLayout
+      elements:
+        - type: Control
+          scope: "#/properties/firstName"
+        - type: Control
+          scope: "#/properties/lastName"
+
+data:
+  firstName: "Jane"
+  lastName: "Doe"
+
+template: |
+  {{firstName}} {{lastName}}

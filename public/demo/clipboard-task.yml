@@ -1,0 +1,41 @@
+meta:
+  type: "clipboard-task"
+  description: "A form to create a task from clipboard content."
+  window:
+    title: "Create Task"
+    width: 500
+    height: 450
+
+schema:
+  type: object
+  properties:
+    taskDescription:
+      type: string
+      title: Task Description
+    assignee:
+      type: string
+      title: Assignee
+    dueDate:
+      type: string
+      format: date
+      title: Due Date
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/taskDescription"
+    - type: Control
+      scope: "#/properties/assignee"
+    - type: Control
+      scope: "#/properties/dueDate"
+
+data:
+  taskDescription: "Refactor authentication module"
+  assignee: "Me"
+  dueDate: "2023-11-01"
+
+template: |
+  Task: {{taskDescription}}
+  Assigned to: {{assignee}}
+  Due: {{dueDate}}

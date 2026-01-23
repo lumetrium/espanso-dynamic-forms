@@ -1,0 +1,38 @@
+meta:
+  type: "liquid-example"
+  description: "A demonstration of Liquid template syntax in forms."
+  window:
+    title: "Liquid Syntax"
+    width: 400
+    height: 350
+
+schema:
+  type: object
+  properties:
+    name:
+      type: string
+      title: Name
+    condition:
+      type: boolean
+      title: Enable Feature
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/name"
+    - type: Control
+      scope: "#/properties/condition"
+    - type: Label
+      text: "Check the template tab to see Liquid in action!"
+
+data:
+  name: "John Doe"
+  condition: true
+
+template: |
+  Hello {{name}}!
+  Upper case: {{name | upcase}}
+  {% if condition %}
+  Condition is enabled!
+  {% endif %}

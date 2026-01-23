@@ -1,0 +1,33 @@
+meta:
+  type: "template-demo"
+  description: "A demonstration of simple template variable substitution."
+  window:
+    title: "Template Demo"
+    width: 400
+    height: 350
+
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+      title: Subject
+    priority:
+      type: string
+      title: Priority
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+    - type: Control
+      scope: "#/properties/priority"
+
+data:
+  subject: "Project Update"
+  priority: "High"
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority | upcase}}

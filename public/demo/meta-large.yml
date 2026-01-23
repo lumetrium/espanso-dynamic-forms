@@ -1,0 +1,27 @@
+meta:
+  window:
+    width: 800
+    height: 600
+    title: "Detailed Report"
+
+schema:
+  type: object
+  properties:
+    reportContent:
+      type: string
+      title: Report Content
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/reportContent"
+      options:
+        multi: true
+        rows: 20
+
+data: {}
+
+template: |
+  Report:
+  {{reportContent}}

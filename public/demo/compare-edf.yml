@@ -1,0 +1,65 @@
+meta:
+  type: "compare-edf"
+  description: "A comparison form showcasing EDF capabilities."
+  window:
+    title: "EDF Example"
+    width: 316
+    height: 246
+
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+    priority:
+      type: string
+      enum:
+        - High
+        - Medium
+        - Low
+    contactName:
+      type: string
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+      options:
+        multi: false
+        vuetify:
+          v-text-field:
+            density: compact
+    - type: Control
+      scope: "#/properties/priority"
+      options:
+        format: select
+        vuetify:
+          v-autocomplete:
+            hideDetails: true
+            density: compact
+    - type: Control
+      scope: "#/properties/contactName"
+      options:
+        multi: false
+        vuetify:
+          v-text-field:
+            density: compact
+
+data:
+  subject: "{{clipboard}}"
+  priority: Medium
+  contactName: ""
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority | upcase}}
+
+  ---
+
+  Hi {{contactName | capitalize}},
+
+  Just following up on our conversation about {{subject}}.
+
+  Regards,
+  Me

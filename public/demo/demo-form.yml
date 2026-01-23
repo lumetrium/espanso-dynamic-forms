@@ -1,0 +1,34 @@
+meta:
+  type: "demo-form"
+  description: "A basic demonstration form."
+  window:
+    title: "Demo Form"
+    width: 400
+    height: 350
+
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+      title: Subject
+    priority:
+      type: string
+      title: Priority
+      enum: ["High", "Medium", "Low"]
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+    - type: Control
+      scope: "#/properties/priority"
+
+data:
+  subject: "Project meeting notes"
+  priority: "Medium"
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority}}

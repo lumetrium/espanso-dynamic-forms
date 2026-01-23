@@ -1,0 +1,52 @@
+meta:
+  type: "code-task"
+  description: "A complex form for code related tasks with syntax highlighting."
+  window:
+    title: "Code Assistant"
+    width: 800
+    height: 600
+
+schema:
+  type: object
+  properties:
+    taskType:
+      type: string
+      title: Task Type
+      enum: ["Refactor", "Bug Fix", "Feature"]
+    language:
+      type: string
+      title: Language
+      enum: ["Python", "JavaScript", "TypeScript", "Rust"]
+    code:
+      type: string
+      title: Code Snippet
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Code & Task
+      elements:
+        - type: Control
+          scope: "#/properties/taskType"
+          options:
+            format: radio
+        - type: Control
+          scope: "#/properties/language"
+        - type: Control
+          scope: "#/properties/code"
+          options:
+            multi: true
+
+data:
+  taskType: "Refactor"
+  language: "TypeScript"
+  code: "function hello() { console.log('world'); }"
+
+template: |
+  Task: {{taskType}}
+  Language: {{language}}
+  Code:
+  ```{{language | downcase}}
+  {{code}}
+  ```

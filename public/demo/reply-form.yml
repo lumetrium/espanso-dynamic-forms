@@ -1,0 +1,64 @@
+meta:
+  type: "reply-form"
+  description: "A reply form with categorization tabs."
+  window:
+    title: "Reply Form"
+    width: 600
+    height: 500
+
+schema:
+  type: object
+  properties:
+    contentType:
+      type: string
+      title: Content Type
+      enum: ["Text", "HTML", "Markdown"]
+    message:
+      type: string
+      title: Message
+    draft:
+      type: string
+      title: Draft Response
+    context:
+      type: string
+      title: Additional Context
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Content
+      elements:
+        - type: Control
+          scope: "#/properties/contentType"
+          options:
+            format: radio
+        - type: Control
+          scope: "#/properties/message"
+          options:
+            multi: true
+        - type: Control
+          scope: "#/properties/draft"
+          options:
+            multi: true
+    - type: Category
+      label: Context
+      elements:
+        - type: Control
+          scope: "#/properties/context"
+          options:
+            multi: true
+
+data:
+  contentType: "Markdown"
+  message: "Pasted content goes here..."
+  draft: "Drafting my response..."
+
+template: |
+  Type: {{contentType}}
+  Context: {{context}}
+  Message:
+  {{message}}
+  
+  Response:
+  {{draft}}

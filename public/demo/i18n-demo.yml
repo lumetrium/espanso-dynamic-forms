@@ -1,0 +1,32 @@
+meta:
+  type: "i18n-demo"
+  description: "A form demonstrating internationalization capabilities."
+  window:
+    title: "I18n Demo"
+    width: 400
+    height: 300
+
+schema:
+  type: object
+  properties:
+    file:
+      type: object
+      format: file
+      title: Please upload a file
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/file"
+
+i18n:
+  ru:
+    submit: Отправить
+    file:
+      label: Пожалуйста, загрузите файл
+
+data: {}
+
+template: |
+  File: {{file.path}}

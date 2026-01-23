@@ -1,0 +1,35 @@
+meta:
+  type: "uischema-vertical"
+  description: "A simple UI schema example using VerticalLayout."
+  window:
+    title: "Vertical UI"
+    width: 500
+    height: 350
+
+schema:
+  type: object
+  properties:
+    field1:
+      type: string
+      title: Field 1
+    field2:
+      type: string
+      title: Field 2
+    field3:
+      type: string
+      title: Field 3
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/field1"
+    - type: Control
+      scope: "#/properties/field2"
+    - type: Control
+      scope: "#/properties/field3"
+
+data: {}
+
+template: |
+  {{field1}}

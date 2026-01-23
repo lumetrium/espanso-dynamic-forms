@@ -1,0 +1,49 @@
+meta:
+  type: "data-defaults"
+  description: "A form showing default data values."
+  window:
+    title: "Default Values"
+    width: 600
+    height: 500
+
+schema:
+  type: object
+  properties:
+    subject:
+      type: string
+      title: Subject
+    priority:
+      type: string
+      title: Priority
+      enum: ["High", "Medium", "Low"]
+    notes:
+      type: string
+      title: Notes
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/subject"
+    - type: Control
+      scope: "#/properties/priority"
+      options:
+        format: dropdown
+        vuetify:
+          v-autocomplete:
+            hideDetails: true
+    - type: Control
+      scope: "#/properties/notes"
+      options:
+        multi: true
+        placeholder: "Enter additional notes here..."
+
+data:
+  subject: "Meeting notes from clipboard"
+  priority: "Medium"
+  notes: "{{clipboard}}"
+
+template: |
+  Subject: {{subject}}
+  Priority: {{priority}}
+  Notes: {{notes}}

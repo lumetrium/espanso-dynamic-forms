@@ -1,0 +1,64 @@
+meta:
+  type: "form-factory"
+  description: "A meta-form for generating other form configurations."
+  window:
+    title: "Form Factory"
+    width: 800
+    height: 600
+
+schema:
+  type: object
+  properties:
+    description:
+      type: string
+      title: Description
+    details:
+      type: string
+      title: Details
+    complexity:
+      type: string
+      title: Complexity
+      enum: ["Simple", "Medium", "Complex"]
+    layoutType:
+      type: string
+      title: Layout Type
+      enum: ["Vertical", "Horizontal", "Tabs"]
+    outputFormat:
+      type: string
+      title: Output Format
+      enum: ["JSON", "YAML", "Markdown"]
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Overview
+      elements:
+        - type: Control
+          scope: "#/properties/description"
+          options:
+            multi: true
+        - type: Control
+          scope: "#/properties/details"
+        - type: Control
+          scope: "#/properties/complexity"
+          options:
+            format: radio
+        - type: Control
+          scope: "#/properties/layoutType"
+          options:
+            format: radio
+        - type: Control
+          scope: "#/properties/outputFormat"
+
+data:
+  description: "A form to generate other forms."
+  complexity: "Complex"
+  layoutType: "Tabs"
+  outputFormat: "YAML"
+
+template: |
+  ---
+  description: {{description}}
+  complexity: {{complexity}}
+  ---

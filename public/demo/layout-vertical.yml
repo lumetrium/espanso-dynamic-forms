@@ -1,0 +1,41 @@
+meta:
+  type: "layout-vertical"
+  description: "A demonstration of vertical field layout."
+  window:
+    title: "Vertical Layout"
+    width: 400
+    height: 400
+  hotkeys:
+    submit: 'Ctrl+Shift+Enter'
+
+schema:
+  type: object
+  properties:
+    firstName:
+      type: string
+      title: First Name
+    lastName:
+      type: string
+      title: Last Name
+    email:
+      type: string
+      title: Email
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/firstName"
+    - type: Control
+      scope: "#/properties/lastName"
+    - type: Control
+      scope: "#/properties/email"
+
+data:
+  firstName: "John"
+  lastName: "Doe"
+  email: "john.doe@example.com"
+
+template: |
+  Name: {{firstName}} {{lastName}}
+  Email: {{email}}
