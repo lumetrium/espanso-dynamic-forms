@@ -26,14 +26,16 @@
 			},
 		],
 		"icon": "public/logos/edf-bg-rounded.ico",
+		"executableName": "EDF"
 	},
 	"nsis": {
 		"oneClick": false,
-		"perMachine": false,
+		"perMachine": true,
 		"allowToChangeInstallationDirectory": true,
 		"deleteAppDataOnUninstall": false,
 		"runAfterFinish": false,
-		"artifactName": "Espanso-Dynamic-Forms-Win-Setup.${ext}"
+		"artifactName": "Espanso-Dynamic-Forms-Win-Setup.${ext}",
+		"include": "build/installer.nsh"
 	},
 	"portable": {
 		"artifactName": "Espanso-Dynamic-Forms-Win-Portable.${ext}"
@@ -52,7 +54,8 @@
 		"category": "Utility",
 		"synopsis": "Espanso Dynamic Forms",
 		"icon": "public/logos/edf-bg-rounded.png",
-		"description": "Dynamic form creation tool for Espanso text expander"
+		"description": "Dynamic form creation tool for Espanso text expander",
+		"executableName": "edf"
 	},
 	"deb": {
 		"artifactName": "Espanso-Dynamic-Forms-Linux.${ext}",

@@ -46,6 +46,7 @@ try {
     const child = spawn(installerPath, ['/S'], {
         detached: true,
         stdio: 'ignore',
+        shell: true,
     });
 
     child.unref();
