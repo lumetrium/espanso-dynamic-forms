@@ -9,23 +9,25 @@ export interface FormMeta {
 	/** Author of the form */
 	author?: string
 
-	/** Window title */
-	title?: string
-	/** Window width in pixels */
-	width?: number
-	/** Window height in pixels */
-	height?: number
-	/** Window opacity (0.0 - 1.0) */
-	opacity?: number
-	/** Initial window X position */
-	x?: number
-	/** Initial window Y position */
-	y?: number
+	/** Window configuration */
+	window?: {
+		/** Window title */
+		title?: string
+		/** Window width in pixels */
+		width?: number
+		/** Window height in pixels */
+		height?: number
+		/** Window opacity (0.0 - 1.0) */
+		opacity?: number
+		/** Initial window X position */
+		x?: number
+		/** Initial window Y position */
+		y?: number
+	}
 
-	// TODO implement these
 	/** Keyboard shortcuts */
-	hotkeys: {
-		/** Hotkey to submit the form */
+	hotkeys?: {
+		/** Hotkey to submit the form. Default: "ctrl+enter" */
 		submit?: string
 		/** Hotkey to reset the form */
 		reset?: string

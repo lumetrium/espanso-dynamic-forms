@@ -5,24 +5,23 @@ import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
 
 export const vuetify = createVuetify({
-  components,
-  directives,
-  icons: {
-    defaultSet: 'mdi',
-  },
+	components,
+	directives,
+	icons: {
+		defaultSet: 'mdi',
+	},
 	theme: {
 		defaultTheme: 'dark',
 		themes: {
 			dark: {
 				colors: {
 					primary: '#4cdd9f',
-				}
+				},
 			},
 		},
 	},
 	defaults: {
-		global: {
-		},
+		global: {},
 		VCheckbox: {
 			hideDetails: true,
 		},
@@ -50,7 +49,10 @@ export const vuetify = createVuetify({
 		},
 		VCombobox: {
 			density: 'compact',
-			autoGrow: true
-		}
-	}
+			autoGrow: true,
+		},
+		VTooltip: {
+			openDelay: 0,
+		},
+	},
 })

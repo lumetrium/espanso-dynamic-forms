@@ -27,6 +27,12 @@
 					:disabled="!!errors.length"
 					@click="submitForm"
 				>
+					<v-tooltip
+						location="top"
+						:activator="`parent`"
+					>
+						{{ submitHotkeyDisplay }}
+					</v-tooltip>
 					<span v-text="t('submit', 'Submit')" />
 				</v-btn>
 			</v-container>
@@ -37,7 +43,7 @@
 <script setup lang="ts">
 import { extendedVuetifyRenderers } from '@jsonforms/vue-vuetify'
 import { storeToRefs } from 'pinia'
-import { markRaw, ref, watch } from 'vue'
+import { computed, markRaw, ref, watch } from 'vue'
 import { JsonForms } from '@jsonforms/vue'
 import { ajv } from './ajv.ts'
 import { useJsonFormsI18n } from './i18n/useJsonFormsI18n.ts'
@@ -46,6 +52,7 @@ import { singleFileRendererEntry } from './renderers/file/SingleFileRenderer.ent
 import { useEnvStore } from './stores/useEnvStore.ts'
 import { useFormSchemaStore } from './stores/useFormSchemaStore.ts'
 import { useTemplater } from './templater/useTemplater.ts'
+import { useFormHotkeys } from './composables/useFormHotkeys.ts'
 
 const {
 	schema,
@@ -54,6 +61,7 @@ const {
 	i18n: i18nSchema,
 	data: initialData,
 	isValid,
+	fullSchema,
 } = storeToRefs(useFormSchemaStore())
 
 const { env } = storeToRefs(useEnvStore())
@@ -69,20 +77,38 @@ const { render, renderDeep } = useTemplater()
 
 const errors = ref([])
 const clipboardText = ref('')
+const data = ref({})
+
+const resetForm = () => {
+	if (initialData.value) {
+		data.value = {}
+		populateDataFromInitial()
+	} else {
+		data.value = {}
+	}
+}
+
+const closeForm = () => {
+	window.close()
+}
+
+const canSubmit = computed(() => !errors.value.length)
+
+const { submitHotkeyDisplay } = useFormHotkeys({
+	fullSchema,
+	onSubmit: submitForm,
+	onReset: resetForm,
+	onClose: closeForm,
+	canSubmit,
+})
 
 async function populateClipboardText() {
 	if (clipboardText.value) return
 	clipboardText.value = await window.electronAPI.getClipboardText()
 }
 
-const data = ref({})
-
-watch(i18nSchema, (i18n) => {
-	setMessages(i18n)
-	setLocale(env.value.LOCALE || 'en')
-})
-
-watch(initialData, async (initial) => {
+async function populateDataFromInitial() {
+	const initial = initialData.value
 	if (!initial) return
 
 	try {
@@ -95,6 +121,15 @@ watch(initialData, async (initial) => {
 	} catch (error) {
 		console.error('Failed to process initial data:', error)
 	}
+}
+
+watch(i18nSchema, (i18n) => {
+	setMessages(i18n)
+	setLocale(env.value.LOCALE || 'en')
+})
+
+watch(initialData, async () => {
+	await populateDataFromInitial()
 })
 
 async function submitForm() {

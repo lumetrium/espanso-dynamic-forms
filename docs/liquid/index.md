@@ -12,7 +12,6 @@ You'll use Liquid syntax in two places:
 
 You can also use Liquid in the `--form-config` path to dynamically select which form to load.
 
-[IMAGE: Code editor showing a template section with Liquid syntax highlighted in different colors: variables in orange {{name}}, filters in blue | upcase, and control tags in green {% if condition %}]
 
 ## Example
 

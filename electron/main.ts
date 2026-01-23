@@ -160,26 +160,28 @@ async function createWindow(dataPromise: Promise<AppData>) {
 			win.setTitle('Espanso Dynamic Forms')
 
 			if (meta) {
-				if (meta.title) win.setTitle(meta.title)
+				const windowMeta = meta.window || {}
+
+				if (windowMeta.title) win.setTitle(windowMeta.title)
 
 				const currentSize = win.getSize()
-				const newWidth = meta.width ?? currentSize[0]
-				const newHeight = meta.height ?? currentSize[1]
+				const newWidth = windowMeta.width ?? currentSize[0]
+				const newHeight = windowMeta.height ?? currentSize[1]
 
 				if (newWidth !== currentSize[0] || newHeight !== currentSize[1]) {
 					win.setSize(newWidth, newHeight, true)
 				}
 
-				if (meta.x || meta.y) {
+				if (windowMeta.x !== undefined || windowMeta.y !== undefined) {
 					const currentPos = win.getPosition()
 					win.setPosition(
-						meta.x ?? currentPos[0],
-						meta.y ?? currentPos[1],
+						windowMeta.x ?? currentPos[0],
+						windowMeta.y ?? currentPos[1],
 						true,
 					)
 				}
 
-				if (meta.opacity) win.setOpacity(meta.opacity)
+				if (windowMeta.opacity) win.setOpacity(windowMeta.opacity)
 			}
 
 			if (showTiming === 'ready') {

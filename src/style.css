@@ -103,4 +103,6 @@ button {
   width: 100%;
 }
 
-
+.v-tooltip .v-overlay__content {
+	transition-duration: 0.1s !important;
+}
