@@ -24,7 +24,17 @@ const electronAPI = {
 	},
 	getClipboardText: () => ipcRenderer.invoke('get-clipboard-text'),
 	readFileFromPath: (filePath: string) =>
-		ipcRenderer.invoke('read-file-from-path', filePath)
+		ipcRenderer.invoke('read-file-from-path', filePath),
+
+	// Shell operations
+	shellOpenPath: (filePath: string) =>
+		ipcRenderer.invoke('shell-open-path', filePath),
+	shellOpenExternal: (url: string) =>
+		ipcRenderer.invoke('shell-open-external', url),
+	shellShowItemInFolder: (filePath: string) =>
+		ipcRenderer.invoke('shell-show-item-in-folder', filePath),
+	createDemoConfig: (filePath: string, content: string) =>
+		ipcRenderer.invoke('create-demo-config', { filePath, content }),
 }
 
 // --------- Expose some API to the Renderer process ---------

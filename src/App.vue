@@ -1,5 +1,7 @@
 <template>
-	<v-app theme="dark">
+	<DirectLaunchPage v-if="isDirectLaunch" />
+	<FormNotFoundPage v-else-if="isFormNotFound" />
+	<v-app v-else theme="dark">
 		<v-main>
 			<v-container class="pa-0 pb-15">
 				<v-card
@@ -46,6 +48,8 @@ import { storeToRefs } from 'pinia'
 import { computed, markRaw, ref, watch } from 'vue'
 import { JsonForms } from '@jsonforms/vue'
 import { ajv } from './ajv.ts'
+import DirectLaunchPage from './components/DirectLaunchPage.vue'
+import FormNotFoundPage from './components/FormNotFoundPage.vue'
 import { useJsonFormsI18n } from './i18n/useJsonFormsI18n.ts'
 import { multipleFilesRendererEntry } from './renderers/file/MultipleFilesRenderer.entry.ts'
 import { singleFileRendererEntry } from './renderers/file/SingleFileRenderer.entry.ts'
@@ -65,6 +69,13 @@ const {
 } = storeToRefs(useFormSchemaStore())
 
 const { env } = storeToRefs(useEnvStore())
+
+// Show DirectLaunchPage when app is launched directly (not via espanso)
+// This is detected via EDF_DIRECT_LAUNCH env variable set by the main process
+const isDirectLaunch = computed(() => env.value.EDF_DIRECT_LAUNCH === 'true')
+
+// Show FormNotFoundPage when a form config path was provided but file doesn't exist
+const isFormNotFound = computed(() => env.value.EDF_FORM_NOT_FOUND === 'true')
 
 const renderers = markRaw([
 	...extendedVuetifyRenderers,

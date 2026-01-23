@@ -1,5 +1,6 @@
-import { app, BrowserWindow, clipboard, ipcMain } from 'electron'
-import { readFile, stat } from 'fs/promises'
+import { app, BrowserWindow, clipboard, ipcMain, shell } from 'electron'
+import fs from 'node:fs'
+import { readFile, stat, writeFile, mkdir } from 'fs/promises'
 // @ts-ignore
 import { load as loadYaml } from 'js-yaml'
 import path from 'node:path'
@@ -56,12 +57,17 @@ async function loadAppData() {
 		? import('../src/templater/useTemplater.ts')
 		: Promise.resolve(null)
 
+	// Check if launched by Espanso (Espanso sets these env vars when running scripts)
+	const launchedByEspanso = !!(process.env.ESPANSO_TRIGGER || process.env.ESPANSO_CONFIG)
+
 	let envParams = parseEnvParams(args, {
 		...process.env,
 		EDF_EXECUTABLE: app.getPath('exe'),
 		EDF_INSTALLATION_DIR: path.dirname(app.getPath('exe')),
 		EDF_RESOURCES: process.env.VITE_PUBLIC,
 		EDF_FORMS: process.env.VITE_PUBLIC + '/forms',
+		EDF_DIRECT_LAUNCH: (!formFilePath).toString(),
+		EDF_LAUNCHED_BY_ESPANSO: launchedByEspanso.toString(),
 	})
 
 	const espansoEnv = await espansoPromise
@@ -98,6 +104,14 @@ async function loadAppData() {
 		APP_PUBLIC: envParams.EDF_RESOURCES,
 		FORM_CONFIG_PATH: envParams.EDF_FORM_CONFIG_PATH,
 		FORM_CONFIG_PATH_REAL: envParams.EDF_FORM_CONFIG_PATH_REAL,
+	}
+
+	// Check if form file exists (only if a path was provided)
+	const formNotFound = formFilePathRendered && !fs.existsSync(formFilePathRendered)
+
+	envParams = {
+		...envParams,
+		EDF_FORM_NOT_FOUND: formNotFound.toString(),
 	}
 
 	const formFileContent = parseFormConfig(
@@ -261,4 +275,54 @@ ipcMain.on('result', (_event, result: string) => {
 	process.nextTick(() => {
 		app.quit()
 	})
+})
+
+// --- Shell Operations ---
+
+ipcMain.handle('shell-open-path', async (_event, filePath: string) => {
+	try {
+		return await shell.openPath(filePath)
+	} catch (error) {
+		console.error('Error opening path:', error)
+		throw error
+	}
+})
+
+ipcMain.handle('shell-open-external', async (_event, url: string) => {
+	try {
+		await shell.openExternal(url)
+		return true
+	} catch (error) {
+		console.error('Error opening external URL:', error)
+		throw error
+	}
+})
+
+ipcMain.handle('shell-show-item-in-folder', (_event, filePath: string) => {
+	try {
+		shell.showItemInFolder(filePath)
+		return true
+	} catch (error) {
+		console.error('Error showing item in folder:', error)
+		throw error
+	}
+})
+
+ipcMain.handle('create-demo-config', async (_event, { filePath, content }: { filePath: string, content: string }) => {
+	try {
+		// Create directory if it doesn't exist
+		const dir = path.dirname(filePath)
+		await mkdir(dir, { recursive: true })
+
+		// Write the file
+		await writeFile(filePath, content, 'utf-8')
+
+		// Show the file in explorer
+		shell.showItemInFolder(filePath)
+
+		return { success: true, path: filePath }
+	} catch (error) {
+		console.error('Error creating demo config:', error)
+		throw error
+	}
 })
