@@ -58,8 +58,8 @@
 		"executableName": "edf"
 	},
 	"deb": {
-		"packageName": "espanso-dynamic-forms",
 		"artifactName": "Espanso-Dynamic-Forms-Linux.${ext}",
+		"fpm": ["--name=espanso-dynamic-forms"],
 		"depends": [
 			"libgtk-3-0",
 			"libnotify4",
