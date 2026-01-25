@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Checkbox Form
@@ -8,9 +8,8 @@ A form demonstrating multi-select checkbox groups with array output formatting.
 
 **Source:** `checkbox.yml`
 
-[IMAGE: Checkbox form showing four vertically stacked checkboxes labeled "First choice", "Second choice", etc., with two options checked and a Submit button]
-
----
+![checkbox.png](https://media.lumetrium.com/edf/library/checkbox.png)
+*Screenshot of the Checkbox form with multiple checkboxes selected*
 
 ## What It Does
 
@@ -22,7 +21,6 @@ This form shows how to create a multi-select checkbox group where users can sele
 - Conditional output based on selection count
 - Array joining with Liquid filters
 
----
 
 ## Use Case
 
@@ -39,8 +37,6 @@ You selected:
 ```
 No items selected
 ```
-
----
 
 ## Form Configuration
 
@@ -82,8 +78,6 @@ template: |
   No items selected
   {% endif %}
 ```
-
----
 
 ## Key Features
 
@@ -138,8 +132,6 @@ This outputs:
 - Third choice
 ```
 
----
-
 ## Espanso Trigger
 
 ```yml
@@ -156,8 +148,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/checkbox.yml
 ```
-
----
 
 ## Customization Ideas
 

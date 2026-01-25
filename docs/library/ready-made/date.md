@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Date Picker Form
@@ -8,9 +8,8 @@ A simple form demonstrating date input with custom formatting and Liquid date fi
 
 **Source:** `date.yml`
 
-[IMAGE: Date picker form showing a calendar date selector with "Select Date" label, current date selected, and a clean vertical layout]
+![date.png](https://media.lumetrium.com/edf/library/date.png)
 
----
 
 ## What It Does
 
@@ -21,18 +20,14 @@ This form shows how to create a date picker field and format the output using Li
 - Liquid date formatting in output
 - Default value set to current date
 
----
-
 ## Use Case
 
-Insert formatted dates quickly—meeting dates, deadlines, timestamps, or any other date reference.
+Insert formatted dates quickly for meeting dates, deadlines, timestamps, or any other date reference.
 
 **Example output:**
 ```
 My special date is Monday – 2024 • Jan • 15
 ```
-
----
 
 ## Form Configuration
 
@@ -63,8 +58,6 @@ template: |
 # see https://shopify.github.io/liquid/filters/date/
 ```
 
----
-
 ## Key Features
 
 ### Date Format Options
@@ -92,8 +85,6 @@ template: |
   {{ mydate | date: "%A – %Y • %b • %d" }}
 ```
 
----
-
 ## Date Format Reference
 
 | Format | Output | Description |
@@ -109,7 +100,6 @@ template: |
 
 See the [Liquid date filter documentation](https://shopify.github.io/liquid/filters/date/) for all options.
 
----
 
 ## Espanso Trigger
 
@@ -127,8 +117,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/date.yml
 ```
-
----
 
 ## Customization Ideas
 

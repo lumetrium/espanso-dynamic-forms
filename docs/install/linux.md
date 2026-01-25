@@ -11,7 +11,6 @@ Espanso Dynamic Forms offers two installation methods for Linux. Choose the one 
 | `.deb` package | Debian, Ubuntu, Linux Mint, Pop!_OS | System integration, automatic updates via apt |
 | `.AppImage` | Any Linux distribution | Universal, no installation required, portable |
 
----
 
 ## Option 1: Using the .deb Package
 
@@ -45,8 +44,6 @@ which espanso-dynamic-forms
 ```
 
 This should output `/usr/bin/espanso-dynamic-forms`. If you see this path, you're ready to continue.
-
----
 
 ## Option 2: Using the .AppImage
 
@@ -84,10 +81,7 @@ You can now run the application directly:
 > ```
 > Make sure `~/.local/bin` is in your PATH. You can then reference `espanso-dynamic-forms` in your Espanso triggers.
 
----
-
 ## What's Next?
 
 The application does **not** start automatically. Espanso Dynamic Forms is designed to be launched by Espanso triggers.
-
-**Next step:** Follow the [Getting Started](../getting-started/) guide to create your first trigger and test your installation.
+Follow the [Getting Started](../getting-started/) guide to create your first trigger and test your installation.

@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # File Upload Form
@@ -7,10 +7,6 @@ outline: [2, 4]
 A form demonstrating single and multiple file uploads with i18n support.
 
 **Source:** `file.yml`
-
-[IMAGE: File upload form with two sections - single file upload showing one selected file, and multiple files upload showing three selected files with their names and remove buttons]
-
----
 
 ## What It Does
 
@@ -23,14 +19,12 @@ This form shows how to handle file uploads in Espanso Dynamic Forms. It demonstr
 - i18n translations for file input labels
 - Default file paths using environment variables
 
----
-
 ## Use Case
 
 Extract content from files, process multiple files, or include file contents in your output. Useful for code review, file listings, or any file-based workflow.
 
 **Example output:**
-```
+`````
 File contents:
 ````
 # This is the content of date.yml
@@ -48,13 +42,11 @@ abc123...
 lumetrium.png (15234 bytes)
 def456...
 ````
-```
-
----
+`````
 
 ## Form Configuration
 
-```yml
+`````yml
 schema:
   type: object
   required:
@@ -111,9 +103,7 @@ template: |
   {{ f.hash }}
   ````
   {% endfor %}
-```
-
----
+`````
 
 ## Key Features
 
@@ -183,8 +173,6 @@ i18n:
       remove: Remove
 ```
 
----
-
 ## Espanso Trigger
 
 ```yml
@@ -201,8 +189,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/file.yml
 ```
-
----
 
 ## Customization Ideas
 

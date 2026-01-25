@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Form Controls
 
 Controls are input elements that allow users to enter data. Each control connects to a schema property via its `scope`.
-
----
 
 ## Control Structure
 
@@ -27,8 +25,6 @@ Every control has this basic structure:
 | `label` | No | Override the default label |
 | `options` | No | Control-specific configuration |
 | `rule` | No | Conditional visibility rule |
-
----
 
 ## Text Input
 
@@ -55,8 +51,6 @@ name:
 options:
   focus: true
 ```
-
----
 
 ## Textarea
 
@@ -111,8 +105,6 @@ price:
 
 The control renders automatically based on type. Use `integer` for whole numbers, `number` for decimals.
 
----
-
 ## Slider
 
 An alternative number input rendered as a draggable slider.
@@ -133,8 +125,6 @@ rating:
     slider: true
 ```
 
----
-
 ## Checkbox (Single)
 
 A single true/false checkbox.
@@ -150,8 +140,6 @@ acceptTerms:
   scope: "#/properties/acceptTerms"
   label: I accept the terms and conditions
 ```
-
----
 
 ## Dropdown Select
 
@@ -187,8 +175,6 @@ For longer lists, enable searchable autocomplete:
         hideDetails: true
 ```
 
----
-
 ## Radio Buttons
 
 Display enum options as radio buttons instead of a dropdown.
@@ -221,8 +207,6 @@ type:
 | `format` | `"radio"` | Render as radio buttons |
 | `vuetify.v-radio-group.inline` | boolean | Horizontal arrangement |
 | `vuetify.v-radio-group.hideDetails` | boolean | Hide hint/error space |
-
----
 
 ## Checkbox Group
 
@@ -258,8 +242,6 @@ selections:
 | `format` | `"checkbox"` | Render as checkboxes |
 | `vuetify.v-input.class` | `"vertical"` | Stack vertically |
 
----
-
 ## Date Picker
 
 Calendar-based date selection.
@@ -293,8 +275,6 @@ data:
   dueDate: "{{ 'now' | date: '%Y-%m-%d' }}"
 ```
 
----
-
 ## File Upload (Single)
 
 Upload a single file.
@@ -325,8 +305,6 @@ document:
 | `file.hash` | SHA-256 hash |
 | `file.mime` | MIME type |
 | `file.path` | Full file path |
-
----
 
 ## File Upload (Multiple)
 
@@ -382,8 +360,6 @@ data:
     - ""
 ```
 
----
-
 ## Object Array
 
 List of items with multiple properties.
@@ -424,8 +400,6 @@ data:
 
 The `detail` option defines how each array item is rendered.
 
----
-
 ## Read-Only Control
 
 Display a value without allowing edits.
@@ -436,8 +410,6 @@ Display a value without allowing edits.
   options:
     readonly: true
 ```
-
----
 
 ## Vuetify Options
 

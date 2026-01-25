@@ -1,12 +1,10 @@
 ---
-outline: [2, 3]
+outline: [1, 4]
 ---
 
 # Command Line Interface (CLI)
 
 Espanso Dynamic Forms is typically launched by a script, but it accepts command-line arguments that control its behavior. Understanding these arguments is useful for debugging and advanced configuration.
-
----
 
 ## Arguments
 
@@ -16,13 +14,13 @@ Espanso Dynamic Forms is typically launched by a script, but it accepts command-
 
 **Usage:**
 ```bash
-EspansoDynamicForms.exe --form-config "path/to/form.yml"
+"C:/Program Files/Espanso Dynamic Forms/EDF.exe" --form-config "path/to/form.yml"
 ```
 
 **Behavior:**
 - Supports absolute paths
-- Supports environment variables (e.g., `{{env.EDF_FORMS}}/my-form.yml`) if passed through a shell that expands them, though typically expansion happens inside the app via Liquid.
-- If the file doesn't exist, the app loads an empty form.
+- Supports environment variables (e.g., `{{env.EDF_FORMS}}/demo.yml`). Expansion happens inside the app via [Liquid](../liquid).
+- If the file doesn't exist, the app loads an error page.
 
 **Fallback:**
 If not provided, checks the `FORM_CONFIG` environment variable.
@@ -49,8 +47,6 @@ EspansoDynamicForms.exe --show-timing <option>
 **Fallback:**
 If not provided, checks the `SHOW_TIMING` environment variable. Defaults to `skip-flash`.
 
----
-
 ## Architecture Flow
 
 Espanso Dynamic Forms works by communicating via standard input/output (stdio).
@@ -68,8 +64,7 @@ Espanso Dynamic Forms works by communicating via standard input/output (stdio).
 Because the app outputs to `stdout`, you can test forms in your terminal without Espanso:
 
 ```powershell
-# Windows PowerShell
-./EspansoDynamicForms.exe --form-config "public/forms/demo.yml"
+& "C:/Program Files/Espanso Dynamic Forms/EDF.exe" --form-config "{{env.EDF_FORMS}}/demo.yml"
 ```
 
 When you submit the form, the result will print directly to your terminal console.

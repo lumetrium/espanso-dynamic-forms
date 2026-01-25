@@ -6,9 +6,11 @@ outline: [1, 4]
 
 Espanso has its own [built-in forms feature](https://espanso.org/docs/matches/forms). This page explains the differences and helps you decide which to use.
 
-**TL;DR:** Use built-in Espanso forms for simple input (1-3 basic fields). Use Espanso Dynamic Forms when you need validation, complex layouts, file uploads, or Liquid templating.
+> [!Note] TL;DR
+> Use built-in Espanso forms for simple input (1-3 basic fields). Use Espanso Dynamic Forms when you need validation, complex layouts, file uploads, or Liquid templating.
 
-[IMAGE: Two windows side by side - left shows native Espanso form with basic text layout "Subject: [[subject]]" and simple grey input fields, right shows Espanso Dynamic Forms with Material Design styling, labeled text field, styled dropdown for priority, and a blue Submit button]
+![espanso-edf-side-by-side.avif](https://media.lumetrium.com/edf/compare/espanso-edf-side-by-side.avif)
+*Side-by-side comparison of an Espanso form (left) and an Espanso Dynamic Forms form (right).*
 
 ## Key Differences
 
@@ -120,8 +122,6 @@ template: |
   Regards,
   Me
 ```
-
----
 
 ## When to Use Which
 

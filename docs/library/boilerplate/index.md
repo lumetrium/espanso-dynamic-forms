@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Boilerplate Snippets
 
 Copy-paste building blocks for creating your own forms. These snippets are extracted from the [Ready-Made Forms](../ready-made/) and cover common patterns.
-
----
 
 ## Field Types
 
@@ -31,8 +29,6 @@ uischema:
       label: Your Name
 ```
 
----
-
 ### Multi-line Textarea
 
 For longer text input:
@@ -55,8 +51,6 @@ uischema:
             rows: 5
 ```
 
----
-
 ### Dropdown Select
 
 Selection from predefined options:
@@ -78,8 +72,6 @@ uischema:
       label: Priority
 ```
 
----
-
 ### Dropdown with Autocomplete
 
 Searchable dropdown for longer lists:
@@ -95,8 +87,6 @@ uischema:
           v-autocomplete:
             hideDetails: true
 ```
-
----
 
 ### Radio Buttons (Inline)
 
@@ -125,8 +115,6 @@ uischema:
             hideDetails: true
 ```
 
----
-
 ### Checkbox (Single Boolean)
 
 A single true/false checkbox:
@@ -144,8 +132,6 @@ uischema:
       scope: "#/properties/acceptTerms"
       label: I accept the terms and conditions
 ```
-
----
 
 ### Checkbox Group (Multi-select)
 
@@ -176,8 +162,6 @@ uischema:
             class: vertical
 ```
 
----
-
 ### Date Picker
 
 Date selection with formatting:
@@ -202,8 +186,6 @@ data:
   dueDate: "{{ 'now' | date: '%Y-%m-%d' }}"
 ```
 
----
-
 ### Number with Range
 
 Integer input with min/max:
@@ -223,8 +205,6 @@ uischema:
       scope: "#/properties/quantity"
       label: Quantity
 ```
-
----
 
 ### Slider
 
@@ -247,8 +227,6 @@ uischema:
       options:
         slider: true
 ```
-
----
 
 ## File Handling
 
@@ -274,8 +252,6 @@ template: |
   {{file.text}}
 ```
 
----
-
 ### Multiple File Upload
 
 ```yml
@@ -298,8 +274,6 @@ template: |
   {% endfor %}
 ```
 
----
-
 ### File Upload with Recent Files
 
 ```yml
@@ -314,8 +288,6 @@ uischema:
           maxItems: 50
           namespace: "my-shared-history"
 ```
-
----
 
 ## Layouts
 
@@ -333,8 +305,6 @@ uischema:
       scope: "#/properties/field2"
 ```
 
----
-
 ### Horizontal Layout
 
 Arrange elements side by side:
@@ -348,8 +318,6 @@ uischema:
     - type: Control
       scope: "#/properties/lastName"
 ```
-
----
 
 ### Tabs (Categorization)
 
@@ -375,8 +343,6 @@ uischema:
               scope: "#/properties/description"
 ```
 
----
-
 ### Nested Horizontal in Vertical
 
 Common pattern for form rows:
@@ -394,8 +360,6 @@ uischema:
     - type: Control
       scope: "#/properties/email"
 ```
-
----
 
 ## Dynamic Arrays
 
@@ -415,8 +379,6 @@ data:
   items:
     - ""
 ```
-
----
 
 ### Array with Object Items
 
@@ -456,8 +418,6 @@ data:
       value: ""
 ```
 
----
-
 ## Conditional Visibility
 
 ### Show Field Based on Selection
@@ -476,8 +436,6 @@ uischema:
           schema:
             const: true
 ```
-
----
 
 ### Show Based on Enum Value
 
@@ -504,8 +462,6 @@ uischema:
             const: phone
 ```
 
----
-
 ### Show Based on Multiple Values
 
 ```yml
@@ -519,8 +475,6 @@ rule:
         - stepper
 ```
 
----
-
 ## Default Values
 
 ### Static Default
@@ -532,16 +486,12 @@ data:
   enabled: true
 ```
 
----
-
 ### Clipboard Pre-fill
 
 ```yml
 data:
   content: "{{clipboard}}"
 ```
-
----
 
 ### Current Date
 
@@ -550,16 +500,12 @@ data:
   date: "{{ 'now' | date: '%Y-%m-%d' }}"
 ```
 
----
-
 ### Environment Variable
 
 ```yml
 data:
   author: "{{env.USERNAME}}"
 ```
-
----
 
 ## Template Patterns
 
@@ -571,8 +517,6 @@ template: |
   Email: {{email}}
 ```
 
----
-
 ### With Filters
 
 ```yml
@@ -581,8 +525,6 @@ template: |
   Status: {{status | upcase}}
   Count: {{items | size}}
 ```
-
----
 
 ### Conditional Sections
 
@@ -595,8 +537,6 @@ template: |
   {% endif %}
 ```
 
----
-
 ### Array Output
 
 ```yml
@@ -607,8 +547,6 @@ template: |
   {% endfor %}
 ```
 
----
-
 ### Filtered Array
 
 ```yml
@@ -618,8 +556,6 @@ template: |
   - {{ filtered | join: "\n- " }}
   {% endif %}
 ```
-
----
 
 ## i18n (Translations)
 
@@ -636,17 +572,15 @@ schema:
 i18n:
   en:
     fileInput:
-      description: Please upload a file
+      label: Please upload a file
       selectedFile: Selected file
       remove: Remove
   de:
     fileInput:
-      description: Bitte laden Sie eine Datei hoch
+      label: Bitte laden Sie eine Datei hoch
       selectedFile: Ausgewählte Datei
       remove: Entfernen
 ```
-
----
 
 ## Window Properties
 
@@ -661,8 +595,6 @@ meta:
   y: 100
   opacity: 0.9
 ```
-
----
 
 ## Complete Minimal Form
 

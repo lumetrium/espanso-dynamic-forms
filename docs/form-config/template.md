@@ -4,14 +4,13 @@ outline: [1, 4]
 
 # template
 
-The `template` section defines what text gets inserted when you submit the form. It uses the [Liquid templating language](../liquid/) to combine your form data into formatted output.
+The `template` section defines what text gets inserted when you submit the form. It uses the [Liquid template language](../liquid/) to transform your form data into formatted output.
 
 Every field from your [`schema`](./schema) becomes a variable you can use in the template.
 
 > [!WARNING] Required Section
 > Every form config must include a `template`. This is the output of your form.
 
----
 
 ## Basic Structure
 
@@ -28,8 +27,6 @@ template: |
 ```
 
 The `|` after `template:` enables multi-line text. Each line becomes part of your output.
-
----
 
 ## Using Filters
 
@@ -53,9 +50,10 @@ template: |
 | `size` | Count characters or array items | `{{text \| size}}` → `5` |
 | `default` | Fallback if empty | `{{name \| default: 'Anonymous'}}` |
 
-[IMAGE: Split view showing template code on the left with Liquid syntax highlighted, and the rendered output on the right after a form submission, demonstrating how {{subject}} becomes "Project Update" and {{priority | upcase}} becomes "HIGH"]
+See all filters here: https://liquidjs.com/filters/overview.html
 
----
+![template-demo.avif](https://media.lumetrium.com/edf/template/template-demo.avif)
+*Form config on the left, anime girl in the middle, and generated output on the right*
 
 ## Conditionals
 
@@ -76,8 +74,6 @@ template: |
 
 Use `blank` to check for empty strings. Use `nil` to check for missing values.
 
----
-
 ## Loops
 
 Iterate over arrays:
@@ -89,8 +85,6 @@ template: |
   - {{item}}
   {% endfor %}
 ```
-
----
 
 ## Special Variables
 
@@ -112,8 +106,6 @@ template: |
   Items:{{newline}}{{items | join: newline}}
 ```
 
----
-
 ## Best Practices
 
 | Practice | Why | Example |
@@ -122,8 +114,6 @@ template: |
 | Use `size > 0` for arrays | Ensures array has items | `{% if items.size > 0 %}` |
 | Use `default` filter | Provides fallback values | `{{name \| default: 'N/A'}}` |
 | Use `strip` on user input | Removes accidental whitespace | `{{input \| strip}}` |
-
----
 
 ## Learn More
 

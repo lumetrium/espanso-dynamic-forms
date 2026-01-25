@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Validation
 
 Validation ensures users enter correct data before submitting the form. Espanso Dynamic Forms uses [JSON Schema](https://json-schema.org/) validation powered by [AJV](https://ajv.js.org/).
-
----
 
 ## How Validation Works
 
@@ -15,8 +13,6 @@ Define validation rules in your [`schema`](../form-config/schema). The form auto
 1. Validates input as users type
 2. Shows error messages for invalid fields
 3. Prevents submission until all fields are valid
-
----
 
 ## Required Fields
 
@@ -37,8 +33,6 @@ schema:
 
 > [!NOTE] Required Array
 > The `required` array is at the same level as `properties`, not inside individual field definitions.
-
----
 
 ## String Validation
 
@@ -85,8 +79,6 @@ birthdate:
 | `time` | Time (HH:MM:SS) |
 | `date-time` | ISO 8601 datetime |
 
----
-
 ## Number Validation
 
 ### Minimum and Maximum
@@ -114,8 +106,6 @@ quantity:
   type: integer
   multipleOf: 5   # Must be 5, 10, 15, etc.
 ```
-
----
 
 ## Array Validation
 
@@ -146,8 +136,6 @@ selections:
   uniqueItems: true
 ```
 
----
-
 ## Enum Validation
 
 Restrict to specific values:
@@ -160,8 +148,6 @@ priority:
     - Medium
     - Low
 ```
-
----
 
 ## Complete Validation Example
 
@@ -209,8 +195,6 @@ schema:
     - agreedToTerms
 ```
 
----
-
 ## Validation Keywords Reference
 
 ### String Keywords
@@ -248,8 +232,6 @@ schema:
 | `const` | Must equal this value | `const: true` |
 | `default` | Default value | `default: "Hello"` |
 
----
-
 ## Validation Behavior
 
 ### Real-Time Validation
@@ -258,27 +240,9 @@ Fields are validated as users type. Error messages appear below invalid fields.
 
 ### Submit Validation
 
-The form cannot be submitted while validation errors exist. The Submit button remains active, but clicking it scrolls to the first error.
+The form cannot be submitted while validation errors exist.
 
 ### Optional Fields
 
 Fields not in the `required` array are optional. They're only validated if the user enters a value.
 
----
-
-## Tips
-
-1. **Be specific with error messages** — Use descriptive patterns
-2. **Set reasonable limits** — Don't require 100-character minimums for names
-3. **Use format over pattern** — When a built-in format exists
-4. **Test edge cases** — Empty strings, zero values, empty arrays
-5. **Consider UX** — Don't over-validate; frustration reduces completion rates
-
----
-
-## Limitations
-
-- Custom error messages are not directly supported (AJV defaults are shown)
-- Cross-field validation (field A depends on field B's value) is limited
-- Async validation (e.g., checking if username exists) is not supported
-- For complex validation needs, consider validating in your template output

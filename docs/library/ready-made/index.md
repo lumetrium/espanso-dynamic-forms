@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Ready-Made Forms
@@ -24,8 +24,6 @@ These are complete, working form configurations included with Espanso Dynamic Fo
 
 ### Code Generation
 - **[Code Generator](./codegen)** — Generate C# EventArgs classes
-
----
 
 ## How to Use These Forms
 

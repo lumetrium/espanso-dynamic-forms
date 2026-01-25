@@ -4,11 +4,11 @@ outline: [1, 4]
 
 # Liquid Templating
 
-Espanso Dynamic Forms uses [LiquidJS](https://liquidjs.com/) to process templates. Liquid is a simple yet powerful template language originally created by Shopify.
+Espanso Dynamic Forms uses [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) to process templates. Liquid is a simple yet powerful templating language originally created by Shopify.
 
-You'll use Liquid syntax in two places:
-- **[`template`](../form-config/template)** — To format the final output
-- **[`data`](../form-config/data)** — To set dynamic default values
+You'll use Liquid syntax in two sections of the form config:
+- **[`template`](../form-config/template)** – to format the final output
+- **[`data`](../form-config/data)** – To set dynamic default values
 
 You can also use Liquid in the `--form-config` path to dynamically select which form to load.
 
@@ -36,16 +36,16 @@ template: |
 	You entered: {{ myAwesomeFormField }}
 	Characters count: {{ myAwesomeFormField | size }}
 	Word count: {{ myAwesomeFormField | split: ' ' | size }}
-	It's uppercase: {{ myAwesomeFormField | upcase }}
+	It's uppercase now: {{ myAwesomeFormField | upcase }}
 ```
 
-Let's say you entered "Hello world" in the form field, the output would be:
+Let's say you entered "*Hello world*" in the form field, the output would be:
 
 ```text
 You entered: Hello world
 Characters count: 11
 Word count: 2
-It's uppercase: HELLO WORLD
+It's uppercase now: HELLO WORLD
 ```
 
 ## Template Data Context
@@ -117,8 +117,8 @@ In addition to form field values, these utility variables are always available:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `newline` | A newline character (`\n`) | `&#123;&#123; items \| join: newline &#125;&#125;` |
-| `tab` | A tab character (`\t`) | `&#123;&#123; tab &#125;&#125;Item 1` |
+| `newline` | A newline character (`\n`) | `{{items \| join: newline}}` |
+| `tab` | A tab character (`\t`) | `{{tab}}Item 1` |
 
 These are useful when you need to insert whitespace characters that are difficult to type directly in YAML.
 
@@ -144,9 +144,6 @@ This filter lets you render a Liquid template stored in a variable:
 
 The context object (`file` in this case) becomes available inside the template. This is useful for dynamic templates like in the [Files form](../library/ready-made/files).
 
-## Official Resources
-- [Liquid documentation](https://shopify.github.io/liquid/) – Official documentation for Liquid templating language
-- [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) – JavaScript implementation of Liquid that's used in Espanso Dynamic Forms
 
 ## Debugging Templates
 
@@ -167,10 +164,16 @@ To see all available form data:
 {{ self | json }}
 </pre>
 ```
-*(Note: `self` refers to the root data object in LiquidJS)*
+> [!note] Built-in `self` variable
+> The `self` variable refers to the root data object in LiquidJS
+
 
 ### Common Errors
 
 - **Missing output:** Check if the variable name matches the schema property exactly (case-sensitive).
 - **Whitespace issues:** Use `{%-` and `-%}` to strip whitespace from control tags.
 - **Unexpected values:** Use `{{ variable | json }}` to check if you're getting a string, number, or array.
+
+## Official Resources
+- [Liquid documentation](https://shopify.github.io/liquid/) – Official documentation for Liquid templating language
+- [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) – JavaScript implementation of Liquid that's used in Espanso Dynamic Forms

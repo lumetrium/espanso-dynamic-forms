@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Forms Library
@@ -10,13 +10,11 @@ The Forms Library is a collection of ready-to-use form configurations bundled wi
 
 The library is organized into three sections:
 
-| Section | Purpose |
-|---------|---------|
+| Section | Purpose                                                                                          |
+|---------|--------------------------------------------------------------------------------------------------|
 | **[Ready-Made Forms](./ready-made/)** | Complete, working forms for common tasks like code assistance, email drafting, and file handling |
-| **[Boilerplate Snippets](./boilerplate/)** | Copy-paste building blocks for creating your own forms |
-| **[Form Factory](./factory/)** | AI-powered form generator—describe what you need, get a complete config |
-
----
+| **[Boilerplate Snippets](./boilerplate/)** | Copy-paste building blocks for creating your own forms                                           |
+| **[Form Factory](./factory/)** | AI-powered form generator: describe what you need, get a prompt that generates a complete config |
 
 ## Using Library Forms
 
@@ -44,23 +42,19 @@ matches:
 > [!TIP] Try different forms
 > Replace `demo.yml` with any form name from the [Ready-Made Forms](./ready-made/) section (e.g., `code.yml`, `email.yml`, `files.yml`).
 
----
-
 ## Available Forms
 
-| Form | Trigger | Best For |
-|------|---------|----------|
-| [Demo](./ready-made/demo) | `:demo` | Testing your installation |
-| [Code Assistance](./ready-made/code) | `:code` | Getting help with code from AI |
-| [Email](./ready-made/email) | `:email` | Drafting follow-up emails |
-| [Reply](./ready-made/reply) | `:reply` | Composing message replies |
-| [Date Picker](./ready-made/date) | `:date` | Inserting formatted dates |
-| [Checkbox](./ready-made/checkbox) | `:check` | Multi-select checklists |
-| [File Upload](./ready-made/file) | `:file` | Processing file contents |
-| [Files (Advanced)](./ready-made/files) | `:files` | Batch file processing with templates |
-| [Code Generator](./ready-made/codegen) | `:codegen` | Generating C# event code |
-
----
+| Form | Best For |
+|------|----------|
+| [Demo](./ready-made/demo) | Testing your installation |
+| [Code Assistance](./ready-made/code) | Getting help with code from AI |
+| [Email](./ready-made/email) | Drafting follow-up emails |
+| [Reply](./ready-made/reply) | Composing message replies |
+| [Date Picker](./ready-made/date) | Inserting formatted dates |
+| [Checkbox](./ready-made/checkbox) | Multi-select checklists |
+| [File Upload](./ready-made/file) | Processing file contents |
+| [Files (Advanced)](./ready-made/files) | Batch file processing with templates |
+| [Code Generator](./ready-made/codegen) | Generating C# event code |
 
 ## Customizing Forms
 

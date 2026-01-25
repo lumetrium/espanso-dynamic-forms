@@ -20,7 +20,8 @@ Download the latest version directly:
 2. If Windows SmartScreen appears with a warning, click **"More info"** then **"Run anyway"**
 
 > [!NOTE] About SmartScreen
-> Windows may show a warning because the installer isn't signed with an expensive code-signing certificate. The application is safe to install—you can [review the source code](https://github.com/lumetrium/espanso-dynamic-forms) on GitHub.
+> Windows may show a warning because the installer isn't signed with an expensive code-signing certificate. 
+> The application is safe to install, you can [review the source code](https://github.com/lumetrium/espanso-dynamic-forms) on GitHub.
 
 ## Step 3: Choose Installation Location
 
@@ -31,7 +32,7 @@ C:/Program Files/Espanso Dynamic Forms
 
 You can change this location if needed, but the default works for most users.
 
-[IMAGE: Windows installer wizard window showing the installation directory selection screen with "C:/Program Files/Espanso Dynamic Forms" as the default path in the text field, a Browse button to the right, and Install and Cancel buttons at the bottom of the window]
+![install-location.avif](https://media.lumetrium.com/edf/windows/install-location.avif)
 
 ## Step 4: Complete Installation
 
@@ -44,5 +45,4 @@ The application does **not** start automatically. You'll launch it through Espan
 ## What's Next?
 
 Now that Espanso Dynamic Forms is installed, you need to configure Espanso to use it.
-
-**Next step:** Follow the [Getting Started](../getting-started/) guide to create your first trigger.
+Follow the [Getting Started](../getting-started/) guide to create your first trigger.

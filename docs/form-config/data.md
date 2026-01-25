@@ -11,7 +11,8 @@ You can use static values (like `"Hello"` or `42`) or dynamic tokens that are ev
 > [!NOTE] Optional Section
 > If you skip this section, fields start empty or with their schema-defined defaults.
 
-[IMAGE: Form with three fields showing pre-filled default values: a text field labeled "Subject" containing "Meeting notes from clipboard", a dropdown labeled "Priority" with "Medium" selected, and an empty text area labeled "Notes" with placeholder text]
+![data-defaults.avif](https://media.lumetrium.com/edf/data/data-defaults.avif)
+*Form fields initialized with static values and dynamic tokens from the `data` section*
 
 ## Variable Precedence
 
@@ -21,8 +22,6 @@ When determining the initial value of a field, Espanso Dynamic Forms follows thi
 2.  **Schema Defaults**: Values defined by the `default` keyword in the `schema`.
 
 If a field is not present in `data` and has no `default` in `schema`, it starts empty (null/undefined).
-
----
 
 ## Basic Structure
 
@@ -71,9 +70,8 @@ The `{{clipboard}}` token inserts the current system clipboard text content as t
 
 ```yml
 data:
-  code: "{{clipboard}}"
-  content: "{{clipboard}}"
-  message: "{{clipboard}}"
+  body: "{{clipboard}}"
+  title: "{{clipboard | truncate: 20}}"
 ```
 
 ### Environment Variable Tokens

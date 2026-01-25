@@ -4,17 +4,18 @@ outline: [1, 4]
 
 # uischema
 
-The `uischema` section controls how your form looks—the layout, styling, and behavior of each field. While [`schema`](./schema) defines *what* fields exist, `uischema` defines *how* they appear.
+The `uischema` section controls how your form looks: the layout, styling, and behavior of each field. While [`schema`](./schema) defines *what* fields exist, `uischema` defines *how* they appear.
 
 > [!WARNING] Required Section
 > Every form config must include a `uischema`. Without it, fields won't render.
 
 ## How It Works
 
-The UI Schema is a tree structure where you arrange your fields using layouts and controls:
+The UI Schema is a tree structure where you arrange your fields using [layouts](../form-elements/layouts) and [controls](../form-elements/controls):
 
 - **Layouts** organize fields visually (vertical stacking, horizontal rows, or tabs)
 - **Controls** connect to schema properties and render as input fields
+
 
 ### Hierarchy Visualization
 
@@ -35,7 +36,10 @@ graph TD
     V3 --> C4(Control: Debug Mode)
 ```
 
-[IMAGE: Side-by-side comparison showing the same three fields rendered with different uischema configurations: left side shows VerticalLayout with fields stacked top-to-bottom, middle shows HorizontalLayout with fields arranged in a row, right side shows Categorization with fields split across two tabs labeled "Basic" and "Advanced"]
+### Example UIs
+![side-by-side.avif](https://media.lumetrium.com/edf/uischema/side-by-side.avif)
+*VerticalLayout (left) vs HorizontalLayout (middle) vs Categorization (right)*
+
 
 ## Root Properties
 
@@ -136,7 +140,7 @@ The `scope` property uses JSON Pointer syntax to reference schema properties:
 ## Options System
 
 The `options` object on controls and layouts provides fine-grained configuration. 
-Options are passed to the JSON Forms renderer and can control both JSON Forms behavior and Vuetify component properties.
+Options are passed to the [JSON Forms](../json-forms) renderer and can control both JSON Forms behavior and Vuetify component properties.
 
 ### Common JSON Forms Options
 
@@ -246,6 +250,8 @@ options:
 ## Rules and Conditional Visibility
 
 Rules control when elements are visible or enabled based on the values of other form fields. The rule system uses JSON Schema for condition matching.
+There's a dedicated [Conditional Visibility](../conditional-visibility) guide for more details.
+
 
 ### Rule Structure
 
@@ -313,6 +319,7 @@ condition:
     minimum: 7
     maximum: 10
 ```
+
 
 ## Complete UI Schema Examples
 

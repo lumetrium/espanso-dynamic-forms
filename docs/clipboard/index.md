@@ -9,10 +9,6 @@ Espanso Dynamic Forms reads your system clipboard when the form opens and makes 
 > [!NOTE] Clipboard is read once
 > The clipboard is captured when the form first opens. If you copy new text while the form is open, `{{clipboard}}` still contains the original value.
 
-[VIDEO: User copies the text "Refactor authentication module" from a browser, switches to a text editor, types :task trigger, the form opens with the Task Description field already containing "Refactor authentication module", user fills in the remaining fields and submits, output includes the clipboard content]
-
----
-
 ## Using Clipboard in Forms
 
 You can use `{{clipboard}}` in both the `data` and `template` sections of your form config.
@@ -33,12 +29,12 @@ uischema:
       scope: "#/properties/myAwesomeFormField"
 
 data:
-	myAwesomeFormField: "My clipboard contents: {{clipboard}}"  # default value
+  myAwesomeFormField: "My clipboard contents: {{clipboard}}"  # default value
 
 template: |
-	Output from form field: {{myAwesomeFormField}}
-	Or use clipboard in template directly: {{clipboard}}
-	
+  Output from form field: {{myAwesomeFormField}}
+  Or use clipboard in template directly: {{clipboard}}
+  
 ```
 
 In this example, the `myAwesomeFormField` field is pre-populated 
@@ -72,34 +68,34 @@ matches:
 
 The example above assumes your clipboard contains the path to your form config file.
 In the real world, you'd likely want to check for certain 
-keywords inside the clipboard using Liquid conditionals,
+keywords inside the clipboard using [Liquid conditionals](http://localhost:5172/espanso-dynamic-forms/docs/liquid/#tags),
 and then build the form config path based on that, for example:
 
 ```yml
 matches:
-	- trigger: ":demo"
-		replace: "{{output}}"
-		force_mode: clipboard
-		vars:
-			- name: output
-				type: script
-				params:
-					args:
-						- C:/Program Files/Espanso Dynamic Forms/EDF.exe
-						- --form-config
-						- |-
-							{%- if clipboard contains "@" and clipboard contains "." -%}
-							C:/forms/email-composer.yml
-							{%- elsif clipboard contains "https://" or clipboard contains "http://" -%}
-							C:/forms/url-shortener.yml
-							{%- elsif clipboard contains "TODO" or clipboard contains "FIXME" -%}
-							C:/forms/task-creator.yml
-							{%- else -%}
-							C:/forms/universal-form.yml
-							{%- endif -%}
+  - trigger: ":demo"
+    replace: "{{output}}"
+    force_mode: clipboard
+    vars:
+      - name: output
+        type: script
+        params:
+          args:
+            - C:/Program Files/Espanso Dynamic Forms/EDF.exe
+            - --form-config
+            - |-
+              {%- if clipboard contains "@" and clipboard contains "." -%}
+              C:/forms/email-composer.yml
+              {%- elsif clipboard contains "https://" or clipboard contains "http://" -%}
+              C:/forms/url-shortener.yml
+              {%- elsif clipboard contains "TODO" or clipboard contains "FIXME" -%}
+              C:/forms/task-creator.yml
+              {%- else -%}
+              C:/forms/universal-form.yml
+              {%- endif -%}
 ```
 
-## Summary
+## Conclusion
 The `{{clipboard}}` variable in Espanso Dynamic Forms allows you to easily
 access and utilize the contents of the system clipboard in your forms and templates,
 enabling dynamic and context-aware form generation based on clipboard data.

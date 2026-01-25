@@ -1,16 +1,14 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
-# Files (Advanced) Form
+# Files Form
 
 An advanced file handling form with multiple output templates and recent files support.
 
 **Source:** `files.yml`
 
-[IMAGE: Files form with two tabs - "Files" tab showing a description textarea, file selector with multiple files selected, and recent files history; "Template" tab showing template selector radio buttons]
-
----
+![files.avif](https://media.lumetrium.com/edf/library/files.avif)
 
 ## What It Does
 
@@ -22,14 +20,12 @@ This is a power-user form for batch file processing. Select multiple files, choo
 - The `render_template` filter for dynamic templates
 - Tab-based organization
 
----
-
 ## Use Case
 
 Process multiple files with different output formats—create code context for AI, generate file manifests, build documentation, or any batch file operation.
 
 **Example output (Simple template):**
-```
+`````
 # File 1: main.ts
 ````ts
 import { app } from './app';
@@ -40,9 +36,7 @@ app.run();
 ````yml
 port: 3000
 ````
-```
-
----
+`````
 
 ## Available Templates
 
@@ -54,8 +48,6 @@ port: 3000
 | **Code Context** | Rich format for AI code context |
 | **File Manifest** | Bullet list with properties |
 | **Archive Contents** | Numbered simple list |
-
----
 
 ## Form Configuration (Key Sections)
 
@@ -128,8 +120,6 @@ template: |
   {% endfor %}
 ```
 
----
-
 ## Key Features
 
 ### Recent Files Support
@@ -170,7 +160,7 @@ Use `namespace` to share recent files between different file input fields:
     recentFiles:
       enabled: true
       namespace: code-files
-```
+`````
 
 ### The `render_template` Filter
 This special filter renders a template string with a given context:
@@ -199,15 +189,13 @@ Each template can use these variables:
 ### Using `{% raw %}` in Templates
 Templates stored as data need `{% raw %}` to prevent early evaluation:
 
-```yml
+`````yml
 simpleTemplate: |
   {% raw %}# File {{forloop.index}}: {{file.fullName}}
   ````{{file.extension}}
   {{file.text}}
   ````{% endraw %}
-```
-
----
+`````
 
 ## Espanso Trigger
 
@@ -226,7 +214,6 @@ matches:
             - \{\{env.EDF_FORMS}}/files.yml
 ```
 
----
 
 ## Customization Ideas
 

@@ -4,12 +4,11 @@ outline: [1, 4]
 
 # meta
 
-The `meta` section controls the form window itself—its title, size, position, and opacity. It also lets you add documentation metadata like the form's name and version, and configure keyboard shortcuts.
+The `meta` section controls the form window itself – its title, size, position, and opacity. It also lets you add documentation metadata like the form's name and version, and configure keyboard shortcuts.
 
 > [!NOTE] Optional Section
 > If you skip this section, the window uses default settings (800×800 pixels, fully opaque, centered).
 
----
 
 ## What Meta Controls
 
@@ -19,7 +18,8 @@ Think of `meta` as answering three questions:
 2. **How should the window appear?** — Title bar text, window size, position, transparency
 3. **How do I interact with it?** — Keyboard shortcuts for submitting, resetting, or closing
 
-[IMAGE: Two form windows side by side demonstrating different meta settings: left window is small (400x300), semi-transparent with title "Quick Note", positioned in top-right corner; right window is larger (800x600), fully opaque with title "Detailed Report", centered on screen]
+![meta-window-large-small.avif](https://media.lumetrium.com/edf/meta/meta-window-large-small.avif)
+*Two forms with different `meta.window` settings: a large, semi-transparent window on the left and a small, opaque window on the right. Anime girl in the background.*
 
 ## Example Usage
 
@@ -74,7 +74,7 @@ Properties under `meta.hotkeys`.
 
 |Property|Type|Description|Default Value|
 |---|---|---|---|
-|`submit`|`string`|Hotkey to submit the form|`ctrl+enter` (or `cmd+enter` on macOS)|
+|`submit`|`string`|Hotkey to submit the form|`ctrl+enter`|
 |`reset`|`string`|Hotkey to reset the form|-|
 |`close`|`string`|Hotkey to close the form|-|
 

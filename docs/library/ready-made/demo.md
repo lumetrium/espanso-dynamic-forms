@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: 1, 4]
 ---
 
 # Demo Form
@@ -8,9 +8,7 @@ A simple form to test your Espanso Dynamic Forms installation and understand the
 
 **Source:** `demo.yml`
 
-[IMAGE: Demo form window showing a text input field labeled "Subject" pre-filled with clipboard content, a dropdown labeled "Priority" set to "Medium", and a Submit button at the bottom]
-
----
+![demo.png](https://media.lumetrium.com/edf/library/demo.png)
 
 ## What It Does
 
@@ -20,7 +18,6 @@ This form collects a subject line and priority level, then outputs them in a for
 - Dropdown selection with enum values
 - Liquid filters for output formatting
 
----
 
 ## Use Case
 
@@ -32,7 +29,6 @@ Subject: Meeting notes from standup
 Priority: HIGH
 ```
 
----
 
 ## Form Configuration
 
@@ -70,8 +66,6 @@ template: |
   Priority: {{priority | upcase}}
 ```
 
----
-
 ## Key Features
 
 ### Clipboard Pre-fill
@@ -102,8 +96,6 @@ template: |
   Priority: {{priority | upcase}}
 ```
 
----
-
 ## Espanso Trigger
 
 Add this to your Espanso config to use the demo form:
@@ -122,8 +114,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/demo.yml
 ```
-
----
 
 ## Customization Ideas
 

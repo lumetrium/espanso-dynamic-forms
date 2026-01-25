@@ -92,6 +92,6 @@ Press `Ctrl+Shift+I` while a form is open to access Developer Tools.
 
 For more issues (like forms not opening at all), try running the application from the command line to see output logs:
 ```powershell
-EspansoDynamicForms.exe --form-config path/to/form.yml
+& "C:/Program Files/Espanso Dynamic Forms/EDF.exe" --form-config "{{env.EDF_FORMS}}/demo.yml"
 ```
 See the [CLI Reference](../reference/cli) for more details.

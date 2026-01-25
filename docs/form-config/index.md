@@ -12,14 +12,14 @@ You write form configs in **YAML** or **JSON** format and pass them to Espanso D
 
 Every form config file can have up to **six sections**. Three are required for the form to work, and three are optional:
 
-| Section | Required | Purpose |
-|---------|----------|---------|
+| Section | Required | Purpose                                                                                         |
+|---------|----------|-------------------------------------------------------------------------------------------------|
 | [`schema`](./schema) | ✅ Yes | Defines form fields, their types, and validation rules. Based on [JSON Schema](../json-forms/). |
-| [`uischema`](./uischema) | ✅ Yes | Controls layout and appearance—how fields are arranged and styled. |
-| [`template`](./template) | ✅ Yes | Defines the output format using [Liquid](../liquid/) templating. |
-| [`data`](./data) | ❌ No | Sets default values for form fields. Supports dynamic tokens like `{{clipboard}}`. |
-| [`meta`](./meta) | ❌ No | Window properties (title, size, position) and form metadata (name, version). |
-| [`i18n`](./i18n) | ❌ No | Translations for multi-language support. |
+| [`uischema`](./uischema) | ✅ Yes | Controls layout and appearance – how fields are arranged and styled.                            |
+| [`template`](./template) | ✅ Yes | Defines the output format using [Liquid](../liquid/) templating.                                |
+| [`data`](./data) | ❌ No | Sets default values for form fields. Supports dynamic tokens like `{{clipboard}}`.              |
+| [`meta`](./meta) | ❌ No | Window properties (title, size, position) and form metadata (name, version).                    |
+| [`i18n`](./i18n) | ❌ No | Translations for multi-language support.                                                        |
 
 ```mermaid
 graph TD
@@ -61,7 +61,7 @@ graph TD
 
 ### Minimal Form
 
-This is the simplest possible form—just enough to work:
+This is the simplest possible form, just enough to work:
 
 ```yml
 schema:
@@ -97,9 +97,10 @@ meta:
   name: File Text Extractor
   description: Extracts and outputs text content from a selected file.
   version: 1.0.0
-  title: Extract Text from File
-  width: 500
-  height: 400
+  window:
+    title: Extract Text from File
+    width: 500
+    height: 400
 
 schema:
   type: object
@@ -126,12 +127,12 @@ data:
 i18n:
   en:
     myFile:
-      description: Please upload a text file
+      label: Please upload a text file
       selectedFile: Selected file
       remove: Remove
   ru:
     myFile:
-      description: Пожалуйста, загрузите текстовый файл
+      label: Пожалуйста, загрузите текстовый файл
       selectedFile: Выбранный файл
       remove: Удалить
 
@@ -145,13 +146,11 @@ This form:
 - Supports English and Russian languages
 - Outputs the raw text content of the selected file
 
----
 
 ## Ready-Made Forms
 
 Browse the [Forms Library](../library/) for pre-built form configs you can use as starting points for your own forms.
 
----
 
 ## Learn More
 

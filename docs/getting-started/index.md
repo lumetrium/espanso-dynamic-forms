@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Getting Started
@@ -15,8 +15,6 @@ Before starting, make sure you have:
 
 > [!TIP] Verify Espanso is working
 > Type a simple trigger like `:espanso` in any text field. If Espanso expands it to "Hi there!", you're ready to continue.
-
----
 
 ## Quick Start 
 
@@ -51,13 +49,13 @@ matches:
 
 **What each setting does:**
 
-| Setting | Purpose |
-|---------|---------|
-| `trigger` | The text pattern that activates this form (`:demo`) |
-| `replace` | The template for output—uses the `{{output}}` variable from the script |
-| `force_mode: clipboard` | Required for multi-line output to paste correctly |
-| `type: script` | Tells Espanso to run an external program |
-| `args` | Command-line arguments: the executable path and the form config file |
+| Setting | Purpose                                                                 |
+|---------|-------------------------------------------------------------------------|
+| `trigger` | The text pattern that activates this form (`:demo`)                     |
+| `replace` | The template for output, uses the `{{output}}` variable from the script |
+| `force_mode: clipboard` | Required for multi-line output to paste correctly                       |
+| `type: script` | Tells Espanso to run an external program                                |
+| `args` | Command-line arguments: the executable path and the form config file    |
 
 > [!WARNING] Why `force_mode: clipboard`?
 > Without this setting, multi-line output may not insert correctly in all applications. Always include it for Espanso Dynamic Forms triggers.
@@ -72,7 +70,6 @@ matches:
 4. Click the **Submit** button
 5. The formatted output appears at your cursor position
 
-[VIDEO: User opens VS Code with an empty file, types the characters :demo in the editor, the Espanso Dynamic Forms window appears with a form containing a Subject text field and a Priority dropdown, user types "Project meeting notes" in the Subject field, selects "High" from the Priority dropdown, clicks the blue Submit button, the form window closes, and the formatted text "Subject: Project meeting notes\nPriority: HIGH" appears in the VS Code editor at the cursor position]
 
 > [!TIP] Form not appearing?
 > - Make sure Espanso is running (check your system tray)
@@ -83,7 +80,7 @@ matches:
 
 ### Step 3: Create Your Own Form
 
-The real power of Espanso Dynamic Forms is creating custom forms tailored to your workflow. Let's create a simple one.
+The real power of Espanso Dynamic Forms lies in creating custom forms tailored to your workflow. Let's create a simple one.
 
 **1. Create a form config file**
 

@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Code Generator Form
@@ -8,9 +8,7 @@ A form for generating C# EventArgs classes with dynamic property definitions.
 
 **Source:** `codegen.yml`
 
-[IMAGE: Code generator form showing an "Event Name" text field with value "UserLoggedIn", and a "Variables" section with two rows - first row has Type "string" and Variable Name "Username", second row has Type "DateTime" and Variable Name "LoginTime"]
-
----
+![codegen.avif](https://media.lumetrium.com/edf/library/codegen.avif)
 
 ## What It Does
 
@@ -20,8 +18,6 @@ This form generates C# EventArgs class code based on user-defined properties. It
 - Detail layout for array items (horizontal sub-form)
 - Complex Liquid template logic
 - Code generation patterns
-
----
 
 ## Use Case
 
@@ -41,8 +37,6 @@ public class UserLoggedInEventArgs : EventArgs
     }
 }
 ```
-
----
 
 ## Form Configuration
 
@@ -106,8 +100,6 @@ template: |
   }
 ```
 
----
-
 ## Key Features
 
 ### Dynamic Arrays with Object Items
@@ -168,8 +160,6 @@ options:
 {% endfor %}
 ```
 
----
-
 ## Espanso Trigger
 
 ```yml
@@ -186,8 +176,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/codegen.yml
 ```
-
----
 
 ## Customization Ideas
 

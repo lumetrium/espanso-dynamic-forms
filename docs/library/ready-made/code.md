@@ -1,16 +1,16 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Code Assistance Form
 
-A comprehensive form for getting help with code from AI assistants. Supports 14 different task types across debugging, refactoring, documentation, and more.
+A comprehensive form for getting help with code from AI assistants. Supports different task types across debugging, refactoring, documentation, and more.
 
 **Source:** `code.yml`
 
-[IMAGE: Code assistance form with three tabs - "Code & Task" tab showing task type radio buttons, language dropdown, code textarea with pasted code; form displays a professional dark-themed interface]
+![code.avif](https://media.lumetrium.com/edf/library/code.avif)
+*Screenshot of the Code Assistance form with categorized tabs and various input fields*
 
----
 
 ## What It Does
 
@@ -24,14 +24,12 @@ This form helps developers structure their code-related questions for AI assista
 - Dynamic arrays for custom inputs
 - Complex Liquid template with conditionals
 
----
-
 ## Use Case
 
 When you need help from an AI assistant with code—whether debugging, refactoring, reviewing, or writing new code—copy your code to the clipboard, trigger this form, and get a well-structured prompt.
 
 **Example output:**
-```
+`````
 Help me fix this typescript (vue3) code:
 
 ## File
@@ -54,9 +52,7 @@ The component crashes when the API returns an empty response.
 ## Requirements
 - No regressions to existing behavior
 - Match existing code style in the file
-```
-
----
+`````
 
 ## Supported Task Types
 
@@ -149,8 +145,6 @@ Help me refactor this {{language}} code:
 {% endcase %}
 ```
 
----
-
 ## Key Features
 
 ### Autocomplete Dropdowns
@@ -197,8 +191,6 @@ customRequirements:
     type: string
 ```
 
----
-
 ## Espanso Trigger
 
 ```yml
@@ -215,8 +207,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/code.yml
 ```
-
----
 
 ## Customization Ideas
 

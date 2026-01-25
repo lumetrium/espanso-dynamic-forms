@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Conditional Visibility
 
 Conditional visibility lets you show, hide, enable, or disable form elements based on the values of other fields. This creates dynamic forms that adapt to user input.
-
----
 
 ## How It Works
 
@@ -25,8 +23,6 @@ Add a `rule` property to any UI schema element (control or layout) to make it co
 
 This control only appears when `contactMethod` equals `"email"`.
 
----
-
 ## Rule Structure
 
 ```yml
@@ -44,8 +40,6 @@ rule:
 | `condition.scope` | Field to evaluate |
 | `condition.schema` | JSON Schema the field must match |
 
----
-
 ## Effects
 
 | Effect | When Condition is True | When Condition is False |
@@ -54,8 +48,6 @@ rule:
 | `HIDE` | Element is hidden | Element is visible |
 | `ENABLE` | Element is editable | Element is disabled |
 | `DISABLE` | Element is disabled | Element is editable |
-
----
 
 ## Condition Schemas
 
@@ -85,8 +77,6 @@ condition:
     const: email
 ```
 
----
-
 ### Match Any of Multiple Values
 
 Show when field is one of several values:
@@ -100,8 +90,6 @@ condition:
       - stepper
 ```
 
----
-
 ### Match Boolean True
 
 Show when checkbox is checked:
@@ -112,8 +100,6 @@ condition:
   schema:
     const: true
 ```
-
----
 
 ### Match Non-Empty Object
 
@@ -127,8 +113,6 @@ condition:
     minProperties: 1
 ```
 
----
-
 ### Match Non-Empty String
 
 Show when text field has content:
@@ -140,8 +124,6 @@ condition:
     type: string
     minLength: 1
 ```
-
----
 
 ## Examples
 
@@ -174,8 +156,6 @@ uischema:
           schema:
             const: true
 ```
-
----
 
 ### Show Different Fields Based on Selection
 
@@ -238,8 +218,6 @@ uischema:
             const: mail
 ```
 
----
-
 ### Hide When File Uploaded
 
 From the Form Factory, hide text input when file is uploaded:
@@ -255,8 +233,6 @@ From the Form Factory, hide text input when file is uploaded:
         type: object
         minProperties: 1
 ```
-
----
 
 ### Show Tab Limit for Multi-Tab Layouts
 
@@ -274,8 +250,6 @@ From the Form Factory, hide text input when file is uploaded:
           - multi-tab
           - stepper
 ```
-
----
 
 ### Conditional Layout Section
 
@@ -297,8 +271,6 @@ Apply rules to entire layout sections:
     - type: Control
       scope: "#/properties/advancedOption3"
 ```
-
----
 
 ## Real-World Example: i18n Toggle
 
@@ -339,8 +311,6 @@ data:
     - fr
 ```
 
----
-
 ## Tips
 
 1. **Use SHOW for optional sections** — Hide by default, show when relevant
@@ -348,8 +318,6 @@ data:
 3. **Use ENABLE/DISABLE for dependent fields** — Keep visible but inactive until prerequisites are met
 4. **Apply rules to layouts** — Hide/show entire sections at once
 5. **Test both states** — Verify behavior when condition is true AND false
-
----
 
 ## Limitations
 

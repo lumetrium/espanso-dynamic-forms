@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Email Form
@@ -8,9 +8,8 @@ A form for quickly drafting follow-up emails with customizable subject, priority
 
 **Source:** `email.yml`
 
-[IMAGE: Email form window at 70% opacity showing Subject field, Priority radio buttons (High/Medium/Low), and Contact Name field, with the window title "EDF Email"]
-
----
+![email.png](https://media.lumetrium.com/edf/library/email.png)
+*Screenshot of the semi-transparent Email form with subject, priority radio buttons, and contact name*
 
 ## What It Does
 
@@ -20,8 +19,6 @@ This form helps you compose professional follow-up emails by collecting key info
 - Radio button selection
 - Required field validation
 - Liquid filters (`upcase`, `capitalize`)
-
----
 
 ## Use Case
 
@@ -41,8 +38,6 @@ Just following up on our conversation about Project timeline discussion.
 Regards,
 Me
 ```
-
----
 
 ## Form Configuration
 
@@ -117,8 +112,6 @@ template: |
   Me
 ```
 
----
-
 ## Key Features
 
 ### Window Customization
@@ -154,7 +147,6 @@ required:
   - contact_name
 ```
 
----
 
 ## Espanso Trigger
 
@@ -172,8 +164,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/email.yml
 ```
-
----
 
 ## Customization Ideas
 

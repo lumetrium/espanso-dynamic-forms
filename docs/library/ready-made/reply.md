@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Reply Form
@@ -8,9 +8,7 @@ A form for crafting thoughtful replies to messages, emails, posts, or comments w
 
 **Source:** `reply.yml`
 
-[IMAGE: Reply form with two tabs - "Content" tab active showing content type radio buttons, message textarea with pasted content, draft response area, and additional context field]
-
----
+![reply.avif](https://media.lumetrium.com/edf/library/reply.avif)
 
 ## What It Does
 
@@ -21,14 +19,12 @@ This form helps you compose replies by capturing the original content, your draf
 - Array fields for style guidelines
 - Conditional output sections
 
----
-
 ## Use Case
 
 Copy a message, email, or comment to your clipboard, trigger the form, and get a structured prompt you can paste into an AI assistant like ChatGPT, Claude, or Gemini to help craft your reply.
 
 **Example output:**
-```
+`````
 Help me reply to this email:
 ```
 Hi, I wanted to follow up on our proposal...
@@ -43,13 +39,11 @@ Style guidelines:
 - Use a conversational, slightly informal style with simple language
 - Use contractions like "you're" and "don't"
 - Prioritize clarity with simple sentence structure
-```
-
----
+`````
 
 ## Form Configuration
 
-```yml
+`````yml
 schema:
   type: object
   properties:
@@ -146,9 +140,7 @@ template: |
   {{context}}
   ```
   {% endif %}
-```
-
----
+`````
 
 ## Key Features
 
@@ -188,8 +180,6 @@ My draft response:
 {% endif %}
 ```
 
----
-
 ## Espanso Trigger
 
 ```yml
@@ -206,8 +196,6 @@ matches:
             - --form-config
             - \{\{env.EDF_FORMS}}/reply.yml
 ```
-
----
 
 ## Customization Ideas
 

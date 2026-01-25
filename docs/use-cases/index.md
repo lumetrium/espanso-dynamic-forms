@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Use Cases
 
 This page showcases common scenarios where Espanso Dynamic Forms excels. Each use case links to relevant forms from the [Library](../library/) and explains how to adapt them.
-
----
 
 ## AI Prompt Engineering
 
@@ -14,7 +12,7 @@ Create structured prompts that get better results from AI assistants like ChatGP
 
 ### Code Assistance
 
-Get help with code—debugging, explaining, refactoring, or writing new code.
+Get help with code for debugging, explaining, refactoring, or writing new code.
 
 **Recommended form:** [Code Assistance](../library/ready-made/code)
 
@@ -39,8 +37,6 @@ Get help with code—debugging, explaining, refactoring, or writing new code.
           - \{\{env.EDF_FORMS}}/code.yml
 ```
 
----
-
 ### Writing Replies
 
 Compose thoughtful replies to messages, emails, or comments.
@@ -51,8 +47,6 @@ Compose thoughtful replies to messages, emails, or comments.
 - Clipboard pre-fill captures the message you're replying to
 - Style guidelines ensure consistent tone
 - Draft field lets you refine before AI polish
-
----
 
 ### Creating Forms with AI
 
@@ -66,8 +60,6 @@ Use the Form Factory to describe what you need and have AI generate the configur
 3. Paste the output into an AI assistant
 4. Save the generated config to a `.yml` file
 5. Create a trigger for your new form
-
----
 
 ## Email and Communication
 
@@ -92,8 +84,6 @@ Create reusable message templates for common communications:
 
 **Starting point:** [Demo](../library/ready-made/demo)
 
----
-
 ## File Processing
 
 ### Code Context for AI
@@ -108,8 +98,6 @@ Provide AI assistants with file contents for code review or analysis.
 - Multiple output templates for different formats
 - Description field adds context
 
----
-
 ### File Content Extraction
 
 Extract text from files to include in documents or prompts.
@@ -120,8 +108,6 @@ Extract text from files to include in documents or prompts.
 - Include config file contents in documentation
 - Extract text from uploaded documents
 - Read file metadata (size, hash, type)
-
----
 
 ## Code Generation
 
@@ -143,8 +129,6 @@ Generate repetitive code structures from templates.
 - React components
 - API endpoint handlers
 
----
-
 ### Configuration Files
 
 Generate configuration files from user input:
@@ -158,8 +142,6 @@ Generate configuration files from user input:
 2. Use conditionals to include optional sections
 3. Output in the appropriate format (YAML, JSON, INI)
 
----
-
 ## Data Entry
 
 ### Structured Notes
@@ -171,8 +153,6 @@ Capture meeting notes, decisions, or observations with consistent structure.
 - Dropdown for categories
 - Date picker for timestamps
 - Checkbox arrays for action items
-
----
 
 ### Bug Reports
 
@@ -187,8 +167,6 @@ Collect structured bug reports with all necessary information.
 - Screenshots (file array)
 - Environment (nested object)
 
----
-
 ### Feature Requests
 
 Capture feature ideas with context and priority.
@@ -200,8 +178,6 @@ Capture feature ideas with context and priority.
 - User story format ("As a... I want... So that...")
 - Priority (enum)
 - Related features (array)
-
----
 
 ## Quick Insert
 
@@ -221,8 +197,6 @@ template: "{{ mydate | date: '%A, %B %d, %Y' }}"
 template: "{{ 'now' | date: '%Y-%m-%d %H:%M' }}"
 ```
 
----
-
 ### Checklists
 
 Create quick multi-select checklists.
@@ -234,8 +208,6 @@ Create quick multi-select checklists.
 - Pre-flight checklists
 - Review criteria
 - Approval workflows
-
----
 
 ## Building Your Own
 
@@ -253,8 +225,6 @@ Browse [Boilerplate Snippets](../library/boilerplate/) for copy-paste starting p
 ### Use the Form Factory
 
 For complex forms, describe your requirements in the [Form Factory](../library/factory/) and let AI generate the initial config.
-
----
 
 ## Tips for All Use Cases
 

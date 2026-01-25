@@ -1,0 +1,63 @@
+schema:
+  definitions:
+    address:
+      type: object
+      properties:
+        street: { type: string }
+        city: { type: string }
+        zip: { type: string }
+  type: object
+  properties:
+    billingAddress:
+      $ref: "#/definitions/address"
+    shippingAddress:
+      $ref: "#/definitions/address"
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: VerticalLayout
+      elements:
+        - type: Control
+          scope: "#/properties/billingAddress/properties/street"
+          label: Billing Address - Street
+        - type: Control
+          scope: "#/properties/billingAddress/properties/city"
+          label: Billing Address - City
+        - type: Control
+          scope: "#/properties/billingAddress/properties/zip"
+          label: Billing Address - ZIP Code
+    - type: VerticalLayout
+      elements:
+        - type: Control
+          scope: "#/properties/shippingAddress/properties/street"
+          label: Shipping Address - Street
+        - type: Control
+          scope: "#/properties/shippingAddress/properties/city"
+          label: Shipping Address - City
+        - type: Control
+          scope: "#/properties/shippingAddress/properties/zip"
+          label: Shipping Address - ZIP Code
+
+data:
+  billingAddress:
+    street: ""
+    city: ""
+    zip: ""
+  shippingAddress:
+    street: ""
+    city: ""
+    zip: ""
+
+template: |
+  {% if billingAddress.street or billingAddress.city or billingAddress.zip %}
+  ## Billing Address
+  {{billingAddress.street}}
+  {{billingAddress.city}}{% if billingAddress.city and billingAddress.zip %}, {% endif %}{{billingAddress.zip}}
+  {% endif %}
+
+  {% if shippingAddress.street or shippingAddress.city or shippingAddress.zip %}
+  ## Shipping Address
+  {{shippingAddress.street}}
+  {{shippingAddress.city}}{% if shippingAddress.city and shippingAddress.zip %}, {% endif %}{{shippingAddress.zip}}
+  {% endif %}

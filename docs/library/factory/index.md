@@ -1,24 +1,25 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Form Factory
 
-The Form Factory is an AI-powered form generator. Describe what you want, and it produces a complete form configuration that you can use directly or customize further.
+The Form Factory is an AI-powered form generator. Describe what you want, and it produces a prompt that, when given to an LLM, generates a complete form configuration that you can use directly or customize further.
 
 **Source:** `factory.yml`
 
-[IMAGE: Form Factory with four tabs visible - "Overview" tab active showing Description textarea, Details field, Complexity radio buttons, Layout type radio buttons, and Output format options]
-
----
+![basic.avif](https://media.lumetrium.com/edf/library/factory/basic.avif)
 
 ## What It Does
 
 The Form Factory generates a structured prompt that you paste into an AI assistant (ChatGPT, Claude, Gemini, etc.). The AI returns a complete `schema`, `uischema`, `data`, and `template` configuration ready to use.
 
-This is the fastest way to create new forms—describe your needs in plain language and let AI handle the JSON Schema details.
+This is the fastest way to create new forms, just describe your needs in plain language and let AI handle the JSON Schema details.
 
----
+> [!TIP] ✨ Recommended AI Models
+> Use **Claude Sonnet 4.5** or **Claude Opus 4.5** for best results. 
+> These models understand JSON Schema, produce clean YAML, and more often deliver perfect form configs on the first try:
+> https://claude.ai
 
 ## How to Use It
 
@@ -40,17 +41,12 @@ matches:
 ```
 
 ### Step 2: Fill in the Form
+The only required field is **Description**. The more details you provide, the better the AI can generate a useful config.
+All other fields are optional but help refine the output.
 
-1. **Description** — Describe what your form should do
-2. **Details** — Add any extra context or requirements
-3. **Complexity** — Simple, Moderate, or Complex
-4. **Layout** — Single-page, Multi-tab, or Stepper
-5. **Schema/UI Schema** — Optional specific requirements
-6. **Template** — Describe your desired output format
 
 ### Step 3: Submit and Get the Prompt
-
-The form generates a detailed prompt with all your requirements.
+The form generates a detailed prompt with all your requirements and examples from the library for context.
 
 ### Step 4: Paste into AI Assistant
 
@@ -59,8 +55,6 @@ Paste the prompt into your AI assistant. It will generate a complete YAML config
 ### Step 5: Save and Use
 
 Copy the AI's output to a `.yml` file and reference it in your Espanso trigger.
-
----
 
 ## Form Factory Options
 
@@ -104,8 +98,6 @@ Copy the AI's output to a `.yml` file and reference it in your Espanso trigger.
 | **Include i18n** | Generate translation support |
 | **Supported Languages** | Which languages to include in i18n |
 
----
-
 ## Example: Creating a Bug Report Form
 
 **Description:**
@@ -136,7 +128,6 @@ The AI will generate a complete configuration with:
 - Two-tab layout
 - Markdown-formatted output
 
----
 
 ## Tips for Better Results
 
@@ -160,7 +151,6 @@ Upload similar form configs from the library to give the AI context on syntax an
 - **Moderate:** 5-15 fields, some conditional visibility, tabs
 - **Complex:** Many fields, nested objects, arrays, i18n, complex templates
 
----
 
 ## Included Example Files
 
@@ -172,7 +162,6 @@ The Form Factory pre-loads these example configs for the AI to reference:
 - `date.yml` — Date picker, Liquid filters
 - `checkbox.yml` — Checkbox arrays
 
----
 
 ## Form Configuration Reference
 
@@ -224,28 +213,10 @@ The template includes full file contents for context:
 {% endfor %}
 `````
 
----
-
 ## Customization Ideas
 
 - Add your own example files for project-specific patterns
-- Modify default template requirements for your team's style
+- Modify default template requirements for your favorite style
 - Add project-specific field type presets
 - Include custom validators or renderers as requirements
 
-## Troubleshooting
-
-### AI generates invalid YAML
-Sometimes AI models (especially smaller ones) might generate invalid YAML indentation.
-- **Fix:** Paste the output into a code editor (like VS Code) to highlight syntax errors before saving.
-- **Tip:** Ask the AI explicitly to "Double check the YAML indentation" in your prompt.
-
-### "Form not found" error
-If you save the config but Espanso can't find it:
-- **Verify Path:** Ensure the path in your trigger matches the actual file location.
-- **Verify Extension:** Ensure the file ends in `.yml` (not `.yaml` if your trigger specifies `.yml`).
-
-### Fields not showing up
-First, verify that the field is defined in the **Schema** section. It won't appear unless it is also listed in the **UI Schema** section.
-
-Second, check for typos. Ensure the `scope` property in **UI Schema** matches the property name in **Schema** exactly (e.g., `#/properties/myField`).

@@ -6,7 +6,7 @@ outline: [1, 4]
 
 The `schema` section defines what fields your form has, what type of data each field accepts, and what validation rules apply.
 
-Under the hood, Espanso Dynamic Forms uses [JSON Forms](../json-forms/) to render form controls and [AJV](https://ajv.js.org) to validate input. You don't need deep knowledge of either library—this page covers everything you need.
+Under the hood, Espanso Dynamic Forms uses [JSON Forms](../json-forms/) to render form controls and [AJV](https://ajv.js.org) to validate input. You don't need deep knowledge of either library, this page covers everything you need.
 
 > [!WARNING] Required Section
 > Every form config must include a `schema`. Without it, the form won't render.
@@ -66,7 +66,8 @@ Choose the right type for each field—it determines how the field looks, what i
 | `array` | Multi-select, checkboxes, or dynamic list | Multiple selections, file uploads |
 | `object` | Grouped fields or special controls | File metadata, nested structures |
 
-[IMAGE: Form showing six different field types rendered side by side: a text input for string, a number spinner for number, a checkbox for boolean, a group of checkboxes for array with enum, a file upload button for object with format:file, and a nested card containing multiple fields for a plain object]
+![schema-types.avif](https://media.lumetrium.com/edf/schema/schema-types.avif)
+*The exact representation depends on additional keywords and [`uischema`](./uischema)*
 
 > [!NOTE] Full Type Reference
 > For all JSON Schema types and options, see the [AJV JSON Schema documentation](https://ajv.js.org/json-schema.html#json-data-type).
@@ -90,29 +91,29 @@ Arrays support two patterns: collections of primitives (for multi-select control
 #### Array of Strings with Enum
 ```yml
 properties:
-	selections:
-		type: array
-		items:
-			type: string
-			enum:
-				- First choice
-				- Second choice
-				- Third choice
-		uniqueItems: true
+  selections:
+    type: array
+    items:
+      type: string
+      enum:
+        - First choice
+        - Second choice
+        - Third choice
+    uniqueItems: true
 ```
 
 #### Array of Objects
 ```yml
 properties:
-	variables:
-		type: array
-		items:
-			type: object
-			properties:
-				type:
-					type: string
-				name:
-					type: string
+  variables:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
 ```
 
 
@@ -188,23 +189,24 @@ The format keyword provides semantic meaning to field types, enabling specialize
 This renders an input field with a calendar icon, which opens a date picker when clicked:
 ```yml
 properties:
-	mydate:
-		type: string
-		format: date
+  mydate:
+    type: string
+    format: date
 ```
 
 > [!note] Date Format Options
-> See [this example form](https://github.com/lumetrium/espanso-dynamic-forms/blob/c4a22630/public/forms/date.yml#L1-L7) for date formatting options.
+> See [this example form](../library/ready-made/date) for date formatting options.
 
 #### File Format
 The `file` format is a custom extension in Espanso Dynamic Forms that allows users to upload files.
 It can be used with both `object` and `array` types to handle single or multiple file uploads, respectively.
 
 ```yml
+# Multiple file upload
 properties:
-	myFiles:
-		type: array
-		format: file
+  myFiles:
+    type: array
+    format: file
 ```
 
 ## Reusable Definitions
@@ -274,14 +276,10 @@ This creates two controls: checkboxes for predefined options and a text input ar
 {% assign allRequirements = requirements | concat: customRequirements %}
 ```
 
+![checkboxes-with-custom-options.avif](https://media.lumetrium.com/edf/schema/checkboxes-with-custom-options.avif)
 
 
-
----
-
-Combining these types with additional keywords changes their look and behavior in the rendered form.
-For example, an `array` of `string` type will render as a list of text inputs, 
-
+### File Uploads
 Espanso Dynamic Forms also defines custom renderer for the `object` and `array` field types when they are combined with `format: file`.
 This form config renders a file picker and outputs text content of the selected file on submit:
 

@@ -1,5 +1,5 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Form Elements
@@ -8,8 +8,6 @@ Form elements are the building blocks of your forms. They come in two types:
 
 - **Controls** — Input fields that connect to schema properties (text, dropdowns, checkboxes, etc.)
 - **Layouts** — Containers that organize how controls are arranged (vertical, horizontal, tabs)
-
----
 
 ## How Elements Work
 
@@ -30,8 +28,6 @@ uischema:
 ```
 
 The schema says "there's a string field called `name`" — the UI schema says "display it as a control inside a vertical layout."
-
----
 
 ## Element Reference
 
@@ -54,8 +50,6 @@ Controls render input fields based on schema types:
 
 See [Controls](./controls) for detailed documentation and examples.
 
----
-
 ### [Layouts](./layouts)
 
 Layouts organize how controls are arranged:
@@ -69,16 +63,14 @@ Layouts organize how controls are arranged:
 
 See [Layouts](./layouts) for detailed documentation and nesting examples.
 
----
-
 ## Common Patterns
 
 ### Simple Form
 
 ```yml
 uischema:
-  type: VerticalLayout
-  elements:
+  type: VerticalLayout # Column
+  elements: # Column content
     - type: Control
       scope: "#/properties/name"
     - type: Control
@@ -89,15 +81,15 @@ uischema:
 
 ```yml
 uischema:
-  type: VerticalLayout
+  type: VerticalLayout # Wrapper
   elements:
-    - type: HorizontalLayout
-      elements:
-        - type: Control
+    - type: HorizontalLayout # Row
+      elements: # Row content
+        - type: Control # First column input
           scope: "#/properties/firstName"
-        - type: Control
+        - type: Control # Second column input
           scope: "#/properties/lastName"
-    - type: Control
+    - type: Control # Input below the row
       scope: "#/properties/email"
 ```
 
@@ -105,21 +97,19 @@ uischema:
 
 ```yml
 uischema:
-  type: Categorization
+  type: Categorization # Tabs
   elements:
-    - type: Category
+    - type: Category # Tab
       label: Personal
-      elements:
+      elements: # Tab content
         - type: Control
           scope: "#/properties/name"
-    - type: Category
+    - type: Category # Tab
       label: Contact
-      elements:
+      elements:	# Tab content
         - type: Control
           scope: "#/properties/email"
 ```
-
----
 
 ## Learn More
 

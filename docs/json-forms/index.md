@@ -1,15 +1,14 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # JSON Forms
 
-[JSON Forms](https://jsonforms.io) is an open-source library that generates forms from JSON Schema definitions. Espanso Dynamic Forms uses it under the hood to render your forms.
-
-**The good news:** You don't need to learn JSON Forms in depth. This documentation covers everything you need. But if you want to explore advanced features, the official JSON Forms docs are a great resource.
+[JSON Forms](https://jsonforms.io) is an open-source library that generates forms from [JSON Schema](https://json-schema.org/specification) definitions. 
+Espanso Dynamic Forms uses it under the hood to render your forms.
 
 > [!NOTE] YAML Works Too
-> Despite the name "JSON Forms," you can write your form configs in YAML (which is easier to read). Espanso Dynamic Forms converts YAML to JSON internally.
+> Despite the name "JSON Forms", you can write your form configs in YAML (which is easier to read). Espanso Dynamic Forms converts YAML to JSON internally.
 
 ```mermaid
 flowchart LR
@@ -33,7 +32,7 @@ flowchart LR
 In your form config file, you define a `schema` that describes the structure of the data you want to collect, and a `uischema` that defines how the form should be rendered.
 You can also provide `data` to pre-fill the form with existing values.
 
-When the form is rendered, JSON Forms generates the appropriate input fields based on the schema and uischema definitions.
+When the form is rendered, JSON Forms generates the appropriate input fields based on the `schema` and `uischema` definitions.
 
 Here is a simple form config example:
 
@@ -76,14 +75,6 @@ When the form is rendered, it will display input fields for "First Name" and "Ag
 > In a real config, you would also need to define a `template` to specify how the collected data should be formatted when the form is submitted.
 > More on that later in the [Form Config](../form-config/) section.
 
-## UI Framework
-JSON Forms provides its own rendering engine which supports multiple UI frameworks for rendering forms.
-
-Espanso Dynamic Forms uses [Vuetify 3](https://vuetifyjs.com/en/components/all/) – a modern and responsive UI framework that follows [Material Design](https://m3.material.io).
-
-This is important because not all JSON Forms features are available in every UI framework. You can browse the [Renderer sets](https://jsonforms.io/docs/renderer-sets/)
-documentation to see which features are supported by the Vuetify renderer.
-
 ## Forms Elements
 JSON Forms provides a variety of built-in form elements (controls and layouts) that you can use in your forms.
 These include standard input types like text fields, checkboxes, radio buttons, dropdowns, and more complex elements like arrays and objects.
@@ -91,14 +82,19 @@ These include standard input types like text fields, checkboxes, radio buttons, 
 Espanso Dynamic Forms also includes some custom renderers to provide additional functionality.
 To learn more about the available form elements, check out the [Form Elements](../form-elements/) page.
 
+## UI Framework
+JSON Forms provides its own rendering engine which supports multiple UI frameworks for rendering forms.
+Espanso Dynamic Forms uses [Vuetify 3](https://vuetifyjs.com/en/components/all/) – a modern and responsive UI framework that follows [Material Design](https://m3.material.io).
+
 
 ## Official Resources and Examples
-- [JSON Forms documentation](https://jsonforms.io/docs/) – Official documentation for JSON Forms
-- [JSON Forms examples](https://jsonforms.io/examples/basic) – Official examples showcasing various features of JSON Forms
+- [JSON Schema specification](https://json-schema.org/specification) – The official **JSON Schema** documentation
+- [JSON Forms documentation](https://jsonforms.io/docs/) – The official **JSON Forms** documentation
+- [JSON Forms examples](https://jsonforms.io/examples/basic) – The official demo showcasing various features of JSON Forms
 - [JSON Forms Vuetify examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) – Examples specifically using the Vuetify renderer. Examples there use Vuetify 2, but all the same concepts still apply to Vuetify 3.
 
 ## Further Reading
 
-- **[Form Config](../form-config/)** — Detailed explanations of each section in a form config file
-- **[Form Elements](../form-elements/)** — Overview of available controls and layouts
-- **[Forms Library](../library/)** — Collection of ready-made form configs for common use cases
+- **[Form Config](../form-config/)** – Detailed explanations of each section in a form config file
+- **[Form Elements](../form-elements/)** – Overview of available controls and layouts
+- **[Forms Library](../library/)** – Collection of ready-made form configs for common use cases

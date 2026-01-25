@@ -1,12 +1,10 @@
 ---
-outline: [2, 4]
+outline: [1, 4]
 ---
 
 # Form Layouts
 
 Layouts organize how controls are arranged on the form. You can nest layouts inside each other to create complex arrangements.
-
----
 
 ## Layout Types
 
@@ -16,8 +14,6 @@ Layouts organize how controls are arranged on the form. You can nest layouts ins
 | `HorizontalLayout` | Arrange elements side by side |
 | `Categorization` | Tabbed interface |
 | `Category` | A single tab (used inside Categorization) |
-
----
 
 ## VerticalLayout
 
@@ -35,9 +31,7 @@ uischema:
       scope: "#/properties/email"
 ```
 
-[IMAGE: Form showing three fields stacked vertically: First Name, Last Name, and Email, each on its own row]
-
----
+![layout-vertical.png](https://media.lumetrium.com/edf/layout/layout-vertical.png)
 
 ## HorizontalLayout
 
@@ -53,7 +47,7 @@ uischema:
       scope: "#/properties/lastName"
 ```
 
-[IMAGE: Form showing First Name and Last Name fields side by side in the same row]
+![layout-horizontal.png](https://media.lumetrium.com/edf/layout/layout-horizontal.png)
 
 ### Controlling Column Spacing
 
@@ -72,8 +66,6 @@ uischema:
     - type: Control
       scope: "#/properties/field2"
 ```
-
----
 
 ## Nesting Layouts
 
@@ -106,8 +98,6 @@ uischema:
           scope: "#/properties/zip"
 ```
 
----
-
 ## Categorization (Tabs)
 
 Creates a tabbed interface. Each tab is a `Category` element.
@@ -137,7 +127,7 @@ uischema:
               scope: "#/properties/notifications"
 ```
 
-[IMAGE: Form with two tabs labeled "Personal Info" and "Preferences", with Personal Info tab active showing Name and Email fields]
+![layout-tabs.avif](https://media.lumetrium.com/edf/layout/layout-tabs.avif)
 
 ### Category Structure
 
@@ -157,8 +147,6 @@ Each `Category` must have:
 
 > [!TIP] Always wrap category content
 > It's best practice to wrap Category contents in a `VerticalLayout` for consistent spacing.
-
----
 
 ## Complete Examples
 
@@ -258,8 +246,6 @@ uischema:
           label: ZIP
 ```
 
----
-
 ### Three-Tab Form
 
 ```yml
@@ -297,8 +283,6 @@ uischema:
               scope: "#/properties/files"
 ```
 
----
-
 ## Labels
 
 You can add static text labels that don't connect to data:
@@ -309,8 +293,6 @@ You can add static text labels that don't connect to data:
 ```
 
 Useful for adding instructions or section headers within a form.
-
----
 
 ## Conditional Layout Visibility
 
@@ -332,8 +314,6 @@ Apply rules to show/hide entire layout sections:
 ```
 
 See [Conditional Visibility](../conditional-visibility/) for more on rules.
-
----
 
 ## Best Practices
 
