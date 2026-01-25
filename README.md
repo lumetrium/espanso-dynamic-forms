@@ -17,8 +17,9 @@ Define rich, interactive forms in YAML. Insert templated output anywhere.
 
 <p align="center">
 
-<video src="https://github.com/user-attachments/assets/be458a30-e3f3-423e-8b40-cf0d0f21f49a" loop="true" autoplay="autoplay" controls muted />
+<video src="https://github.com/user-attachments/assets/4114287e-7169-46c6-aeb9-f7c350ca53fb" loop="true" autoplay="autoplay" controls muted />
 
+<a href="https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/">See more examples</a>
 </p>
 
 
