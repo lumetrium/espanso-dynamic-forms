@@ -55,7 +55,6 @@
 		"synopsis": "Espanso Dynamic Forms",
 		"icon": "public/logos/edf-bg-rounded.png",
 		"description": "Dynamic form creation tool for Espanso text expander",
-		"executableArgs": ["--no-sandbox"],
 		"executableName": "edf"
 	},
 	"deb": {
