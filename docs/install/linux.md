@@ -14,7 +14,7 @@ Espanso Dynamic Forms offers two installation methods for Linux. Choose the one 
 
 ## Option 1: Using the .deb Package
 
-This method is recommended for Debian-based distributions. The package installs the executable to `/usr/bin/espanso-dynamic-forms`.
+This method is recommended for Debian-based distributions. The package installs the executable to `/usr/bin/edf`.
 
 ### Download
 
@@ -40,10 +40,10 @@ sudo apt install ./Espanso-Dynamic-Forms-Linux.deb
 Confirm the installation succeeded:
 
 ```bash
-which espanso-dynamic-forms
+which edf
 ```
 
-This should output `/usr/bin/espanso-dynamic-forms`. If you see this path, you're ready to continue.
+This should output `/usr/bin/edf`. If you see this path, you're ready to continue.
 
 ## Option 2: Using the .AppImage
 
@@ -77,7 +77,7 @@ You can now run the application directly:
 > For easier access, move the AppImage to a location in your PATH:
 > ```bash
 > mkdir -p ~/.local/bin
-> mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/espanso-dynamic-forms
+> mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/edf
 > ```
 > Make sure `~/.local/bin` is in your PATH. You can then reference `espanso-dynamic-forms` in your Espanso triggers.
 

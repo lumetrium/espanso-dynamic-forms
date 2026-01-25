@@ -438,7 +438,7 @@ const customFormPath = computed(() => {
 const edfExecutable = computed(() => {
 	return env.value.EDF_EXECUTABLE || (isWindows
 		? 'C:\\Program Files\\Espanso Dynamic Forms\\EDF.exe'
-		: '/usr/bin/espanso-dynamic-forms')
+		: '/usr/bin/edf')
 })
 
 // Quick demo uses packaged form
@@ -452,7 +452,7 @@ const quickDemoMatch = computed(() => `matches:
           args:
             - "${edfExecutable.value}"
             - --form-config
-            - "\\{\\{env.EDF_FORMS}}/reply.yml"`)
+            - \\{\\{env.EDF_FORMS}}/reply.yml`)
 
 // Custom demo uses user-created form
 const customDemoMatch = computed(() => `matches:

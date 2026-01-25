@@ -14,25 +14,43 @@ interface EspansoEnv {
 export async function getEspansoEnvVars(): Promise<EspansoEnv | null> {
 	try {
 		const isWin = platform() === 'win32'
-		const setCmd = isWin ? 'where espanso' : 'which espanso'
 
-		const { stdout: whereOutput } = await execAsync(setCmd)
-		let binPath = whereOutput.trim().split(/\r?\n/)[0]
+		// ---------------------------------------------------------
+		// WINDOWS STRATEGY
+		// ---------------------------------------------------------
+		if (isWin) {
+			const setCmd = 'where espanso'
+			const { stdout: whereOutput } = await execAsync(setCmd)
+			let binPath = whereOutput.trim().split(/\r?\n/)[0]
 
-		if (!binPath) return null
+			if (!binPath) return null
 
-		if (isWin && binPath.toLowerCase().endsWith('.cmd')) {
-			binPath = binPath.replace(/\.cmd$/i, 'd.exe')
+			// Your specific fix for the Windows .cmd vs executable issue
+			if (binPath.toLowerCase().endsWith('.cmd')) {
+				binPath = binPath.replace(/\.cmd$/i, 'd.exe')
+			}
+
+			const { stdout: pathOutput } = await execFileAsync(binPath, ['path'], {
+				encoding: 'utf-8',
+			})
+
+			if (!pathOutput.trim()) return null
+			return parseEspansoOutput(pathOutput)
 		}
 
-		const { stdout: pathOutput } = await execFileAsync(binPath, ['path'], {
-			encoding: 'utf-8',
-		})
+		// ---------------------------------------------------------
+		// LINUX / MACOS STRATEGY
+		// ---------------------------------------------------------
+		else {
+			const { stdout: pathOutput } = await execAsync('espanso path', {
+				encoding: 'utf-8',
+			})
 
-		if (!pathOutput.trim()) return null
-
-		return parseEspansoOutput(pathOutput)
+			if (!pathOutput.trim()) return null
+			return parseEspansoOutput(pathOutput)
+		}
 	} catch (error) {
+		console.error('Failed to get Espanso vars:', error)
 		return null
 	}
 }

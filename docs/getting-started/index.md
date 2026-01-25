@@ -45,7 +45,7 @@ matches:
 ```
 
 > [!NOTE] Linux users
-> Replace the Windows executable path with `/usr/bin/espanso-dynamic-forms`
+> Replace the Windows executable path with `/usr/bin/edf`
 
 **What each setting does:**
 
