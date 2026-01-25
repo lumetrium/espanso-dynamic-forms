@@ -140,7 +140,7 @@ The `scope` property uses JSON Pointer syntax to reference schema properties:
 ## Options System
 
 The `options` object on controls and layouts provides fine-grained configuration. 
-Options are passed to the [JSON Forms](../json-forms) renderer and can control both JSON Forms behavior and Vuetify component properties.
+Options are passed to the [JSON Forms](../json-forms/) renderer and can control both JSON Forms behavior and Vuetify component properties.
 
 ### Common JSON Forms Options
 
@@ -250,7 +250,7 @@ options:
 ## Rules and Conditional Visibility
 
 Rules control when elements are visible or enabled based on the values of other form fields. The rule system uses JSON Schema for condition matching.
-There's a dedicated [Conditional Visibility](../conditional-visibility) guide for more details.
+There's a dedicated [Conditional Visibility](../conditional-visibility/) guide for more details.
 
 
 ### Rule Structure

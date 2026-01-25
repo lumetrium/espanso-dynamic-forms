@@ -68,7 +68,7 @@ matches:
 
 The example above assumes your clipboard contains the path to your form config file.
 In the real world, you'd likely want to check for certain 
-keywords inside the clipboard using [Liquid conditionals](http://localhost:5172/espanso-dynamic-forms/docs/liquid/#tags),
+keywords inside the clipboard using [Liquid conditionals](../liquid/#tags),
 and then build the form config path based on that, for example:
 
 ```yml

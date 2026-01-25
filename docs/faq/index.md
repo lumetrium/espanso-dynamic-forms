@@ -72,7 +72,7 @@ Yes, validation is built-in through JSON Schema. Define validation rules in the 
 
 ### Where can I find examples?
 
-Browse the [Forms Catalog](../library) for sample form configurations. You can also test the built-in demo form by typing `:demo` after installation. 
+Browse the [Forms Catalog](../library/) for sample form configurations. You can also test the built-in demo form by typing `:demo` after installation. 
 
 ## Troubleshooting
 

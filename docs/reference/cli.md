@@ -19,7 +19,7 @@ Espanso Dynamic Forms is typically launched by a script, but it accepts command-
 
 **Behavior:**
 - Supports absolute paths
-- Supports environment variables (e.g., `{{env.EDF_FORMS}}/demo.yml`). Expansion happens inside the app via [Liquid](../liquid).
+- Supports environment variables (e.g., `{{env.EDF_FORMS}}/demo.yml`). Expansion happens inside the app via [Liquid](../liquid/).
 - If the file doesn't exist, the app loads an error page.
 
 **Fallback:**
