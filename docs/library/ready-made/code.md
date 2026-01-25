@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A comprehensive form for getting help with code from AI assistants. Supports different task types across debugging, refactoring, documentation, and more.
 
-**Source:** `code.yml`
+**Source:** [`code.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/code.yml)
 
 ![code.avif](https://media.lumetrium.com/edf/library/code.avif)
 *Screenshot of the Code Assistance form with categorized tabs and various input fields*

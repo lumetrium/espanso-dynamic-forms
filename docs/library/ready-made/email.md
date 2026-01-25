@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A form for quickly drafting follow-up emails with customizable subject, priority, and recipient.
 
-**Source:** `email.yml`
+**Source:** [`email.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/email.yml)
 
 ![email.png](https://media.lumetrium.com/edf/library/email.png)
 *Screenshot of the semi-transparent Email form with subject, priority radio buttons, and contact name*

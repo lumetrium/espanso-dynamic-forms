@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A form demonstrating single and multiple file uploads with i18n support.
 
-**Source:** `file.yml`
+**Source:** [`file.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/file.yml)
 
 ## What It Does
 

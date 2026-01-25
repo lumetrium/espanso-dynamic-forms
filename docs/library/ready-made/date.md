@@ -6,10 +6,9 @@ outline: [1, 4]
 
 A simple form demonstrating date input with custom formatting and Liquid date filters.
 
-**Source:** `date.yml`
+**Source:** [`date.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/date.yml)
 
 ![date.png](https://media.lumetrium.com/edf/library/date.png)
-
 
 ## What It Does
 

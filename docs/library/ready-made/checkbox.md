@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A form demonstrating multi-select checkbox groups with array output formatting.
 
-**Source:** `checkbox.yml`
+**Source:** [`checkbox.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/checkbox.yml)
 
 ![checkbox.png](https://media.lumetrium.com/edf/library/checkbox.png)
 *Screenshot of the Checkbox form with multiple checkboxes selected*

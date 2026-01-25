@@ -13,6 +13,7 @@ These are complete, working form configurations included with Espanso Dynamic Fo
 
 ### Productivity
 - **[Code Assistance](./code)** — Get help with code from AI assistants
+- **[Code Questions](./code2)** — Multi-question form for extended AI coding sessions
 - **[Email](./email)** — Draft follow-up emails quickly
 - **[Reply](./reply)** — Compose thoughtful message replies
 

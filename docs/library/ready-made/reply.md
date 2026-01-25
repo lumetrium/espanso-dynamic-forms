@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A form for crafting thoughtful replies to messages, emails, posts, or comments with AI assistance.
 
-**Source:** `reply.yml`
+**Source:** [`reply.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/reply.yml)
 
 ![reply.avif](https://media.lumetrium.com/edf/library/reply.avif)
 

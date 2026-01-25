@@ -6,7 +6,7 @@ outline: [1, 4]
 
 An advanced file handling form with multiple output templates and recent files support.
 
-**Source:** `files.yml`
+**Source:** [`files.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/files.yml)
 
 ![files.avif](https://media.lumetrium.com/edf/library/files.avif)
 

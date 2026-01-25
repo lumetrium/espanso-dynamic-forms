@@ -6,7 +6,7 @@ outline: 1, 4]
 
 A simple form to test your Espanso Dynamic Forms installation and understand the basics.
 
-**Source:** `demo.yml`
+**Source:** [`demo.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/demo.yml)
 
 ![demo.png](https://media.lumetrium.com/edf/library/demo.png)
 

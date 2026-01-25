@@ -6,7 +6,7 @@ outline: [1, 4]
 
 A form for generating C# EventArgs classes with dynamic property definitions.
 
-**Source:** `codegen.yml`
+**Source:** [`codegen.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/codegen.yml)
 
 ![codegen.avif](https://media.lumetrium.com/edf/library/codegen.avif)
 

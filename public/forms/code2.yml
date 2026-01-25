@@ -1,0 +1,605 @@
+meta:
+  name: Code Questions Form
+  version: 1.0.0
+
+schema:
+  type: object
+  properties:
+    question1:
+      type: string
+    code1:
+      type: string
+    question2:
+      type: string
+    code2:
+      type: string
+    question3:
+      type: string
+    code3:
+      type: string
+    question4:
+      type: string
+    code4:
+      type: string
+    question5:
+      type: string
+    code5:
+      type: string
+    question6:
+      type: string
+    code6:
+      type: string
+    question7:
+      type: string
+    code7:
+      type: string
+    question8:
+      type: string
+    code8:
+      type: string
+    question9:
+      type: string
+    code9:
+      type: string
+    question10:
+      type: string
+    code10:
+      type: string
+    enableOptionalDetails:
+      type: boolean
+    language:
+      type: string
+      enum:
+        - typescript
+        - javascript
+        - html
+        - css
+        - scss
+        - yaml
+        - json
+        - postgresql
+        - sql
+        - other
+    framework:
+      type: string
+      enum:
+        - none
+        - vue3
+        - nestjs
+        - nodejs
+        - other
+    errorMessage:
+      type: string
+    stackTrace:
+      type: string
+    expectedBehavior:
+      type: string
+    additionalContext:
+      type: string
+    enableRequirements:
+      type: boolean
+    standardRequirements:
+      type: array
+      items:
+        type: string
+        enum:
+          - No regressions to existing behavior
+          - Match existing code style in the file
+          - Don't use underscores in variable or function names
+          - Keep functions small and focused
+          - Split logic into granular hooks to avoid monolithic files
+          - Prefer clear names over comments
+          - Keep API backward compatible unless stated otherwise
+          - Let me know if you need more information, context, or files
+      uniqueItems: true
+    customRequirements:
+      type: array
+      items:
+        type: string
+    contextFiles:
+      type: array
+      format: file
+
+uischema:
+  type: Categorization
+  elements:
+    - type: Category
+      label: Questions & Code
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/question1"
+              label: Question 1
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+                    autofocus: true
+            - type: Control
+              scope: "#/properties/code1"
+              label: Code 1
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question2"
+              label: Question 2
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code2"
+              label: Code 2
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question3"
+              label: Question 3
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code3"
+              label: Code 3
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question4"
+              label: Question 4
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code4"
+              label: Code 4
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question5"
+              label: Question 5
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code5"
+              label: Code 5
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question6"
+              label: Question 6
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code6"
+              label: Code 6
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question7"
+              label: Question 7
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code7"
+              label: Code 7
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question8"
+              label: Question 8
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code8"
+              label: Code 8
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question9"
+              label: Question 9
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code9"
+              label: Code 9
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+            - type: Control
+              scope: "#/properties/question10"
+              label: Question 10
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 3
+            - type: Control
+              scope: "#/properties/code10"
+              label: Code 10
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 10
+                    autoGrow: false
+    - type: Category
+      label: Optional Details
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/enableOptionalDetails"
+              label: Enable optional details section
+            - type: HorizontalLayout
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableOptionalDetails"
+                  schema:
+                    const: true
+              options:
+                vuetify:
+                  v-col:
+                    padding: 0
+              elements:
+                - type: Control
+                  scope: "#/properties/language"
+                  label: Language
+                  options:
+                    format: select
+                    vuetify:
+                      v-autocomplete:
+                        hideDetails: true
+                - type: Control
+                  scope: "#/properties/framework"
+                  label: Framework/Library
+                  options:
+                    format: select
+                    vuetify:
+                      v-autocomplete:
+                        hideDetails: true
+            - type: Control
+              scope: "#/properties/errorMessage"
+              label: Error message
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableOptionalDetails"
+                  schema:
+                    const: true
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 5
+            - type: Control
+              scope: "#/properties/stackTrace"
+              label: Stack trace
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableOptionalDetails"
+                  schema:
+                    const: true
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 8
+            - type: Control
+              scope: "#/properties/expectedBehavior"
+              label: Expected behavior
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableOptionalDetails"
+                  schema:
+                    const: true
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 5
+            - type: Control
+              scope: "#/properties/additionalContext"
+              label: Additional context
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableOptionalDetails"
+                  schema:
+                    const: true
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 5
+    - type: Category
+      label: Requirements
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/enableRequirements"
+              label: Enable requirements section
+            - type: Control
+              scope: "#/properties/standardRequirements"
+              label: Standard requirements
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableRequirements"
+                  schema:
+                    const: true
+              options:
+                format: checkbox
+                vuetify:
+                  v-input:
+                    class: vertical
+            - type: Control
+              scope: "#/properties/customRequirements"
+              label: Additional custom requirements
+              rule:
+                effect: ENABLE
+                condition:
+                  scope: "#/properties/enableRequirements"
+                  schema:
+                    const: true
+    - type: Category
+      label: Files
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/contextFiles"
+              label: Attach context files
+              options:
+                accept: "*"
+
+data:
+  question1: ""
+  code1: "{{clipboard}}"
+  question2: ""
+  code2: ""
+  question3: ""
+  code3: ""
+  question4: ""
+  code4: ""
+  question5: ""
+  code5: ""
+  question6: ""
+  code6: ""
+  question7: ""
+  code7: ""
+  question8: ""
+  code8: ""
+  question9: ""
+  code9: ""
+  question10: ""
+  code10: ""
+  enableOptionalDetails: false
+  language: typescript
+  framework: vue3
+  enableRequirements: false
+  standardRequirements:
+    - No regressions to existing behavior
+    - Match existing code style in the file
+    - Don't use underscores in variable or function names
+    - Keep functions small and focused
+    - Split logic into granular hooks to avoid monolithic files
+    - Prefer clear names over comments
+    - Keep API backward compatible unless stated otherwise
+    - Let me know if you need more information, context, or files
+  customRequirements:
+    - ""
+  contextFiles: []
+
+template: |
+  {% if question1 != blank %}
+  {{ question1 }}
+
+  {% endif %}
+  {% if code1 != blank %}
+  ````
+  {{ code1 }}
+  ````
+
+  {% endif %}
+  {% if question2 != blank %}
+  {{ question2 }}
+
+  {% endif %}
+  {% if code2 != blank %}
+  ````
+  {{ code2 }}
+  ````
+
+  {% endif %}
+  {% if question3 != blank %}
+  {{ question3 }}
+
+  {% endif %}
+  {% if code3 != blank %}
+  ````
+  {{ code3 }}
+  ````
+
+  {% endif %}
+  {% if question4 != blank %}
+  {{ question4 }}
+
+  {% endif %}
+  {% if code4 != blank %}
+  ````
+  {{ code4 }}
+  ````
+
+  {% endif %}
+  {% if question5 != blank %}
+  {{ question5 }}
+
+  {% endif %}
+  {% if code5 != blank %}
+  ````
+  {{ code5 }}
+  ````
+
+  {% endif %}
+  {% if question6 != blank %}
+  {{ question6 }}
+
+  {% endif %}
+  {% if code6 != blank %}
+  ````
+  {{ code6 }}
+  ````
+
+  {% endif %}
+  {% if question7 != blank %}
+  {{ question7 }}
+
+  {% endif %}
+  {% if code7 != blank %}
+  ````
+  {{ code7 }}
+  ````
+
+  {% endif %}
+  {% if question8 != blank %}
+  {{ question8 }}
+
+  {% endif %}
+  {% if code8 != blank %}
+  ````
+  {{ code8 }}
+  ````
+
+  {% endif %}
+  {% if question9 != blank %}
+  {{ question9 }}
+
+  {% endif %}
+  {% if code9 != blank %}
+  ````
+  {{ code9 }}
+  ````
+
+  {% endif %}
+  {% if question10 != blank %}
+  {{ question10 }}
+
+  {% endif %}
+  {% if code10 != blank %}
+  ````
+  {{ code10 }}
+  ````
+
+  {% endif %}
+  {% if enableOptionalDetails %}
+  ## Details
+
+  **Language:** {{ language }}
+  {% if framework and framework != 'none' %}
+  **Framework:** {{ framework }}
+  {% endif %}
+
+  {% if errorMessage %}
+  ### Error Message
+  ````
+  {{ errorMessage }}
+  ````
+  {% endif %}
+
+  {% if stackTrace %}
+  ### Stack Trace
+  ````
+  {{ stackTrace }}
+  ````
+  {% endif %}
+
+  {% if expectedBehavior %}
+  ### Expected Behavior
+  {{ expectedBehavior }}
+  {% endif %}
+
+  {% if additionalContext %}
+  ### Additional Context
+  {{ additionalContext }}
+  {% endif %}
+
+  {% endif %}
+  {% if enableRequirements %}
+  {% assign allRequirements = standardRequirements | concat: customRequirements %}
+  {% assign filteredRequirements = allRequirements | where_exp: "item", "item != ''" %}
+  {% if filteredRequirements.size > 0 %}
+  ## Requirements
+  - {{ filteredRequirements | join: '\n- ' }}
+  {% endif %}
+  {% endif %}
+
+  {% if contextFiles.size > 0 %}
+  ## Context Files
+  {% for file in contextFiles %}
+  ### {{ file.fullName }}
+  ````{{ file.extension }}
+  {{ file.text }}
+  ````
+  {% endfor %}
+  {% endif %}
