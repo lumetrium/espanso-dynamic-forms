@@ -20,7 +20,7 @@ Define rich, interactive forms in YAML. Insert templated output anywhere.
 </p>
 
 <p align="center">
-<a href="https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/">See more examples</a>
+<a href="https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/" target="_blank">See more examples</a>
 </p>
 
 
