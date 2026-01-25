@@ -91,12 +91,12 @@ Your forms are defined in YAML with four sections:
 
 The app includes a library of pre-built forms:
 
-| Form | Trigger | Use Case |
-|------|---------|----------|
-| [Code Assistance](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/code) | `:code` | Get AI help with code |
-| [Email](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/email) | `:email` | Draft follow-up emails |
-| [Reply](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/reply) | `:reply` | Compose message replies |
-| [Files](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/files) | `:files` | Batch file processing |
+| Form                                                                              | Use Case |
+|-----------------------------------------------------------------------------------|----------|
+| [Code](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/code2) | Get AI help with code |
+| [Email](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/email) | Draft follow-up emails |
+| [Reply](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/reply) | Compose message replies |
+| [Files](https://lumetrium.com/espanso-dynamic-forms/docs/library/ready-made/files) | Batch file processing |
 
 → [Forms Library](https://lumetrium.com/espanso-dynamic-forms/docs/library/) for all available forms and boilerplate snippets.
 
