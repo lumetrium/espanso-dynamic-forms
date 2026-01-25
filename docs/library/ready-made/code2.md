@@ -8,6 +8,9 @@ A multi-question form designed for extended AI coding sessions. Ask up to 10 que
 
 **Source:** [`code2.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/code2.yml)
 
+
+@[youtube](Q66VfBL6Uwg)
+
 ## What It Does
 
 This form facilitates complex, multi-step coding conversations with AI assistants. Instead of submitting one question at a time, you can structure an entire discussion with multiple questions and corresponding code blocks. It demonstrates:
@@ -69,7 +72,6 @@ The form is organized into four tabs:
 | **Requirements** | Standard coding requirements + custom additions |
 | **Files** | Upload context files to include in the prompt |
 
----
 
 ## Form Configuration (Summary)
 

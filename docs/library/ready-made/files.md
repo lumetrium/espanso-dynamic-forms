@@ -38,6 +38,9 @@ port: 3000
 ````
 `````
 
+@[youtube](WvWKvEwx2-o)
+*Demonstration of the Files form in action*
+
 ## Available Templates
 
 | Template | Output Style |

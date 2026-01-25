@@ -412,6 +412,9 @@ uischema:
               label: Attach context files
               options:
                 accept: "*"
+                recentFiles:
+                  enabled: true
+                  maxItems: 50
 
 data:
   question1: ""
