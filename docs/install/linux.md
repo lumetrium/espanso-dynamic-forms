@@ -79,7 +79,7 @@ You can now run the application directly:
 > mkdir -p ~/.local/bin
 > mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/edf
 > ```
-> Make sure `~/.local/bin` is in your PATH. You can then reference `espanso-dynamic-forms` in your Espanso triggers.
+> Make sure `~/.local/bin` is in your PATH. You can then reference `edf` in your Espanso triggers.
 
 ## What's Next?
 

@@ -1,5 +1,3 @@
-if (process.platform === 'linux') process.env.ELECTRON_DISABLE_SANDBOX = '1'
-
 import { app, BrowserWindow, clipboard, ipcMain, shell } from 'electron'
 import fs from 'node:fs'
 import { readFile, stat, writeFile, mkdir } from 'fs/promises'

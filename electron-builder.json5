@@ -23,7 +23,7 @@
 				"arch": [
 					"x64"
 				]
-			},
+			}
 		],
 		"icon": "public/logos/edf-bg-rounded.ico",
 		"executableName": "EDF"
@@ -58,6 +58,7 @@
 		"executableName": "edf"
 	},
 	"deb": {
+		"packageName": "espanso-dynamic-forms",
 		"artifactName": "Espanso-Dynamic-Forms-Linux.${ext}",
 		"depends": [
 			"libgtk-3-0",
