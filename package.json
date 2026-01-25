@@ -1,6 +1,6 @@
 {
 	"name": "espanso-dynamic-forms",
-	"version": "1.6.0",
+	"version": "1.6.6",
 	"description": "Create interactive forms with JSON Forms and insert Liquid templated output anywhere with Espanso",
 	"author": "Lumetirum <contact@lumetirum.com>",
 	"license": "GPL-3.0-only",
@@ -21,7 +21,7 @@
 		"dev": "vite",
 		"preview": "vite preview",
 		"build": "vue-tsc && vite build && electron-builder",
-		"build:linux": "vue-tsc && vite build && electron-builder --linux",
+		"build:linux": "vue-tsc && vite build && electron-builder --linux --config electron-builder.linux.json5",
 		"build:mac": "vue-tsc && vite build && electron-builder --mac",
 		"build:win": "vue-tsc && vite build && electron-builder --win",
 		"install:silent": "node scripts/silent-install.js",

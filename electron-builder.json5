@@ -23,7 +23,7 @@
 				"arch": [
 					"x64"
 				]
-			},
+			}
 		],
 		"icon": "public/logos/edf-bg-rounded.ico",
 		"executableName": "EDF"

@@ -34,13 +34,13 @@
 							/>
 							<div>
 								<p class="info-text">
-									<strong>Espanso Dynamic Forms (EDF)</strong> extends
-									Espanso's capabilities by providing interactive forms for
-									collecting user input before text expansion.
+									<strong>Espanso Dynamic Forms (EDF)</strong> extends Espanso's
+									capabilities by providing interactive forms for collecting
+									user input before text expansion.
 								</p>
 								<p class="info-text-secondary">
-									Configure EDF in your Espanso match files and trigger it
-									using your defined keywords.
+									Configure EDF in your Espanso match files and trigger it using
+									your defined keywords.
 								</p>
 							</div>
 						</div>
@@ -50,7 +50,10 @@
 				<!-- Quick Start Section -->
 				<div class="section">
 					<h2 class="section-title">
-						<v-icon icon="mdi-rocket-launch" class="section-icon" />
+						<v-icon
+							icon="mdi-rocket-launch"
+							class="section-icon"
+						/>
 						Quick Start
 					</h2>
 
@@ -71,7 +74,11 @@
 										<v-btn
 											variant="text"
 											size="small"
-											:icon="copiedItem === 'match' ? 'mdi-check' : 'mdi-content-copy'"
+											:icon="
+												copiedItem === 'match'
+													? 'mdi-check'
+													: 'mdi-content-copy'
+											"
 											:color="copiedItem === 'match' ? 'success' : 'default'"
 											@click="copyToClipboard(espansoMatchPath, 'match')"
 										/>
@@ -97,13 +104,23 @@
 							<span class="step-label">Add a trigger to your match file</span>
 						</div>
 
-						<v-tabs v-model="selectedOption" class="option-tabs" color="primary">
+						<v-tabs
+							v-model="selectedOption"
+							class="option-tabs"
+							color="primary"
+						>
 							<v-tab value="quick">
-								<v-icon icon="mdi-lightning-bolt" class="tab-icon" />
+								<v-icon
+									icon="mdi-lightning-bolt"
+									class="tab-icon"
+								/>
 								Quick Demo
 							</v-tab>
 							<v-tab value="custom">
-								<v-icon icon="mdi-pencil" class="tab-icon" />
+								<v-icon
+									icon="mdi-pencil"
+									class="tab-icon"
+								/>
 								Custom Form
 							</v-tab>
 						</v-tabs>
@@ -116,23 +133,39 @@
 										<div class="code-header">
 											<div class="code-info">
 												<span class="code-label">Espanso Match</span>
-												<v-chip size="x-small" color="success" variant="tonal">
+												<v-chip
+													size="x-small"
+													color="success"
+													variant="tonal"
+												>
 													Recommended
 												</v-chip>
 											</div>
 											<v-btn
 												variant="text"
 												size="small"
-												:prepend-icon="copiedItem === 'quickMatch' ? 'mdi-check' : 'mdi-content-copy'"
-												:color="copiedItem === 'quickMatch' ? 'success' : 'default'"
+												:prepend-icon="
+													copiedItem === 'quickMatch'
+														? 'mdi-check'
+														: 'mdi-content-copy'
+												"
+												:color="
+													copiedItem === 'quickMatch' ? 'success' : 'default'
+												"
 												@click="copyToClipboard(quickDemoMatch, 'quickMatch')"
 											>
 												{{ copiedItem === 'quickMatch' ? 'Copied!' : 'Copy' }}
 											</v-btn>
 										</div>
-										<pre class="code-block"><code>{{ quickDemoMatch }}</code></pre>
+										<pre
+											class="code-block"
+										><code>{{ quickDemoMatch }}</code></pre>
 										<div class="code-note">
-											<v-icon icon="mdi-check-circle" size="14" class="note-icon" />
+											<v-icon
+												icon="mdi-check-circle"
+												size="14"
+												class="note-icon"
+											/>
 											Uses the built-in demo form — no additional files needed!
 										</div>
 									</v-card-text>
@@ -148,14 +181,22 @@
 											<v-btn
 												variant="text"
 												size="small"
-												:prepend-icon="copiedItem === 'customMatch' ? 'mdi-check' : 'mdi-content-copy'"
-												:color="copiedItem === 'customMatch' ? 'success' : 'default'"
+												:prepend-icon="
+													copiedItem === 'customMatch'
+														? 'mdi-check'
+														: 'mdi-content-copy'
+												"
+												:color="
+													copiedItem === 'customMatch' ? 'success' : 'default'
+												"
 												@click="copyToClipboard(customDemoMatch, 'customMatch')"
 											>
 												{{ copiedItem === 'customMatch' ? 'Copied!' : 'Copy' }}
 											</v-btn>
 										</div>
-										<pre class="code-block"><code>{{ customDemoMatch }}</code></pre>
+										<pre
+											class="code-block"
+										><code>{{ customDemoMatch }}</code></pre>
 									</v-card-text>
 								</v-card>
 
@@ -164,9 +205,15 @@
 									<v-card-text>
 										<div class="create-form-content">
 											<div class="create-form-info">
-												<v-icon icon="mdi-file-plus-outline" size="24" class="create-icon" />
+												<v-icon
+													icon="mdi-file-plus-outline"
+													size="24"
+													class="create-icon"
+												/>
 												<div>
-													<p class="create-title">Create the form config file</p>
+													<p class="create-title">
+														Create the form config file
+													</p>
 													<p class="create-path">{{ customFormPath }}</p>
 												</div>
 											</div>
@@ -174,12 +221,18 @@
 												v-if="hasElectronAPI"
 												color="primary"
 												variant="elevated"
-												:prepend-icon="createStatus === 'success' ? 'mdi-check' : 'mdi-plus'"
+												:prepend-icon="
+													createStatus === 'success' ? 'mdi-check' : 'mdi-plus'
+												"
 												:loading="createStatus === 'loading'"
 												:disabled="createStatus === 'success'"
 												@click="createCustomForm"
 											>
-												{{ createStatus === 'success' ? 'Created!' : 'Create & Open' }}
+												{{
+													createStatus === 'success'
+														? 'Created!'
+														: 'Create & Open'
+												}}
 											</v-btn>
 										</div>
 									</v-card-text>
@@ -190,7 +243,10 @@
 									<v-expansion-panel>
 										<v-expansion-panel-title>
 											<div class="panel-title-content">
-												<v-icon icon="mdi-code-json" class="panel-icon" />
+												<v-icon
+													icon="mdi-code-json"
+													class="panel-icon"
+												/>
 												<span>View demo.yml contents</span>
 											</div>
 										</v-expansion-panel-title>
@@ -200,14 +256,22 @@
 												<v-btn
 													variant="text"
 													size="small"
-													:prepend-icon="copiedItem === 'formConfig' ? 'mdi-check' : 'mdi-content-copy'"
-													:color="copiedItem === 'formConfig' ? 'success' : 'default'"
+													:prepend-icon="
+														copiedItem === 'formConfig'
+															? 'mdi-check'
+															: 'mdi-content-copy'
+													"
+													:color="
+														copiedItem === 'formConfig' ? 'success' : 'default'
+													"
 													@click="copyToClipboard(demoFormConfig, 'formConfig')"
 												>
 													{{ copiedItem === 'formConfig' ? 'Copied!' : 'Copy' }}
 												</v-btn>
 											</div>
-											<pre class="code-block form-config-code"><code>{{ demoFormConfig }}</code></pre>
+											<pre
+												class="code-block form-config-code"
+											><code>{{ demoFormConfig }}</code></pre>
 										</v-expansion-panel-text>
 									</v-expansion-panel>
 								</v-expansion-panels>
@@ -223,10 +287,14 @@
 						</div>
 
 						<!-- Show textarea only if not launched by Espanso -->
-						<v-card v-if="!launchedByEspanso" class="test-card">
+						<v-card
+							v-if="!launchedByEspanso"
+							class="test-card"
+						>
 							<v-card-text>
 								<p class="test-intro">
-									Type <code class="inline-code">:demo</code> in the field below to test:
+									Type <code class="inline-code">:demo</code> in the field below
+									to test:
 								</p>
 								<v-textarea
 									v-model="testInput"
@@ -237,23 +305,36 @@
 									hide-details
 								/>
 								<p class="test-note">
-									<v-icon icon="mdi-information-outline" size="14" />
-									After you've added the match to your Espanso config, this field will trigger the form.
+									<v-icon
+										icon="mdi-information-outline"
+										size="14"
+									/>
+									After you've added the match to your Espanso config, this
+									field will trigger the form.
 								</p>
 							</v-card-text>
 						</v-card>
 
 						<!-- Show message if launched by Espanso -->
-						<v-card v-else class="espanso-tip-card">
+						<v-card
+							v-else
+							class="espanso-tip-card"
+						>
 							<v-card-text>
 								<div class="espanso-tip-content">
-									<v-icon icon="mdi-information-outline" size="20" class="espanso-tip-icon" />
+									<v-icon
+										icon="mdi-information-outline"
+										size="20"
+										class="espanso-tip-icon"
+									/>
 									<div>
 										<p class="espanso-tip-text">
-											Type <code class="inline-code">:demo</code> in any text field outside this window.
+											Type <code class="inline-code">:demo</code> in any text
+											field outside this window.
 										</p>
 										<p class="espanso-tip-note">
-											Testing here isn't available because Espanso launched this window.
+											Testing here isn't available because Espanso launched this
+											window.
 										</p>
 									</div>
 								</div>
@@ -265,14 +346,21 @@
 				<!-- Resources Section -->
 				<div class="section">
 					<h2 class="section-title">
-						<v-icon icon="mdi-book-open-variant" class="section-icon" />
+						<v-icon
+							icon="mdi-book-open-variant"
+							class="section-icon"
+						/>
 						Resources
 					</h2>
 
 					<div class="links-grid">
 						<v-card
 							class="link-card"
-							@click="openExternalUrl('https://lumetrium.com/espanso-dynamic-forms/docs/')"
+							@click="
+								openExternalUrl(
+									'https://lumetrium.com/espanso-dynamic-forms/docs/',
+								)
+							"
 						>
 							<v-card-text class="link-card-content">
 								<v-icon
@@ -286,13 +374,21 @@
 										Learn how to configure and use EDF
 									</p>
 								</div>
-								<v-icon icon="mdi-open-in-new" size="16" class="external-icon" />
+								<v-icon
+									icon="mdi-open-in-new"
+									size="16"
+									class="external-icon"
+								/>
 							</v-card-text>
 						</v-card>
 
 						<v-card
 							class="link-card"
-							@click="openExternalUrl('https://github.com/lumetrium/espanso-dynamic-forms')"
+							@click="
+								openExternalUrl(
+									'https://github.com/lumetrium/espanso-dynamic-forms',
+								)
+							"
 						>
 							<v-card-text class="link-card-content">
 								<v-icon
@@ -306,7 +402,11 @@
 										Source code, issues, and contributions
 									</p>
 								</div>
-								<v-icon icon="mdi-open-in-new" size="16" class="external-icon" />
+								<v-icon
+									icon="mdi-open-in-new"
+									size="16"
+									class="external-icon"
+								/>
 							</v-card-text>
 						</v-card>
 					</div>
@@ -315,14 +415,21 @@
 				<!-- Support Section -->
 				<div class="section">
 					<h2 class="section-title">
-						<v-icon icon="mdi-lifebuoy" class="section-icon" />
+						<v-icon
+							icon="mdi-lifebuoy"
+							class="section-icon"
+						/>
 						Need Help?
 					</h2>
 
 					<div class="links-grid links-grid-3">
 						<v-card
 							class="link-card"
-							@click="openExternalUrl('https://github.com/lumetrium/espanso-dynamic-forms/issues/new?template=bug_report.md')"
+							@click="
+								openExternalUrl(
+									'https://github.com/lumetrium/espanso-dynamic-forms/issues/new?template=bug_report.md',
+								)
+							"
 						>
 							<v-card-text class="link-card-content">
 								<v-icon
@@ -334,13 +441,21 @@
 									<p class="link-title">Report a Bug</p>
 									<p class="link-description">Found an issue?</p>
 								</div>
-								<v-icon icon="mdi-open-in-new" size="14" class="external-icon" />
+								<v-icon
+									icon="mdi-open-in-new"
+									size="14"
+									class="external-icon"
+								/>
 							</v-card-text>
 						</v-card>
 
 						<v-card
 							class="link-card"
-							@click="openExternalUrl('https://github.com/lumetrium/espanso-dynamic-forms/issues/new?template=feature_request.md')"
+							@click="
+								openExternalUrl(
+									'https://github.com/lumetrium/espanso-dynamic-forms/issues/new?template=feature_request.md',
+								)
+							"
 						>
 							<v-card-text class="link-card-content">
 								<v-icon
@@ -352,13 +467,21 @@
 									<p class="link-title">Request Feature</p>
 									<p class="link-description">Suggest ideas</p>
 								</div>
-								<v-icon icon="mdi-open-in-new" size="14" class="external-icon" />
+								<v-icon
+									icon="mdi-open-in-new"
+									size="14"
+									class="external-icon"
+								/>
 							</v-card-text>
 						</v-card>
 
 						<v-card
 							class="link-card"
-							@click="openExternalUrl('https://github.com/lumetrium/espanso-dynamic-forms/discussions')"
+							@click="
+								openExternalUrl(
+									'https://github.com/lumetrium/espanso-dynamic-forms/discussions',
+								)
+							"
 						>
 							<v-card-text class="link-card-content">
 								<v-icon
@@ -370,7 +493,11 @@
 									<p class="link-title">Discussions</p>
 									<p class="link-description">Ask questions</p>
 								</div>
-								<v-icon icon="mdi-open-in-new" size="14" class="external-icon" />
+								<v-icon
+									icon="mdi-open-in-new"
+									size="14"
+									class="external-icon"
+								/>
 							</v-card-text>
 						</v-card>
 					</div>
@@ -405,7 +532,9 @@ const testInput = ref('')
 const createStatus = ref<'idle' | 'loading' | 'success' | 'error'>('idle')
 
 const hasElectronAPI = computed(() => !!window.electronAPI)
-const launchedByEspanso = computed(() => env.value.EDF_LAUNCHED_BY_ESPANSO === 'true')
+const launchedByEspanso = computed(
+	() => env.value.EDF_LAUNCHED_BY_ESPANSO === 'true',
+)
 
 const isWindows = navigator.platform.toLowerCase().includes('win')
 const isMac = navigator.platform.toLowerCase().includes('mac')
@@ -413,7 +542,10 @@ const isMac = navigator.platform.toLowerCase().includes('mac')
 const espansoMatchPath = computed(() => {
 	// Try to use actual Espanso config path if available
 	if (env.value.ESPANSO_CONFIG) {
-		return env.value.ESPANSO_CONFIG + (isWindows ? '\\match\\base.yml' : '/match/base.yml')
+		return (
+			env.value.ESPANSO_CONFIG +
+			(isWindows ? '\\match\\base.yml' : '/match/base.yml')
+		)
 	}
 	if (isWindows) {
 		return '%APPDATA%\\espanso\\match\\base.yml'
@@ -425,7 +557,10 @@ const espansoMatchPath = computed(() => {
 
 const customFormPath = computed(() => {
 	if (env.value.ESPANSO_CONFIG) {
-		return env.value.ESPANSO_CONFIG + (isWindows ? '\\forms\\demo.yml' : '/forms/demo.yml')
+		return (
+			env.value.ESPANSO_CONFIG +
+			(isWindows ? '\\forms\\demo.yml' : '/forms/demo.yml')
+		)
 	}
 	if (isWindows) {
 		return '%APPDATA%\\espanso\\forms\\demo.yml'
@@ -436,13 +571,17 @@ const customFormPath = computed(() => {
 })
 
 const edfExecutable = computed(() => {
-	return env.value.EDF_EXECUTABLE || (isWindows
-		? 'C:\\Program Files\\Espanso Dynamic Forms\\EDF.exe'
-		: '/usr/bin/espanso-dynamic-forms')
+	return (
+		env.value.EDF_EXECUTABLE ||
+		(isWindows
+			? 'C:\\Program Files\\Espanso Dynamic Forms\\EDF.exe'
+			: '/usr/bin/edf')
+	)
 })
 
 // Quick demo uses packaged form
-const quickDemoMatch = computed(() => `matches:
+const quickDemoMatch = computed(
+	() => `matches:
   - trigger: ":demo"
     replace: "{{output}}"
     vars:
@@ -452,10 +591,12 @@ const quickDemoMatch = computed(() => `matches:
           args:
             - "${edfExecutable.value}"
             - --form-config
-            - "\\{\\{env.EDF_FORMS}}/reply.yml"`)
+            - \\{\\{env.EDF_FORMS}}/reply.yml`,
+)
 
 // Custom demo uses user-created form
-const customDemoMatch = computed(() => `matches:
+const customDemoMatch = computed(
+	() => `matches:
   - trigger: ":demo"
     replace: "{{output}}"
     vars:
@@ -465,7 +606,8 @@ const customDemoMatch = computed(() => `matches:
           args:
             - "${edfExecutable.value}"
             - --form-config
-            - "${customFormPath.value}"`)
+            - "${customFormPath.value}"`,
+)
 
 const demoFormConfig = `schema:
   type: object
@@ -514,7 +656,9 @@ async function openMatchFile() {
 		// Resolve environment variables for the path
 		let resolvedPath = espansoMatchPath.value
 		if (env.value.ESPANSO_CONFIG) {
-			resolvedPath = env.value.ESPANSO_CONFIG + (isWindows ? '\\match\\base.yml' : '/match/base.yml')
+			resolvedPath =
+				env.value.ESPANSO_CONFIG +
+				(isWindows ? '\\match\\base.yml' : '/match/base.yml')
 		}
 		await window.electronAPI.shellOpenPath(resolvedPath)
 	} catch (err) {
@@ -530,7 +674,9 @@ async function createCustomForm() {
 		// Resolve the actual path
 		let resolvedPath = customFormPath.value
 		if (env.value.ESPANSO_CONFIG) {
-			resolvedPath = env.value.ESPANSO_CONFIG + (isWindows ? '\\forms\\demo.yml' : '/forms/demo.yml')
+			resolvedPath =
+				env.value.ESPANSO_CONFIG +
+				(isWindows ? '\\forms\\demo.yml' : '/forms/demo.yml')
 		}
 		await window.electronAPI.createDemoConfig(resolvedPath, demoFormConfig)
 		createStatus.value = 'success'
@@ -739,6 +885,8 @@ async function openExternalUrl(url: string) {
 	display: flex;
 	gap: 4px;
 	flex-shrink: 0;
+	align-self: flex-end;
+	align-items: center;
 }
 
 .option-tabs {

@@ -48,4 +48,4 @@ matches:
 Replace `formname` with the actual form filename (e.g., `demo`, `code`, `email`).
 
 > [!TIP] Linux users
-> Replace the Windows executable path with `/usr/bin/espanso-dynamic-forms`
+> Replace the Windows executable path with `/usr/bin/edf`
