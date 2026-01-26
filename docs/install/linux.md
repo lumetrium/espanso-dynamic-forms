@@ -73,7 +73,7 @@ You can now run the application directly:
 ./Espanso-Dynamic-Forms-Linux.AppImage --help
 ```
 
-> [!TIP] Optional: Move to a Permanent Location
+> [!Note] Optional: Move to a Permanent Location
 > For easier access, move the AppImage to a location in your PATH:
 > ```bash
 > mkdir -p ~/.local/bin

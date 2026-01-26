@@ -8,16 +8,18 @@ A form for crafting thoughtful replies to messages, emails, posts, or comments w
 
 **Source:** [`reply.yml`](https://github.com/lumetrium/espanso-dynamic-forms/blob/master/public/forms/reply.yml)
 
-![reply.avif](https://media.lumetrium.com/edf/library/reply.avif)
+@[youtube](3x84gbDBK8E)
 
 ## What It Does
 
 This form helps you compose replies by capturing the original content, your draft response, and style preferences. It's designed to work with AI assistants by formatting a structured prompt. It demonstrates:
 
-- Tabbed interface (Categorization)
-- Inline radio buttons
-- Array fields for style guidelines
-- Conditional output sections
+- Tabbed interface with three categories (Content, Style, Convo)
+- Inline radio buttons for content type
+- Checkbox-based style guidelines with predefined options
+- Custom guidelines array for additional preferences
+- Conversation context field for threading
+- Conditional output sections with merged guidelines
 
 ## Use Case
 
@@ -39,6 +41,7 @@ Style guidelines:
 - Use a conversational, slightly informal style with simple language
 - Use contractions like "you're" and "don't"
 - Prioritize clarity with simple sentence structure
+- Keep it under 100 words
 `````
 
 ## Form Configuration
@@ -60,11 +63,26 @@ schema:
       default: "{{clipboard}}"
     draft:
       type: string
-    style:
+    styleGuidelines:
+      type: array
+      items:
+        type: string
+        enum:
+          - Use a conversational, slightly informal style with simple language
+          - Use contractions like "you're" and "don't"
+          - Prioritize clarity with simple sentence structure
+          - Use a professional and formal tone
+          - Use a friendly and approachable style
+          - Use active voice instead of passive
+          - Match the original sender's formality level
+      uniqueItems: true
+    customGuidelines:
       type: array
       items:
         type: string
     context:
+      type: string
+    convo:
       type: string
   required:
     - type
@@ -107,17 +125,37 @@ uischema:
     - type: Category
       label: Style
       elements:
-        - type: Control
-          scope: "#/properties/style"
-          label: Style guidelines
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/styleGuidelines"
+              label: Style guidelines
+              options:
+                format: checkbox
+                vuetify:
+                  v-input:
+                    class: vertical
+            - type: Control
+              scope: "#/properties/customGuidelines"
+              label: Custom guidelines
+    - type: Category
+      label: Convo
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/convo"
+              label: Entire conversation (if applicable)
 
 data:
   type: message
   content: "{{clipboard}}"
-  style:
+  styleGuidelines:
     - Use a conversational, slightly informal style with simple language
     - Use contractions like "you're" and "don't"
     - Prioritize clarity with simple sentence structure
+  customGuidelines:
+    - ""
 
 template: |
   Help me reply to this {{type}}:
@@ -130,9 +168,17 @@ template: |
   {{draft}}
   ```
   {% endif %}
-  {% if style.size > 0 %}
+  {% assign allGuidelines = styleGuidelines | concat: customGuidelines %}
+  {% assign filteredGuidelines = allGuidelines | where_exp: "item", "item != ''" %}
+  {% if filteredGuidelines.size > 0 %}
   Style guidelines:
-  - {{style | join: '\n- '}}
+  - {{filteredGuidelines | join: '\n- '}}
+  {% endif %}
+  {% if convo %}
+  Here is the entire conversation for context:
+  ```
+  {{convo}}
+  ```
   {% endif %}
   {% if context %}
   Additional context:
@@ -144,30 +190,52 @@ template: |
 
 ## Key Features
 
-### Tabbed Interface
-The form uses `Categorization` to organize fields into two tabs:
+### Three-Tab Interface
+The form uses `Categorization` to organize fields into three tabs:
 
 ```yml
 uischema:
   type: Categorization
   elements:
     - type: Category
-      label: Content
-      # ... content fields
+      label: Content   # Main content and draft
     - type: Category
-      label: Style
-      # ... style fields
+      label: Style     # Writing style preferences
+    - type: Category
+      label: Convo     # Full conversation context
 ```
 
-### Editable Style Guidelines
-The style field is an array that users can modify. Default guidelines are provided but can be changed:
+### Checkbox Style Guidelines
+Predefined style options displayed as checkboxes with `uniqueItems` to prevent duplicates:
 
 ```yml
-data:
-  style:
-    - Use a conversational, slightly informal style
-    - Use contractions like "you're" and "don't"
-    - Prioritize clarity with simple sentence structure
+styleGuidelines:
+  type: array
+  items:
+    type: string
+    enum:
+      - Use a conversational, slightly informal style with simple language
+      - Use a professional and formal tone
+      - Match the original sender's formality level
+  uniqueItems: true
+```
+
+### Custom Guidelines
+Add your own guidelines beyond the predefined options:
+
+```yml
+customGuidelines:
+  type: array
+  items:
+    type: string
+```
+
+### Merged Guidelines in Template
+The template combines both `styleGuidelines` and `customGuidelines`, filtering out empty entries:
+
+```liquid
+{% assign allGuidelines = styleGuidelines | concat: customGuidelines %}
+{% assign filteredGuidelines = allGuidelines | where_exp: "item", "item != ''" %}
 ```
 
 ### Conditional Template Sections
@@ -203,4 +271,4 @@ matches:
 - Add a "tone" dropdown (professional, friendly, assertive)
 - Include a maximum length preference
 - Add a language selector for replies in different languages
-- Store your preferred style guidelines as defaults
+- Expand the predefined style guidelines enum with more options

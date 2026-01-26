@@ -14,7 +14,20 @@ schema:
       default: "{{clipboard}}"
     draft:
       type: string
-    style:
+    styleGuidelines:
+      type: array
+      items:
+        type: string
+        enum:
+          - Use a conversational, slightly informal style with simple language
+          - Use contractions like "you're" and "don't"
+          - Prioritize clarity with simple sentence structure
+          - Use a professional and formal tone
+          - Use a friendly and approachable style
+          - Use active voice instead of passive
+          - Match the original sender's formality level
+      uniqueItems: true
+    customGuidelines:
       type: array
       items:
         type: string
@@ -23,7 +36,7 @@ schema:
     convo:
       type: string
   required:
-    - types
+    - type
     - content
 
 uischema:
@@ -63,17 +76,37 @@ uischema:
     - type: Category
       label: Style
       elements:
-        - type: Control
-          scope: "#/properties/style"
-          label: Style guidelines
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/styleGuidelines"
+              label: Style guidelines
+              options:
+                format: checkbox
+                vuetify:
+                  v-input:
+                    class: vertical
+            - type: Control
+              scope: "#/properties/customGuidelines"
+              label: Custom guidelines
+    - type: Category
+      label: Convo
+      elements:
+        - type: VerticalLayout
+          elements:
+            - type: Control
+              scope: "#/properties/convo"
+              label: Entire conversation (if applicable)
 
 data:
   type: message
   content: "{{clipboard}}"
-  style:
+  styleGuidelines:
     - Use a conversational, slightly informal style with simple language
     - Use contractions like "you're" and "don't"
     - Prioritize clarity with simple sentence structure
+  customGuidelines:
+    - ""
 
 template: |
   Help me reply to this {{type}}:
@@ -86,9 +119,17 @@ template: |
   {{draft}}
   ```
   {% endif %}
-  {% if style.length > 0 %}
+  {% assign allGuidelines = styleGuidelines | concat: customGuidelines %}
+  {% assign filteredGuidelines = allGuidelines | where_exp: "item", "item != ''" %}
+  {% if filteredGuidelines.size > 0 %}
   Style guidelines:
-  - {{style | join: '\n- '}}
+  - {{filteredGuidelines | join: '\n- '}}
+  {% endif %}
+  {% if convo %}
+  Here is the entire conversation for context:
+  ```
+  {{convo}}
+  ```
   {% endif %}
   {% if context %}
   Additional context:
