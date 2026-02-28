@@ -146,6 +146,12 @@ uischema:
             - type: Control
               scope: "#/properties/convo"
               label: Entire conversation (if applicable)
+              options:
+                multi: true
+                vuetify:
+                  v-textarea:
+                    rows: 15
+                    autoGrow: true
 
 data:
   type: message
