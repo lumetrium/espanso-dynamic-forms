@@ -28,6 +28,7 @@ data:
   subject: "Project Update"
   priority: "High"
 
+#language=liquid
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}

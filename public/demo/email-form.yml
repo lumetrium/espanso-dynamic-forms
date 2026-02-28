@@ -38,6 +38,7 @@ data:
   priority: "Medium"
   contactName: "Alice Smith"
 
+#language=liquid
 template: |
   To: {{contactName}}
   Subject: [{{priority}}] {{subject}}

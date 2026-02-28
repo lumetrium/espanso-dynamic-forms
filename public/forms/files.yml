@@ -194,6 +194,7 @@ data:
     {% raw %}{{forloop.index}}. {{file.fullName}} ({{file.size}} bytes, {{file.mime}}){% endraw %}
   files: []
 
+#language=liquid
 template: |
   {% if description %}
   {{description}}

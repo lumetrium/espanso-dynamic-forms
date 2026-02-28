@@ -49,6 +49,7 @@ data:
     city: ""
     zip: ""
 
+#language=liquid
 template: |
   {% if billingAddress.street or billingAddress.city or billingAddress.zip %}
   ## Billing Address

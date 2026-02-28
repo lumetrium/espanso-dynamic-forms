@@ -26,6 +26,7 @@ data:
   subject: "{{clipboard}}"
   priority: Medium
 
+#language=liquid
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}

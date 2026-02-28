@@ -220,6 +220,7 @@ data:
     - ""
   contextFiles: []
 
+#language=liquid
 template: |
   {% case taskType %}
   {% when 'discuss' %}

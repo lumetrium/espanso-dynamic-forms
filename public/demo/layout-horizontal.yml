@@ -30,5 +30,6 @@ data:
   firstName: "Jane"
   lastName: "Doe"
 
+#language=liquid
 template: |
   {{firstName}} {{lastName}}

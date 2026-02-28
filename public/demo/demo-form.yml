@@ -29,6 +29,7 @@ data:
   subject: "Project meeting notes"
   priority: "Medium"
 
+#language=liquid
 template: |
   Subject: {{subject}}
   Priority: {{priority}}

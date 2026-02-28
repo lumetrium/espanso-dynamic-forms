@@ -336,6 +336,7 @@ i18n:
       label: Emit comments
       description: Whether to include comments in the generated config to explain each section
 
+#language=liquid
 template: |
   Generate a JSON Forms configuration based on the following requirements:
 

@@ -18,6 +18,7 @@ uischema:
 data:
   mydate: "{{ 'now' | date: '%Y-%m-%d' }}"
 
+#language=liquid
 template: |
   My special date is {{ mydate | date: "%A – %Y • %b • %d" }}
 

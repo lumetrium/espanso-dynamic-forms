@@ -22,6 +22,7 @@ uischema:
 
 data: {}
 
+#language=liquid
 template: |
   Report:
   {{reportContent}}

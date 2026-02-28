@@ -42,6 +42,7 @@ data:
     - type: ""
       name: ""
 
+#language=liquid
 template: |
   public class {{eventName}}EventArgs : EventArgs
   {

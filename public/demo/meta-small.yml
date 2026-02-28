@@ -22,5 +22,6 @@ uischema:
 
 data: {}
 
+#language=liquid
 template: |
   Note: {{note}}

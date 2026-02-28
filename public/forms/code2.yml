@@ -454,6 +454,7 @@ data:
     - ""
   contextFiles: []
 
+#language=liquid
 template: |
   {% if question1 != blank %}
   {{ question1 }}

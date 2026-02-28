@@ -28,5 +28,6 @@ i18n:
 
 data: {}
 
+#language=liquid
 template: |
   File: {{file.path}}

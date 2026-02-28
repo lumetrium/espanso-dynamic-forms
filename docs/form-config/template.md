@@ -115,6 +115,21 @@ template: |
 | Use `default` filter | Provides fallback values | `{{name \| default: 'N/A'}}` |
 | Use `strip` on user input | Removes accidental whitespace | `{{input \| strip}}` |
 
+## Editor Tips
+
+Add `#language=liquid` immediately before the `template:` section to get Liquid syntax highlighting in JetBrains IDEs:
+
+```yml
+data:
+  items: []
+
+#language=liquid
+template: |
+  {% if items.size > 0 %}
+  - {{ items | join: "\n- " }}
+  {% endif %}
+```
+
 ## Learn More
 
 - **[Liquid Templating](../liquid/)** — Full syntax reference

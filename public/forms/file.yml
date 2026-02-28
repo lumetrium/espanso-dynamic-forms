@@ -41,6 +41,7 @@ i18n:
       selectedFiles: Selected files
       remove: Remove
 
+#language=liquid
 template: |
   File contents:
   ````

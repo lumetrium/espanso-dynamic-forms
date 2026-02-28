@@ -47,6 +47,7 @@ data:
   description: "Attached files for review."
   template: "Standard"
 
+#language=liquid
 template: |
   Description: {{description}}
   Template: {{template}}

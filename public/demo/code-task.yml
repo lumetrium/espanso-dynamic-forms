@@ -43,6 +43,7 @@ data:
   language: "TypeScript"
   code: "function hello() { console.log('world'); }"
 
+#language=liquid
 template: |
   Task: {{taskType}}
   Language: {{language}}

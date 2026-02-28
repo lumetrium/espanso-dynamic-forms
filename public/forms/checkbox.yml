@@ -27,6 +27,7 @@ uischema:
 data:
   selections: []
 
+#language=liquid
 template: |
   {% if selections.size > 0 %}
   You selected:

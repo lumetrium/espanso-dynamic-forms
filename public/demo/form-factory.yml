@@ -57,6 +57,7 @@ data:
   layoutType: "Tabs"
   outputFormat: "YAML"
 
+#language=liquid
 template: |
   ---
   description: {{description}}

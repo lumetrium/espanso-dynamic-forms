@@ -33,5 +33,6 @@ uischema:
 
 data: {}
 
+#language=liquid
 template: |
   {{field1}}

@@ -54,6 +54,7 @@ data:
   message: "Pasted content goes here..."
   draft: "Drafting my response..."
 
+#language=liquid
 template: |
   Type: {{contentType}}
   Context: {{context}}

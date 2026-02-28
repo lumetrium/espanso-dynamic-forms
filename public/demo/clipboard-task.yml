@@ -35,6 +35,7 @@ data:
   assignee: "Me"
   dueDate: "2023-11-01"
 
+#language=liquid
 template: |
   Task: {{taskDescription}}
   Assigned to: {{assignee}}

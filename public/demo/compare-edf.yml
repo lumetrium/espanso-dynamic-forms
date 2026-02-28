@@ -51,6 +51,7 @@ data:
   priority: Medium
   contactName: ""
 
+#language=liquid
 template: |
   Subject: {{subject}}
   Priority: {{priority | upcase}}

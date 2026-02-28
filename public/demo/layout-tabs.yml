@@ -39,5 +39,6 @@ data:
   name: "User"
   email: "user@example.com"
 
+#language=liquid
 template: |
   User: {{name}}

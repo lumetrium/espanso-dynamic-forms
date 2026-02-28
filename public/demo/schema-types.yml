@@ -69,5 +69,6 @@ data:
   booleanField: true
   arrayField: ["Option A"]
 
+#language=liquid
 template: |
   String: {{stringField}}

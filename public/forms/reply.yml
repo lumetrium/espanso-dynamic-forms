@@ -114,7 +114,7 @@ data:
   customGuidelines:
     - ""
 
-# language=liquid
+#language=liquid
 template: |
   Help me reply to this {{type}}:
   ```

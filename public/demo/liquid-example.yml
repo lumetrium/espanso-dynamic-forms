@@ -30,6 +30,7 @@ data:
   name: "John Doe"
   condition: true
 
+#language=liquid
 template: |
   Hello {{name}}!
   Upper case: {{name | upcase}}

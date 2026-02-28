@@ -31,5 +31,6 @@ uischema:
 data:
   choices: ["First choice", "Third choice"]
 
+#language=liquid
 template: |
   Selected: {{choices | join: ", "}}

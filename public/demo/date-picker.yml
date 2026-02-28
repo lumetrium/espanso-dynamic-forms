@@ -23,5 +23,6 @@ uischema:
 data:
   date: "2023-10-27"
 
+#language=liquid
 template: |
   Date selected: {{date}}

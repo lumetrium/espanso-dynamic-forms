@@ -43,6 +43,7 @@ data:
   priority: "Medium"
   notes: "{{clipboard}}"
 
+#language=liquid
 template: |
   Subject: {{subject}}
   Priority: {{priority}}

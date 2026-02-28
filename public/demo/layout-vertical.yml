@@ -36,6 +36,7 @@ data:
   lastName: "Doe"
   email: "john.doe@example.com"
 
+#language=liquid
 template: |
   Name: {{firstName}} {{lastName}}
   Email: {{email}}
