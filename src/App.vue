@@ -230,6 +230,13 @@ function onChange(event: any) {
 	--v-input-control-height: 36px;
 }
 
+.v-input.vertical.spaced .v-field__field > .d-flex > * {
+	padding: 12px 0;
+}
+.v-input.vertical.spaced .v-field__field .v-label {
+	white-space: normal;
+}
+
 .fixed-cell-small {
 	vertical-align: top;
 }

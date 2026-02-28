@@ -1,0 +1,58 @@
+meta:
+  name: AI Debug Prompts
+
+schema:
+  type: object
+  properties:
+    methodology:
+      type: array
+      items:
+        type: string
+        enum:
+          - "Reflect on 5-7 different possible sources of the problem, distill those down to 1-2 most likely sources, and then add logs to validate your assumptions before we move onto implementing the actual code fix"
+          - "Generate 3-4 hypotheses for the cause. For each, suggest the simplest diagnostic step I can run (e.g., what to log, what to try). Do not propose a fix until we have evidence from my tests"
+          - "State your hypothesis clearly. Suggest specific logs or checks I should add and run. I will share the output. Do not propose a fix without that evidence"
+          - "Identify the range where the bug might be (code sections, recent commits). Suggest bisection points: code to disable or inputs to try. I will test and report which half still fails"
+          - "Walk through the code execution step by step: what each part does, expected vs actual. Report any place where your explanation becomes unclear—that may be the bug location"
+          - "Apply the 5 Whys: state the symptom, ask Why for each answer until you reach a root cause (3-5 iterations). Ensure the fix targets that root cause, not a symptom"
+          - "Reason backwards from the error state to possible causes. Examine recent changes. Focus on root cause, not blame"
+      uniqueItems: true
+    customPrompt:
+      type: string
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/methodology"
+      label: Problem-solving methodology
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical spaced
+    - type: Control
+      scope: "#/properties/customPrompt"
+      label: Custom methodology prompt (optional)
+      options:
+        multi: true
+        vuetify:
+          v-textarea:
+            rows: 3
+
+data:
+  methodology:
+    - "Reflect on 5-7 different possible sources of the problem, distill those down to 1-2 most likely sources, and then add logs to validate your assumptions before we move onto implementing the actual code fix"
+  customPrompt: ""
+
+#language=liquid
+template: |
+  {% assign filteredMethodology = methodology | where_exp: "item", "item != ''" %}
+  {% if filteredMethodology.size > 0 or customPrompt != blank %}
+  {% if filteredMethodology.size > 0 %}
+  - {{ filteredMethodology | join: "\n- " }}
+  {% endif %}
+  {% if customPrompt != blank %}
+  - {{ customPrompt }}
+  {% endif %}
+  {% endif %}

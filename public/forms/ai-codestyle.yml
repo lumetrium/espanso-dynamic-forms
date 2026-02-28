@@ -1,0 +1,93 @@
+meta:
+  name: AI Style Prompts
+
+schema:
+  type: object
+  properties:
+    scope:
+      type: array
+      items:
+        type: string
+        enum:
+          - Write the absolute minimum code required
+          - No sweeping changes - focus on just the task
+          - No unrelated edits
+          - One change at a time - avoid batch refactors
+          - Prefer small, reviewable diffs
+      uniqueItems: true
+    quality:
+      type: array
+      items:
+        type: string
+        enum:
+          - Make code precise, modular, testable
+          - Don't break existing functionality
+          - Match existing code style
+          - Prefer clear names over comments
+          - Keep API backward compatible
+          - Avoid new dependencies unless justified
+      uniqueItems: true
+    communication:
+      type: array
+      items:
+        type: string
+        enum:
+          - If I need to do anything (add file, setup config), tell me clearly
+          - Ask before making destructive changes
+          - Include brief explanations for complex logic
+          - Show before/after when refactoring
+          - Be concise
+          - List any assumptions you're making
+      uniqueItems: true
+
+uischema:
+  type: VerticalLayout
+  elements:
+    - type: Control
+      scope: "#/properties/scope"
+      label: Scope control
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical
+    - type: Control
+      scope: "#/properties/quality"
+      label: Code quality
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical
+    - type: Control
+      scope: "#/properties/communication"
+      label: Communication
+      options:
+        format: checkbox
+        vuetify:
+          v-input:
+            class: vertical
+
+data:
+  scope: []
+  quality: []
+  communication: []
+
+#language=liquid
+template: |
+  {% assign filteredScope = scope | where_exp: "item", "item != ''" %}
+  {% assign filteredQuality = quality | where_exp: "item", "item != ''" %}
+  {% assign filteredCommunication = communication | where_exp: "item", "item != ''" %}
+  {% if filteredScope.size > 0 or filteredQuality.size > 0 or filteredCommunication.size > 0 %}
+  Follow these guidelines:
+
+  {% if filteredScope.size > 0 %}
+  - {{ filteredScope | join: "\n- " }}
+  {% endif %}
+  {% if filteredQuality.size > 0 %}
+  - {{ filteredQuality | join: "\n- " }}
+  {% endif %}
+  {% if filteredCommunication.size > 0 %}
+  - {{ filteredCommunication | join: "\n- " }}
+  {% endif %}
+  {% endif %}
