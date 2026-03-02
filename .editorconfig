@@ -6,6 +6,7 @@ indent_style = tab
 indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
+end_of_line = lf
 
 [*.yml]
 indent_size = 2
