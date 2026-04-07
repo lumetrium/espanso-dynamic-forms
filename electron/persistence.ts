@@ -10,7 +10,10 @@ function getStatePath(): string {
 
 export function loadPersistedState(): Record<string, string> {
 	const filePath = getStatePath()
-	if (!existsSync(filePath)) return {}
+	if (!existsSync(filePath)) {
+		writeFileSync(filePath, '{}', 'utf-8')
+		return {}
+	}
 	try {
 		return JSON.parse(readFileSync(filePath, 'utf-8'))
 	} catch {
