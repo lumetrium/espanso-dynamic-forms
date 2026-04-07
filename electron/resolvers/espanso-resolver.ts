@@ -1,6 +1,8 @@
 import { exec, execFile } from 'child_process'
+import { existsSync } from 'fs'
 import { promisify } from 'util'
 import { platform } from 'os'
+import path from 'path'
 
 const execAsync = promisify(exec)
 const execFileAsync = promisify(execFile)
@@ -19,16 +21,8 @@ export async function getEspansoEnvVars(): Promise<EspansoEnv | null> {
 		// WINDOWS STRATEGY
 		// ---------------------------------------------------------
 		if (isWin) {
-			const setCmd = 'where espanso'
-			const { stdout: whereOutput } = await execAsync(setCmd)
-			let binPath = whereOutput.trim().split(/\r?\n/)[0]
-
+			const binPath = await resolveWindowsEspansoBinaryPath()
 			if (!binPath) return null
-
-			// Your specific fix for the Windows .cmd vs executable issue
-			if (binPath.toLowerCase().endsWith('.cmd')) {
-				binPath = binPath.replace(/\.cmd$/i, 'd.exe')
-			}
 
 			const { stdout: pathOutput } = await execFileAsync(binPath, ['path'], {
 				encoding: 'utf-8',
@@ -53,6 +47,46 @@ export async function getEspansoEnvVars(): Promise<EspansoEnv | null> {
 		console.error('Failed to get Espanso vars:', error)
 		return null
 	}
+}
+
+async function resolveWindowsEspansoBinaryPath(): Promise<string | null> {
+	try {
+		const { stdout } = await execAsync('where espansod.exe')
+		const daemonPath = stdout.trim().split(/\r?\n/).find(Boolean)
+		if (daemonPath) return daemonPath
+	} catch {
+		// Fall back to resolving the regular espanso command.
+	}
+
+	try {
+		const { stdout } = await execAsync('where espanso')
+		const candidates = stdout
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter(Boolean)
+
+		for (const candidate of candidates) {
+			const normalized = candidate.toLowerCase()
+			if (normalized.endsWith('.exe')) {
+				return candidate
+			}
+
+			if (normalized.endsWith('espanso.cmd')) {
+				const siblingDaemon = path.join(path.dirname(candidate), 'espansod.exe')
+				if (existsSync(siblingDaemon)) return siblingDaemon
+				continue
+			}
+
+			if (path.extname(candidate) === '' && path.basename(normalized) === 'espanso') {
+				const siblingDaemon = path.join(path.dirname(candidate), 'espansod.exe')
+				if (existsSync(siblingDaemon)) return siblingDaemon
+			}
+		}
+	} catch {
+		return null
+	}
+
+	return null
 }
 
 function parseEspansoOutput(output: string): EspansoEnv {
