@@ -6,6 +6,7 @@ import { load as loadYaml } from 'js-yaml'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import defaultYamlForm from '../public/forms/empty.yml?raw'
+import { registerPersistenceHandlers } from './persistence.ts'
 import { parseEnvParams } from './resolvers/env-resolver.ts'
 import { getEspansoEnvVars } from './resolvers/espanso-resolver.ts'
 import {
@@ -13,11 +14,15 @@ import {
 	getFormFilePathReal, getTimingOption,
 	parseFormConfig,
 } from './resolvers/form-resolver.ts'
+import { cleanupSessionDir, initSessionIsolation } from './session.ts'
 import { jsonStringifySafe } from './utils'
 
 // --- Constants & Path Setup ---
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 process.env.APP_ROOT = path.join(__dirname, '..')
+
+// --- Per-instance session isolation ---
+initSessionIsolation()
 
 export const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron')
@@ -227,6 +232,8 @@ app.on('window-all-closed', () => {
 	}
 })
 
+app.on('will-quit', () => cleanupSessionDir())
+
 app.on('activate', () => {
 	if (BrowserWindow.getAllWindows().length === 0) {
 		// Re-trigger load if re-opening from Dock (macOS)
@@ -267,6 +274,8 @@ ipcMain.handle('read-file-from-path', async (_event, filePath: string) => {
 		throw error
 	}
 })
+
+registerPersistenceHandlers()
 
 ipcMain.on('result', (_event, result: string) => {
 	console.clear()

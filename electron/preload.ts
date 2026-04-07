@@ -1,5 +1,11 @@
 import { ipcRenderer, contextBridge } from 'electron'
 
+// Load persisted state synchronously before the renderer initializes stores.
+// This is a single one-time call; the main process reads from a shared JSON file
+// in userData, independent of the per-instance Chromium session directory.
+const initialPersistedState: Record<string, string> =
+	ipcRenderer.sendSync('get-persisted-state-sync')
+
 const electronAPI = {
 	on(...args: Parameters<typeof ipcRenderer.on>) {
 		const [channel, listener] = args
@@ -25,6 +31,11 @@ const electronAPI = {
 	getClipboardText: () => ipcRenderer.invoke('get-clipboard-text'),
 	readFileFromPath: (filePath: string) =>
 		ipcRenderer.invoke('read-file-from-path', filePath),
+
+	// Persistence
+	getInitialPersistedState: () => initialPersistedState,
+	setPersistedState: (key: string, value: string) =>
+		ipcRenderer.send('set-persisted-state', key, value),
 
 	// Shell operations
 	shellOpenPath: (filePath: string) =>
