@@ -42,6 +42,16 @@ You can change this location if needed, but the default works for most users.
 
 The application does **not** start automatically. You'll launch it through Espanso triggers instead.
 
+---
+
+## Alternative: Zip (no installer)
+
+Releases also include a **Windows zip** — the unpacked app, same layout as after installation, but **without** running setup.
+
+1. On the [Releases](https://github.com/lumetrium/espanso-dynamic-forms/releases) page, download the file named like **`Espanso Dynamic Forms-<version>-win.zip`** (not the `-Win-Setup.exe` installer).
+2. Extract the archive to a folder you control (for example under your user profile).
+3. In your Espanso match, use the **full path to `EDF.exe`** inside that folder as the first `args` entry for the script (plus `--form-config` as usual).
+
 ## What's Next?
 
 Now that Espanso Dynamic Forms is installed, you need to configure Espanso to use it.

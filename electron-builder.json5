@@ -23,6 +23,12 @@
 				"arch": [
 					"x64"
 				]
+			},
+			{
+				"target": "zip",
+				"arch": [
+					"x64"
+				]
 			}
 		],
 		"icon": "public/logos/edf-bg-rounded.ico",
@@ -36,9 +42,6 @@
 		"runAfterFinish": false,
 		"artifactName": "Espanso-Dynamic-Forms-Win-Setup.${ext}",
 		"include": "build/installer.nsh"
-	},
-	"portable": {
-		"artifactName": "Espanso-Dynamic-Forms-Win-Portable.${ext}"
 	},
 	"linux": {
 		"target": [
