@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Forms Library
 
-The Forms Library is a collection of ready-to-use form configurations bundled with Espanso Dynamic Forms. Use them as-is, customize them, or study them to learn how to build your own forms.
+Forms Library is a collection of ready-to-use form configurations bundled with Espanso Dynamic Forms. Use them as-is, customize them, or study them to learn how to build your own forms.
 
 ## What's Included
 
@@ -18,7 +18,7 @@ The library is organized into three sections:
 
 ## Using Library Forms
 
-All bundled forms are located in the `EDF_FORMS` directory, which you can reference using the `{{env.EDF_FORMS}}` variable in your Espanso triggers.
+Bundled forms live in `EDF_FORMS`; use `{{env.EDF_FORMS}}` in Espanso triggers to reference that path.
 
 ### Quick Start
 
@@ -60,8 +60,8 @@ matches:
 
 You can customize any library form by:
 
-1. **Copying the form file** to your own location
-2. **Editing the YAML** to match your needs
+1. **Copying form file** to your own location
+2. **Editing YAML** to match your needs
 3. **Updating your trigger** to point to your custom copy
 
 ```yml

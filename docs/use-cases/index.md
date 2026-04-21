@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Use Cases
 
-This page showcases common scenarios where Espanso Dynamic Forms excels. Each use case links to relevant forms from the [Library](../library/) and explains how to adapt them.
+This page showcases common scenarios where Espanso Dynamic Forms excels. Each use case links to relevant forms from [Library](../library/) and explains how to adapt them.
 
 ## AI Prompt Engineering
 
@@ -17,7 +17,7 @@ Get help with code for debugging, explaining, refactoring, or writing new code.
 **Recommended form:** [Code Assistance](../library/ready-made/code)
 
 **Why it works:**
-- Structured format helps AI understand the context
+- Structured format helps AI understand context
 - Task type selection generates appropriate prompts
 - File uploads provide complete code context
 - Requirements checkboxes set expectations
@@ -50,12 +50,12 @@ Compose thoughtful replies to messages, emails, or comments.
 
 ### Creating Forms with AI
 
-Use the Form Factory to describe what you need and have AI generate the configuration.
+Use Form Factory to describe what you need and have AI generate the configuration.
 
 **Recommended form:** [Form Factory](../library/factory/)
 
 **Workflow:**
-1. Trigger the Form Factory
+1. Trigger Form Factory
 2. Describe your form requirements
 3. Paste the output into an AI assistant
 4. Save the generated config to a `.yml` file
@@ -117,10 +117,10 @@ Generate repetitive code structures from templates.
 
 **Recommended form:** [Code Generator](../library/ready-made/codegen)
 
-**The pattern:**
+**Pattern:**
 1. Dynamic array for variable definitions
 2. Complex Liquid template with loops
-3. Output is ready-to-use code
+3. The output is ready-to-use code
 
 **Adaptation ideas:**
 - TypeScript interfaces
@@ -217,14 +217,14 @@ Browse [Boilerplate Snippets](../library/boilerplate/) for copy-paste starting p
 
 ### Modify Existing Forms
 
-1. Find a similar form in the [Ready-Made Forms](../library/ready-made/)
-2. Copy the YAML to your own file
+1. Find a similar form in [Ready-Made Forms](../library/ready-made/)
+2. Copy YAML to your own file
 3. Modify fields, layout, and template
 4. Create a trigger pointing to your file
 
-### Use the Form Factory
+### Form Factory
 
-For complex forms, describe your requirements in the [Form Factory](../library/factory/) and let AI generate the initial config.
+For complex forms, describe your requirements in [Form Factory](../library/factory/) and let AI generate the initial config.
 
 ## Tips for All Use Cases
 

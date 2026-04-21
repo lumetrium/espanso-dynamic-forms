@@ -139,7 +139,7 @@ options:
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `enabled` | boolean | `false` | Enable the recent files feature |
+| `enabled` | boolean | `false` | Enable recent files feature |
 | `maxItems` | number | `10` | Maximum number of files to store in history |
 | `namespace` | string | — | Share history between fields with the same namespace |
 | `historyKey` | string | — | Explicit storage key for complete control over history scope |

@@ -89,7 +89,7 @@ priority:
 ```
 
 ### Output Formatting
-The `upcase` filter converts the priority to uppercase in the output:
+The `upcase` filter converts priority to uppercase in output:
 
 ```yml
 template: |

@@ -20,14 +20,14 @@ Before starting, make sure you have:
 
 ### Step 1: Create an Espanso Trigger
 
-Add a trigger to your Espanso config file. The file location depends on your operating system:
+Add a trigger to your Espanso config file. File location depends on your operating system:
 
 | Platform | Config File Location |
 |----------|---------------------|
 | Windows | `%APPDATA%\espanso\match\base.yml` |
 | Linux | `~/.config/espanso/match/base.yml` |
 
-Open the file in a text editor and add this trigger configuration:
+Open your config file in a text editor and add this trigger configuration:
 
 ```yml
 matches:
@@ -51,11 +51,11 @@ matches:
 
 | Setting | Purpose                                                                 |
 |---------|-------------------------------------------------------------------------|
-| `trigger` | The text pattern that activates this form (`:demo`)                     |
-| `replace` | The template for output, uses the `{{output}}` variable from the script |
+| `trigger` | Text pattern that activates this form (`:demo`)                     |
+| `replace` | Template for output, uses `{{output}}` variable from script |
 | `force_mode: clipboard` | Required for multi-line output to paste correctly                       |
 | `type: script` | Tells Espanso to run an external program                                |
-| `args` | Command-line arguments: the executable path and the form config file    |
+| `args` | Command-line arguments: executable path and form config file    |
 
 > [!WARNING] Why `force_mode: clipboard`?
 > Without this setting, multi-line output may not insert correctly in all applications. Always include it for Espanso Dynamic Forms triggers.
@@ -67,26 +67,26 @@ matches:
 1. Open any application with a text field (text editor, browser, email client)
 2. Type `:demo` and wait for the form to appear
 3. Fill out the form fields
-4. Click the **Submit** button
-5. The formatted output appears at your cursor position
+4. Click **Submit** button
+5. Formatted output appears at your cursor position
 
 
 > [!TIP] Form not appearing?
 > - Make sure Espanso is running (check your system tray)
-> - Restart Espanso after editing the config file
-> - Check the executable path matches your installation location
+> - Restart Espanso after editing config file
+> - Check executable path matches your installation location
 
 ---
 
 ### Step 3: Create Your Own Form
 
-The real power of Espanso Dynamic Forms lies in creating custom forms tailored to your workflow. Let's create a simple one.
+Real power of Espanso Dynamic Forms lies in creating custom forms tailored to your workflow. Let's create a simple one.
 
 **1. Create a form config file**
 
 Create a new file anywhere on your system (e.g., `C:/forms/test.yml` on Windows or `~/forms/test.yml` on Linux).
 
-**2. Add this content to the file:**
+**2. Add this content to your file:**
 
 ```yml
 schema:
@@ -139,32 +139,32 @@ matches:
             - C:/forms/test.yml
 ```
 
-**Understanding the form config:**
+**Understanding form config:**
 
 | Section | What It Does |
 |---------|--------------|
-| `schema` | Defines the form fields and their types. Here we have a required text field (`subject`) and an optional dropdown (`priority`) with three choices. |
+| `schema` | Defines form fields and their types. Here we have a required text field (`subject`) and an optional dropdown (`priority`) with three choices. |
 | `uischema` | Controls how fields appear. `VerticalLayout` stacks them vertically, and each `Control` connects to a field defined in the schema. |
-| `data` | Sets default values. `{{clipboard}}` pre-fills the subject with your clipboard contents. |
-| `template` | Defines the output format using [Liquid syntax](../liquid/). The `upcase` filter converts priority to uppercase. |
+| `data` | Sets default values. `{{clipboard}}` pre-fills subject with your clipboard contents. |
+| `template` | Defines output format using [Liquid syntax](../liquid/). `upcase` filter converts priority to uppercase. |
 
 ### Troubleshooting
 
 If the form doesn't appear:
-1.  **Check Espanso Log:** In the Espanso menu, check "Log" for errors.
+1.  **Check Espanso Log:** In Espanso menu, check "Log" for errors.
 2.  **Debug via Terminal:** You can run the command manually in a terminal to see if it works outside Espanso. See [CLI Reference](../reference/cli) for details.
 
 ---
 
 ## How It Works Under the Hood
 
-Understanding the data flow can help you troubleshoot and build advanced workflows:
+Understanding data flow can help you troubleshoot and build advanced workflows:
 
 1.  **Trigger:** Espanso detects your keyword (e.g., `:demo`).
-2.  **Execute:** Espanso runs the `EspansoDynamicForms.exe` executable with the path to your form config.
-3.  **Render:** The app reads the `.yml` config, resolving any templated paths.
-4.  **Visualize:** The window opens, rendering the form controls defined in `schema` and `uischema`.
-5.  **Output:** When you click Submit, the app processes the `template` and prints the result to standard output (`stdout`).
+2.  **Execute:** Espanso runs `EspansoDynamicForms.exe` executable with the path to your form config.
+3.  **Render:** App reads `.yml` config, resolving any templated paths.
+4.  **Visualize:** Window opens, rendering form controls defined in `schema` and `uischema`.
+5.  **Output:** When you click Submit, the app processes `template` and prints the result to standard output (`stdout`).
 6.  **Capture:** Espanso captures this output and pastes it into your active application.
 
 ```mermaid

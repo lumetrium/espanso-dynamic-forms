@@ -22,13 +22,13 @@ Every control has this basic structure:
 |----------|----------|-------------|
 | `type` | Yes | Always `Control` |
 | `scope` | Yes | JSON Pointer to schema property |
-| `label` | No | Override the default label |
+| `label` | No | Override default label |
 | `options` | No | Control-specific configuration |
 | `rule` | No | Conditional visibility rule |
 
 ## Text Input
 
-The default control for `string` type fields.
+Default control for `string` type fields.
 
 ```yml
 # Schema
@@ -398,7 +398,7 @@ data:
       value: ""
 ```
 
-The `detail` option defines how each array item is rendered.
+`detail` option defines how each array item is rendered.
 
 ## Read-Only Control
 
@@ -435,4 +435,4 @@ Common Vuetify components:
 - `v-input` — Checkbox groups
 - `v-file-input` — File uploads
 
-See [Vuetify documentation](https://vuetifyjs.com/en/components/all/) for all available props.
+See the [Vuetify documentation](https://vuetifyjs.com/en/components/all/) for all available props.

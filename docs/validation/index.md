@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Validation
 
-Validation ensures users enter correct data before submitting the form. Espanso Dynamic Forms uses [JSON Schema](https://json-schema.org/) validation powered by [AJV](https://ajv.js.org/).
+Validation ensures users enter correct data before form submission. Espanso Dynamic Forms uses [JSON Schema](https://json-schema.org/) validation powered by [AJV](https://ajv.js.org/).
 
 ## How Validation Works
 

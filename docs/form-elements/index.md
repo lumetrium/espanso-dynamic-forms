@@ -11,7 +11,7 @@ Form elements are the building blocks of your forms. They come in two types:
 
 ## How Elements Work
 
-Every form has a [`schema`](../form-config/schema) that defines the data structure and a [`uischema`](../form-config/uischema) that defines how to display it.
+Every form has a [`schema`](../form-config/schema) that defines data structure and a [`uischema`](../form-config/uischema) that defines how to display it.
 
 ```yml
 schema:

@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Form Factory
 
-The Form Factory is an AI-powered form generator. Describe what you want, and it produces a prompt that, when given to an LLM, generates a complete form configuration that you can use directly or customize further.
+Form Factory is an AI-powered form generator. Describe what you want, and it produces a prompt that, when given to an LLM, generates a complete form configuration that you can use directly or customize further.
 
 **Source:** `factory.yml`
 
@@ -12,9 +12,9 @@ The Form Factory is an AI-powered form generator. Describe what you want, and it
 
 ## What It Does
 
-The Form Factory generates a structured prompt that you paste into an AI assistant (ChatGPT, Claude, Gemini, etc.). The AI returns a complete `schema`, `uischema`, `data`, and `template` configuration ready to use.
+Form Factory generates a structured prompt that you paste into an AI assistant (ChatGPT, Claude, Gemini, etc.). The AI returns a complete `schema`, `uischema`, `data`, and `template` configuration ready to use.
 
-This is the fastest way to create new forms, just describe your needs in plain language and let AI handle the JSON Schema details.
+This is the fastest way to create new forms, just describe your needs in plain language and let the AI handle JSON Schema details.
 
 > [!TIP] ✨ Recommended AI Models
 > Use **Claude Sonnet 4.5** or **Claude Opus 4.5** for best results. 
@@ -23,7 +23,7 @@ This is the fastest way to create new forms, just describe your needs in plain l
 
 ## How to Use It
 
-### Step 1: Trigger the Form Factory
+### Step 1: Trigger Form Factory
 
 ```yml
 matches:
@@ -42,19 +42,19 @@ matches:
 
 ### Step 2: Fill in the Form
 The only required field is **Description**. The more details you provide, the better the AI can generate a useful config.
-All other fields are optional but help refine the output.
+All other fields are optional but help refine output.
 
 
-### Step 3: Submit and Get the Prompt
-The form generates a detailed prompt with all your requirements and examples from the library for context.
+### Step 3: Submit and Get Prompt
+The form generates a detailed prompt with your requirements and library examples for context.
 
 ### Step 4: Paste into AI Assistant
 
-Paste the prompt into your AI assistant. It will generate a complete YAML configuration.
+Paste that prompt into your AI assistant. It will generate a complete YAML configuration.
 
 ### Step 5: Save and Use
 
-Copy the AI's output to a `.yml` file and reference it in your Espanso trigger.
+Copy AI's output to a `.yml` file and reference it in your Espanso trigger.
 
 ## Form Factory Options
 
@@ -93,7 +93,7 @@ Copy the AI's output to a `.yml` file and reference it in your Espanso trigger.
 
 | Field | Description |
 |-------|-------------|
-| **Example Files** | Upload existing configs as reference for the AI |
+| **Example Files** | Upload existing configs as reference for AI |
 | **Emit Comments** | Include explanatory comments in generated config |
 | **Include i18n** | Generate translation support |
 | **Supported Languages** | Which languages to include in i18n |
@@ -121,7 +121,7 @@ Include a file upload for screenshots.
 Generate a GitHub issue format with markdown headers and code blocks for steps.
 ```
 
-The AI will generate a complete configuration with:
+AI will generate a complete configuration with:
 - Required title and severity fields
 - Textarea fields for steps, expected, and actual behavior
 - File upload for screenshots
@@ -154,7 +154,7 @@ Upload similar form configs from the library to give the AI context on syntax an
 
 ## Included Example Files
 
-The Form Factory pre-loads these example configs for the AI to reference:
+Form Factory pre-loads these example configs for AI to reference:
 
 - `reply.yml` — Tabs, arrays, conditional output
 - `code.yml` — Complex multi-tab, many field types
@@ -165,11 +165,11 @@ The Form Factory pre-loads these example configs for the AI to reference:
 
 ## Form Configuration Reference
 
-The complete `factory.yml` configuration is 431 lines. Key sections:
+Complete `factory.yml` configuration is 431 lines. Key sections:
 
 ### Dynamic Tab Limit
 
-The "Max Tabs" slider only appears for multi-tab layouts:
+"Max Tabs" slider only appears for multi-tab layouts:
 
 ```yml
 - type: Control
@@ -186,7 +186,7 @@ The "Max Tabs" slider only appears for multi-tab layouts:
 
 ### Conditional Text Field
 
-The paste-config field hides when a file is uploaded:
+Paste-config field hides when a file is uploaded:
 
 ```yml
 - type: Control
@@ -202,7 +202,7 @@ The paste-config field hides when a file is uploaded:
 
 ### Template with Embedded Files
 
-The template includes full file contents for context:
+Template includes full file contents for context:
 
 `````yml
 {% for file in exampleFiles %}

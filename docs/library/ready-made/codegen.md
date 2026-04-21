@@ -21,7 +21,7 @@ This form generates C# EventArgs class code based on user-defined properties. It
 
 ## Use Case
 
-When you need to create C# event argument classes, use this form to quickly generate the boilerplate code with proper constructor and readonly fields.
+When you need to create C# event argument classes, use this form to quickly generate boilerplate code with proper constructor and readonly fields.
 
 **Example output:**
 ```csharp

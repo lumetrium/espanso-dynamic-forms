@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Compare to Espanso Forms
 
-Espanso has its own [built-in forms feature](https://espanso.org/docs/matches/forms). This page explains the differences and helps you decide which to use.
+Espanso has its own [built-in forms feature](https://espanso.org/docs/matches/forms). This page explains differences and helps you decide which to use.
 
 > [!Note] TL;DR
 > Use built-in Espanso forms for simple input (1-3 basic fields). Use Espanso Dynamic Forms when you need validation, complex layouts, file uploads, or Liquid templating.

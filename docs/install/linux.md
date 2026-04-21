@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Install on Linux
 
-Espanso Dynamic Forms offers two installation methods for Linux. Choose the one that best fits your distribution.
+Espanso Dynamic Forms offers two installation methods for Linux. Choose one that best fits your distribution.
 
 | Method | Best For | Pros |
 |--------|----------|------|
@@ -12,9 +12,9 @@ Espanso Dynamic Forms offers two installation methods for Linux. Choose the one 
 | `.AppImage` | Any Linux distribution | Universal, no installation required, portable |
 
 
-## Option 1: Using the .deb Package
+## Option 1: Using a .deb Package
 
-This method is recommended for Debian-based distributions. The package installs the executable to `/usr/bin/edf`.
+This method is recommended for Debian-based distributions. This package installs the executable to `/usr/bin/edf`.
 
 ### Download
 
@@ -29,7 +29,7 @@ wget https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download
 
 ### Install
 
-Run the following command to install:
+Run this command to install:
 
 ```bash
 sudo apt install ./Espanso-Dynamic-Forms-Linux.deb
@@ -37,7 +37,7 @@ sudo apt install ./Espanso-Dynamic-Forms-Linux.deb
 
 ### Verify Installation
 
-Confirm the installation succeeded:
+Confirm installation succeeded:
 
 ```bash
 which edf
@@ -45,7 +45,7 @@ which edf
 
 This should output `/usr/bin/edf`. If you see this path, you're ready to continue.
 
-## Option 2: Using the .AppImage
+## Option 2: Using an AppImage
 
 AppImages are portable executables that work on most Linux distributions without installation.
 
@@ -59,22 +59,22 @@ wget https://github.com/lumetrium/espanso-dynamic-forms/releases/latest/download
 
 ### Make It Executable
 
-Before you can run the AppImage, you need to make it executable:
+Before you can run this AppImage, you need to make it executable:
 
 ```bash
 chmod +x Espanso-Dynamic-Forms-Linux.AppImage
 ```
 
-### Run the Application
+### Run
 
-You can now run the application directly:
+You can now run it directly:
 
 ```bash
 ./Espanso-Dynamic-Forms-Linux.AppImage --help
 ```
 
 > [!Note] Optional: Move to a Permanent Location
-> For easier access, move the AppImage to a location in your PATH:
+> For easier access, move your AppImage to a location in your PATH:
 > ```bash
 > mkdir -p ~/.local/bin
 > mv Espanso-Dynamic-Forms-Linux.AppImage ~/.local/bin/edf
@@ -83,5 +83,5 @@ You can now run the application directly:
 
 ## What's Next?
 
-The application does **not** start automatically. Espanso Dynamic Forms is designed to be launched by Espanso triggers.
+Espanso Dynamic Forms does **not** start automatically. It is designed to be launched by Espanso triggers.
 Follow the [Getting Started](../getting-started/) guide to create your first trigger and test your installation.

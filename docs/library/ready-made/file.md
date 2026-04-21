@@ -21,7 +21,7 @@ This form shows how to handle file uploads in Espanso Dynamic Forms. It demonstr
 
 ## Use Case
 
-Extract content from files, process multiple files, or include file contents in your output. Useful for code review, file listings, or any file-based workflow.
+Extract content from files, process multiple files, or include the file contents in your output. Useful for code review, file listings, or any file-based workflow.
 
 **Example output:**
 `````

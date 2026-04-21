@@ -18,10 +18,10 @@ features:
     details: Learn how to set up Espanso Dynamic Forms and create your first form
     link: /getting-started
   - title: JSON Forms
-    details: Schema is based on JSON Forms open-source library
+    details: The schema is based on the JSON Forms open-source library
     link: /json-forms
   - title: Liquid Templating
-    details: Templating is powered by the Liquid template language
+    details: Templating is powered by Liquid template language
     link: /liquid
   - title: Form Config
     details: In-depth docs on how to create your own forms using YAML config files
@@ -30,7 +30,7 @@ features:
     details: Collection of ready-made and boilerplate forms created by the community
     link: /library
   - title: Compare to Espanso Forms
-    details: See how Espanso Dynamic Forms compares to the built-in forms in Espanso
+    details: See how Espanso Dynamic Forms compares to built-in forms in Espanso
     link: /compare-to-espanso-forms
   - title: Reference
     details: CLI arguments, architecture details, and verification

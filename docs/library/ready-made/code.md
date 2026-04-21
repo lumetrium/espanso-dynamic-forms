@@ -14,7 +14,7 @@ A comprehensive form for getting help with code from AI assistants. Supports dif
 
 ## What It Does
 
-This form helps developers structure their code-related questions for AI assistants. It captures the code, context, and requirements in a format that produces better AI responses. It demonstrates:
+This form helps developers structure their code-related questions for AI assistants. It captures code, context, and requirements in a format that produces better AI responses. It demonstrates:
 
 - Three-tab categorization layout
 - Radio buttons with many options
@@ -77,7 +77,7 @@ The component crashes when the API returns an empty response.
 
 ## Form Configuration (Summary)
 
-The full configuration is 340 lines. Here are the key sections:
+Full configuration is 340 lines. Here are key sections:
 
 ### Schema Highlights
 
@@ -159,7 +159,7 @@ options:
 ```
 
 ### File Uploads for Context
-Upload related files to include their contents in the prompt:
+Upload related files to include their contents in prompt:
 
 ```yml
 contextFiles:
@@ -182,7 +182,7 @@ requirements:
 ```
 
 ### Dynamic Custom Arrays
-Add your own requirements beyond the predefined ones:
+Add your own requirements beyond predefined ones:
 
 ```yml
 customRequirements:
@@ -210,8 +210,8 @@ matches:
 
 ## Customization Ideas
 
-- Add your commonly used languages to the enum list
+- Add your commonly used languages to enum lists
 - Add project-specific frameworks
-- Customize the default requirements for your team's coding standards
+- Customize default requirements for your team's coding standards
 - Add a "complexity" field to specify expected code complexity
 - Include your team's style guide as a default context

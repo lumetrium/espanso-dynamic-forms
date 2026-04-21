@@ -18,7 +18,7 @@ This form lets you quickly select problem-solving methodology instructions to pa
 
 ## Use Case
 
-When you're debugging and want the AI to follow a systematic approach—e.g., reflect on possible causes before jumping to a fix, or add logs to validate hypotheses before implementing.
+When you're debugging and want AI to follow a systematic approach—e.g., reflect on possible causes before jumping to a fix, or add logs to validate hypotheses before implementing.
 
 **Example output:**
 ```

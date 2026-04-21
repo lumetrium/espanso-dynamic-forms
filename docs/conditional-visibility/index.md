@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Conditional Visibility
 
-Conditional visibility lets you show, hide, enable, or disable form elements based on the values of other fields. This creates dynamic forms that adapt to user input.
+Conditional visibility lets you show, hide, enable, or disable form elements based on values of other fields. This creates dynamic forms that adapt to user input.
 
 ## How It Works
 
@@ -36,9 +36,9 @@ rule:
 
 | Property | Description |
 |----------|-------------|
-| `effect` | What happens when condition is true |
+| `effect` | What happens when the condition is true |
 | `condition.scope` | Field to evaluate |
-| `condition.schema` | JSON Schema the field must match |
+| `condition.schema` | JSON Schema that field must match |
 
 ## Effects
 
@@ -51,7 +51,7 @@ rule:
 
 ## Condition Schemas
 
-The `condition.schema` property supports standard JSON Schema validation keywords.
+`condition.schema` supports standard JSON Schema validation keywords.
 
 ### Supported Keywords
 
@@ -60,7 +60,7 @@ The `condition.schema` property supports standard JSON Schema validation keyword
 | `const` | Matches exact value | Checkboxes, exact enum matches |
 | `enum` | Matches one of several values | Multi-option fields |
 | `minLength` | Minimum string length | Check if text input has content |
-| `minProperties` | Min object properties | Check if file is uploaded |
+| `minProperties` | Min object properties | Check if a file is uploaded |
 | `minimum` | Minimum number value | Range checks |
 | `maximum` | Maximum number value | Range checks |
 | `pattern` | Regex pattern | Complex string matching |
@@ -68,7 +68,7 @@ The `condition.schema` property supports standard JSON Schema validation keyword
 
 ### Match Exact Value
 
-Show when field equals a specific value:
+Show when the field equals a specific value:
 
 ```yml
 condition:
@@ -79,7 +79,7 @@ condition:
 
 ### Match Any of Multiple Values
 
-Show when field is one of several values:
+Show when the field is one of several values:
 
 ```yml
 condition:
@@ -92,7 +92,7 @@ condition:
 
 ### Match Boolean True
 
-Show when checkbox is checked:
+Show when the checkbox is checked:
 
 ```yml
 condition:
@@ -115,7 +115,7 @@ condition:
 
 ### Match Non-Empty String
 
-Show when text field has content:
+Show when the text field has content:
 
 ```yml
 condition:
@@ -220,7 +220,7 @@ uischema:
 
 ### Hide When File Uploaded
 
-From the Form Factory, hide text input when file is uploaded:
+From the Form Factory, hide the text input when a file is uploaded:
 
 ```yml
 - type: Control
@@ -274,7 +274,7 @@ Apply rules to entire layout sections:
 
 ## Real-World Example: i18n Toggle
 
-From the Form Factory, show language selection only when i18n is enabled:
+From the Form Factory, show the language selection only when i18n is enabled:
 
 ```yml
 schema:
@@ -317,11 +317,11 @@ data:
 2. **Use HIDE for mutual exclusion** — When only one of several options applies
 3. **Use ENABLE/DISABLE for dependent fields** — Keep visible but inactive until prerequisites are met
 4. **Apply rules to layouts** — Hide/show entire sections at once
-5. **Test both states** — Verify behavior when condition is true AND false
+5. **Test both states** — Verify behavior when the condition is true AND false
 
 ## Limitations
 
 - Rules evaluate immediately as fields change
 - You cannot create complex AND/OR logic with a single rule
 - Nested conditions are not directly supported
-- For complex logic, consider using multiple fields or restructuring the form
+- For complex logic, consider using multiple fields or restructuring your form

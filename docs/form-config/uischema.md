@@ -4,14 +4,14 @@ outline: [1, 4]
 
 # uischema
 
-The `uischema` section controls how your form looks: the layout, styling, and behavior of each field. While [`schema`](./schema) defines *what* fields exist, `uischema` defines *how* they appear.
+The `uischema` section controls how your form looks: layout, styling, and behavior of each field. While [`schema`](./schema) defines *what* fields exist, `uischema` defines *how* they appear.
 
 > [!WARNING] Required Section
-> Every form config must include a `uischema`. Without it, fields won't render.
+> Every form config must include a `uischema`. Without it, the fields won't render.
 
 ## How It Works
 
-The UI Schema is a tree structure where you arrange your fields using [layouts](../form-elements/layouts) and [controls](../form-elements/controls):
+UI Schema is a tree structure where you arrange your fields using [layouts](../form-elements/layouts) and [controls](../form-elements/controls):
 
 - **Layouts** organize fields visually (vertical stacking, horizontal rows, or tabs)
 - **Controls** connect to schema properties and render as input fields
@@ -115,14 +115,14 @@ uischema:
 ## Control Elements
 
 Control elements bind [`schema`](./schema.md) properties to input components. 
-They are the leaf nodes in the UI Schema tree.
+They are leaf nodes in the UI Schema tree.
 
 ### Control Properties
 
 |Property|Type|Required|Description|
 |---|---|---|---|
 |`type`|string|Yes|Must be `"Control"`|
-|`scope`|string|Yes|JSON pointer to the schema property (e.g., `"#/properties/fieldName"`)|
+|`scope`|string|Yes|JSON pointer to schema property (e.g., `"#/properties/fieldName"`)|
 |`label`|string|No|Display label for the field (overrides schema title)|
 |`options`|object|No|Control-specific configuration|
 |`rule`|object|No|Conditional visibility rule|
@@ -249,7 +249,7 @@ options:
 
 ## Rules and Conditional Visibility
 
-Rules control when elements are visible or enabled based on the values of other form fields. The rule system uses JSON Schema for condition matching.
+Rules control when elements are visible or enabled based on values of other form fields. The rule system uses JSON Schema for condition matching.
 There's a dedicated [Conditional Visibility](../conditional-visibility/) guide for more details.
 
 
@@ -274,21 +274,21 @@ There's a dedicated [Conditional Visibility](../conditional-visibility/) guide f
 |---|---|---|---|
 |`effect`|string|Yes|Action to take: `SHOW`, `HIDE`, `ENABLE`, `DISABLE`|
 |`condition`|object|Yes|Condition specification|
-|`condition.scope`|string|Yes|JSON pointer to the property to check|
-|`condition.schema`|object|Yes|JSON Schema that the property value must match|
+|`condition.scope`|string|Yes|JSON pointer to property to check|
+|`condition.schema`|object|Yes|JSON Schema that property value must match|
 
 ### Rule Effects
 
 |Effect|Description|
 |---|---|
-|`SHOW`|Show the element when condition is true, hide otherwise|
-|`HIDE`|Hide the element when condition is true, show otherwise|
-|`ENABLE`|Enable the element when condition is true, disable otherwise|
-|`DISABLE`|Disable the element when condition is true, enable otherwise|
+|`SHOW`|Show element when condition is true, hide otherwise|
+|`HIDE`|Hide element when condition is true, show otherwise|
+|`ENABLE`|Enable element when condition is true, disable otherwise|
+|`DISABLE`|Disable element when condition is true, enable otherwise|
 
 ### Condition Schemas
 
-The `condition.schema` uses standard JSON Schema syntax:
+`condition.schema` uses standard JSON Schema syntax:
 
 ```yml
 # Show if field equals specific value

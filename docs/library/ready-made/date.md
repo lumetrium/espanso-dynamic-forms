@@ -12,7 +12,7 @@ A simple form demonstrating date input with custom formatting and Liquid date fi
 
 ## What It Does
 
-This form shows how to create a date picker field and format the output using Liquid date filters. It demonstrates:
+This form shows how to create a date picker field and format output using Liquid date filters. It demonstrates:
 
 - Date type field with `format: date`
 - Custom display and save formats
@@ -97,7 +97,7 @@ template: |
 | `%H` | 14 | Hour (00-23) |
 | `%M` | 30 | Minute (00-59) |
 
-See the [Liquid date filter documentation](https://shopify.github.io/liquid/filters/date/) for all options.
+See [Liquid date filter documentation](https://shopify.github.io/liquid/filters/date/) for all options.
 
 
 ## Espanso Trigger

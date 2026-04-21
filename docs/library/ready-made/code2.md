@@ -75,7 +75,7 @@ The form is organized into four tabs:
 
 ## Form Configuration (Summary)
 
-Here are the key sections:
+Here are key sections:
 
 ### Schema Highlights
 
@@ -183,7 +183,7 @@ Optional details and requirements are hidden by default and enabled via toggles:
 
 ### Clipboard Integration
 
-The first code field auto-populates with clipboard contents:
+The first code field auto-populates with the clipboard contents:
 
 ```yml
 data:
@@ -223,7 +223,7 @@ matches:
 ## Customization Ideas
 
 - Reduce the number of question/code pairs if you typically need fewer
-- Add more languages or frameworks to the enum lists
-- Customize the default requirements for your team's coding standards
+- Add more languages or frameworks to enum lists
+- Customize default requirements for your team's coding standards
 - Pre-populate language and framework based on your most common stack
 - Add custom sections like "related documentation" or "previous attempts"

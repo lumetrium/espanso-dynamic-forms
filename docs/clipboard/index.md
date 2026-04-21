@@ -4,14 +4,14 @@ outline: [1, 4]
 
 # Clipboard
 
-Espanso Dynamic Forms reads your system clipboard when the form opens and makes its contents available via the `{{clipboard}}` variable. This lets you pre-fill fields or include copied text in your output.
+Espanso Dynamic Forms reads your system clipboard when a form opens and makes its contents available via `{{clipboard}}`. This lets you pre-fill fields or include copied text in your output.
 
-> [!NOTE] Clipboard is read once
+> [!NOTE] The clipboard is read once
 > The clipboard is captured when the form first opens. If you copy new text while the form is open, `{{clipboard}}` still contains the original value.
 
 ## Using Clipboard in Forms
 
-You can use `{{clipboard}}` in both the `data` and `template` sections of your form config.
+You can use `{{clipboard}}` in both `data` and `template` sections of your form config.
 
 ### Pre-filling Form Fields
 
@@ -37,19 +37,19 @@ template: |
   
 ```
 
-In this example, the `myAwesomeFormField` field is pre-populated 
-with the current contents of the system clipboard.
+In this example, `myAwesomeFormField` is pre-populated 
+with the current system clipboard contents.
 
 When the form is displayed, you will see whatever text was in your 
-clipboard as the default input.
+clipboard as default input.
 
 In the `template` section, the clipboard contents are also inserted
 directly into the output.
 
 ### Using Clipboard in Espanso Triggers
 
-You can also reference the `{{clipboard}}` variable in your Espanso trigger
-when launching Espanso Dynamic Forms inside the `--form-config` argument, like so:
+You can also reference `{{clipboard}}` in your Espanso trigger
+when launching Espanso Dynamic Forms inside `--form-config`, like so:
 
 ```yml
 matches:
@@ -66,9 +66,9 @@ matches:
             - \{\{clipboard}}
 ```
 
-The example above assumes your clipboard contains the path to your form config file.
+This example assumes your clipboard contains the path to your form config file.
 In the real world, you'd likely want to check for certain 
-keywords inside the clipboard using [Liquid conditionals](../liquid/#tags),
+keywords in the clipboard using [Liquid conditionals](../liquid/#tags),
 and then build the form config path based on that, for example:
 
 ```yml
@@ -96,8 +96,8 @@ matches:
 ```
 
 ## Conclusion
-The `{{clipboard}}` variable in Espanso Dynamic Forms allows you to easily
-access and utilize the contents of the system clipboard in your forms and templates,
+`{{clipboard}}` in Espanso Dynamic Forms lets you easily
+access and use the system clipboard contents in forms and templates,
 enabling dynamic and context-aware form generation based on clipboard data.
 
 Remember that the clipboard is only read on launch, so if you change the clipboard contents

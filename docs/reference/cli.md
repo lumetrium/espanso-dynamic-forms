@@ -52,12 +52,12 @@ If not provided, checks the `SHOW_TIMING` environment variable. Defaults to `ski
 Espanso Dynamic Forms works by communicating via standard input/output (stdio).
 
 1. **Trigger:** Espanso detects a trigger (e.g., `:form`).
-2. **Execution:** Espanso runs the command defined in the `replace` block (usually a wrapper script or the executable directly).
+2. **Execution:** Espanso runs the command defined in the `replace` block (usually a wrapper script or executable directly).
 3. **Form Load:** The application launches, reads `--form-config`, and renders the form.
 4. **User Interaction:** You fill out the form and click "Submit".
-5. **Output:** The application prints the rendered result to `stdout` (Standard Output).
+5. **Output:** Application prints rendered result to `stdout` (Standard Output).
 6. **Capture:** Espanso captures this output.
-7. **Replacement:** Espanso pastes the captured text into your active application.
+7. **Replacement:** Espanso pastes captured text into your active application.
 
 ### Debugging with Stdout
 
@@ -67,4 +67,4 @@ Because the app outputs to `stdout`, you can test forms in your terminal without
 & "C:/Program Files/Espanso Dynamic Forms/EDF.exe" --form-config "{{env.EDF_FORMS}}/demo.yml"
 ```
 
-When you submit the form, the result will print directly to your terminal console.
+When you submit the form, the result prints directly to your terminal console.

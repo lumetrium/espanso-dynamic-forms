@@ -4,12 +4,12 @@ outline: [1, 4]
 
 # template
 
-The `template` section defines what text gets inserted when you submit the form. It uses the [Liquid template language](../liquid/) to transform your form data into formatted output.
+The `template` section defines what text gets inserted when you submit the form. It uses [Liquid template language](../liquid/) to transform your form data into formatted output.
 
 Every field from your [`schema`](./schema) becomes a variable you can use in the template.
 
 > [!WARNING] Required Section
-> Every form config must include a `template`. This is the output of your form.
+> Every form config must include a `template`. This is the output from your form.
 
 
 ## Basic Structure
@@ -30,7 +30,7 @@ The `|` after `template:` enables multi-line text. Each line becomes part of you
 
 ## Using Filters
 
-Filters transform values before inserting them. Apply filters with the pipe symbol `|`:
+Filters transform values before inserting them. Apply filters with pipe symbol `|`:
 
 ```yml
 template: |
@@ -53,7 +53,7 @@ template: |
 See all filters here: https://liquidjs.com/filters/overview.html
 
 ![template-demo.avif](https://media.lumetrium.com/edf/template/template-demo.avif)
-*Form config on the left, anime girl in the middle, and generated output on the right*
+*Form config on the left, generated output on the right*
 
 ## Conditionals
 

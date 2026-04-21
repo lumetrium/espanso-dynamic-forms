@@ -12,14 +12,14 @@ You can use static values (like `"Hello"` or `42`) or dynamic tokens that are ev
 > If you skip this section, fields start empty or with their schema-defined defaults.
 
 ![data-defaults.avif](https://media.lumetrium.com/edf/data/data-defaults.avif)
-*Form fields initialized with static values and dynamic tokens from the `data` section*
+*Form fields initialized with static values and dynamic tokens from `data`*
 
 ## Variable Precedence
 
 When determining the initial value of a field, Espanso Dynamic Forms follows this order of precedence (highest to lowest):
 
 1.  **Data Section**: Values defined in `data` (including those resolved from `{{tokens}}`).
-2.  **Schema Defaults**: Values defined by the `default` keyword in the `schema`.
+2.  **Schema Defaults**: Values defined by `default` keyword in `schema`.
 
 If a field is not present in `data` and has no `default` in `schema`, it starts empty (null/undefined).
 
@@ -37,7 +37,7 @@ data:
 
 ## Static Default Values
 
-Static defaults are literal values assigned to form fields. They match the data types defined in the [`schema`](./schema).
+Static defaults are literal values assigned to form fields. They match data types defined in [`schema`](./schema).
 
 |Data Type|Example Default Value|
 |---|---|
@@ -62,11 +62,11 @@ data:
 ## Special Token System
 
 Special tokens are dynamic expressions enclosed in double curly braces `{{ }}` that are evaluated at form initialization. 
-Espanso Dynamic Forms processes these tokens using the [Liquid template engine](../liquid/) before the form renders.
+Espanso Dynamic Forms processes these tokens using [Liquid template engine](../liquid/) before the form renders.
 
 ### Clipboard Token
 
-The `{{clipboard}}` token inserts the current system clipboard text content as the default value for a field:
+`{{clipboard}}` inserts the current system clipboard text content as the default value for a field:
 
 ```yml
 data:
@@ -75,7 +75,7 @@ data:
 ```
 
 ### Environment Variable Tokens
-The <code v-pre>{{env.VARIABLE_NAME}}</code> token accesses environment variables passed to the application via CLI arguments or system environment:
+<code v-pre>{{env.VARIABLE_NAME}}</code> accesses environment variables passed to the application via CLI arguments or the system environment:
 
 ```yml
 data:
@@ -87,7 +87,7 @@ data:
 ### Date and Time Tokens
 
 Date tokens use Liquid's `date` filter to format timestamps. 
-The special value `'now'` represents the current date/time.
+Special value `'now'` represents the current date/time.
 
 #### Current Date/Time
 
@@ -194,7 +194,7 @@ projectInfo: "User john_doe working on MyProject at 14:30"
 
 ### Missing Environment Variables
 
-If an environment variable doesn't exist, Liquid renders the token as an empty string:
+If an environment variable doesn't exist, Liquid renders that token as an empty string:
 
 ```yml
 data:

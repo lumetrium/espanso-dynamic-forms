@@ -6,8 +6,8 @@ outline: [1, 4]
 
 Espanso Dynamic Forms uses [LiquidJS](https://liquidjs.com/tutorials/intro-to-liquid.html) to process templates. Liquid is a simple yet powerful templating language originally created by Shopify.
 
-You'll use Liquid syntax in two sections of the form config:
-- **[`template`](../form-config/template)** – to format the final output
+You'll use Liquid syntax in the two sections of the form config:
+- **[`template`](../form-config/template)** – to format final output
 - **[`data`](../form-config/data)** – To set dynamic default values
 
 You can also use Liquid in the `--form-config` path to dynamically select which form to load.
@@ -16,7 +16,7 @@ You can also use Liquid in the `--form-config` path to dynamically select which 
 ## Example
 
 Let's define simple form with a single text input field called `myAwesomeFormField`.
-When you submit the form, the `template` will be rendered,
+When you submit the form, `template` will be rendered,
 using the value entered in `myAwesomeFormField`:
 
 ```yaml
@@ -39,7 +39,7 @@ template: |
 	It's uppercase now: {{ myAwesomeFormField | upcase }}
 ```
 
-Let's say you entered "*Hello world*" in the form field, the output would be:
+Let's say you entered "*Hello world*" in the form field; the output would be:
 
 ```text
 You entered: Hello world
@@ -70,7 +70,7 @@ You can also access additional built-in objects like [`{{env}}`](../env/) for en
 
 ### Tags
 
-Tags control the logic and flow of the template. 
+Tags control logic and flow within templates. 
 They are enclosed in `{% %}`. For example:
 
 ```liquid
@@ -87,7 +87,7 @@ There are various tags available in Liquid, such as `if`, `for`, `case`, and mor
 Object represent the output variables and data. They are enclosed in `{{ }}`.
 Objects can be simple values or more complex data structures.
 
-For example, we can use the `env` object that's provided to all
+For example, we can use an `env` object that's provided to all
 templates by Espanso Dynamic Forms:
 
 ```liquid
@@ -98,7 +98,7 @@ templates by Espanso Dynamic Forms:
 > Learn more about them on the [Environment variables](../env/) page.
 
 ### Filters
-Filter modify the output of objects. They are applied using the pipe symbol `|`.
+Filter modify the output of objects. They are applied using pipe symbol `|`.
 For example:
 
 ```liquid
@@ -132,7 +132,7 @@ Espanso Dynamic Forms provides these additional filters beyond standard Liquid:
 | `url_decode` | URL-decode a string | `{{ encoded \| url_decode }}` |
 | `render_template` | Render a template string with context | `{{ template \| render_template: file }}` |
 
-### The `render_template` Filter
+### `render_template` Filter
 
 This filter lets you render a Liquid template stored in a variable:
 
@@ -142,7 +142,7 @@ This filter lets you render a Liquid template stored in a variable:
 {% endfor %}
 ```
 
-The context object (`file` in this case) becomes available inside the template. This is useful for dynamic templates like in the [Files form](../library/ready-made/files).
+The context object (`file` in this case) becomes available inside the templates. This is useful for dynamic templates like in [Files form](../library/ready-made/files).
 
 
 ## Debugging Templates
@@ -165,12 +165,12 @@ To see all available form data:
 </pre>
 ```
 > [!note] Built-in `self` variable
-> The `self` variable refers to the root data object in LiquidJS
+> `self` variable refers to the root data object in LiquidJS
 
 
 ### Common Errors
 
-- **Missing output:** Check if the variable name matches the schema property exactly (case-sensitive).
+- **Missing output:** Check if variable name matches schema property exactly (case-sensitive).
 - **Whitespace issues:** Use `{%-` and `-%}` to strip whitespace from control tags.
 - **Unexpected values:** Use `{{ variable | json }}` to check if you're getting a string, number, or array.
 

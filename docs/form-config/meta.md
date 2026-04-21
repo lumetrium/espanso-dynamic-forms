@@ -43,14 +43,14 @@ meta:
 
 ## Properties
 
-Complete list of available properties in the `meta` section:
+Complete list of available properties in `meta`:
 
 |Property|Type|Description|Default Value|
 |---|---|---|---|
-|`name`|`string`|Name of the form|-|
-|`description`|`string`|Description of the form|-|
-|`version`|`string`|Version of the form|-|
-|`author`|`string`|Author of the form|-|
+|`name`|`string`|Name of form|-|
+|`description`|`string`|Description of form|-|
+|`version`|`string`|Version of form|-|
+|`author`|`string`|Author of form|-|
 
 ### Window Configuration
 
@@ -74,7 +74,7 @@ Properties under `meta.hotkeys`.
 
 |Property|Type|Description|Default Value|
 |---|---|---|---|
-|`submit`|`string`|Hotkey to submit the form|`ctrl+enter`|
-|`reset`|`string`|Hotkey to reset the form|-|
-|`close`|`string`|Hotkey to close the form|-|
+|`submit`|`string`|Hotkey to submit form|`ctrl+enter`|
+|`reset`|`string`|Hotkey to reset form|-|
+|`close`|`string`|Hotkey to close form|-|
 

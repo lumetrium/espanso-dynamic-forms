@@ -22,7 +22,7 @@ This form helps you compose professional follow-up emails by collecting key info
 
 ## Use Case
 
-Use this form after meetings, calls, or conversations when you need to send a quick follow-up email. Copy the subject or topic to your clipboard, trigger the form, and get a formatted email draft.
+Use this form after meetings, calls, or conversations when you need to send a quick follow-up email. Copy subject or topic to your clipboard, trigger the form, and get a formatted email draft.
 
 **Example output:**
 ```
@@ -128,7 +128,7 @@ meta:
 ```
 
 ### Radio Buttons
-The priority field renders as inline radio buttons instead of a dropdown:
+Priority field renders as inline radio buttons instead of a dropdown:
 
 ```yml
 - type: Control
@@ -138,7 +138,7 @@ The priority field renders as inline radio buttons instead of a dropdown:
 ```
 
 ### Required Fields
-All three fields are marked as required—the form won't submit until they're filled:
+All three fields are marked as required—form won't submit until they're filled:
 
 ```yml
 required:
@@ -167,7 +167,7 @@ matches:
 
 ## Customization Ideas
 
-- Change the signature from "Me" to your actual name using `{{env.USERNAME}}`
+- Change signature from "Me" to your actual name using `{{env.USERNAME}}`
 - Add a `tone` dropdown (Formal, Casual, Friendly)
 - Add a `cc` field for additional recipients
 - Include a longer message body textarea

@@ -24,7 +24,7 @@ schema:
     # list of required field names (optional)
 ```
 
-Each property you define in `properties` becomes a form field. You'll reference these same names in the [`uischema`](./uischema) to control how they appear, in [`data`](./data) to set defaults, and in [`template`](./template) to format output.
+Each property you define in `properties` becomes a form field. You'll reference these same names in [`uischema`](./uischema) to control how they appear, in [`data`](./data) to set defaults, and in [`template`](./template) to format output.
 
 ## Example Schema
 
@@ -67,10 +67,10 @@ Choose the right type for each field—it determines how the field looks, what i
 | `object` | Grouped fields or special controls | File metadata, nested structures |
 
 ![schema-types.avif](https://media.lumetrium.com/edf/schema/schema-types.avif)
-*The exact representation depends on additional keywords and [`uischema`](./uischema)*
+*Exact representation depends on additional keywords and [`uischema`](./uischema)*
 
 > [!NOTE] Full Type Reference
-> For all JSON Schema types and options, see the [AJV JSON Schema documentation](https://ajv.js.org/json-schema.html#json-data-type).
+> For all JSON Schema types and options, see [AJV JSON Schema documentation](https://ajv.js.org/json-schema.html#json-data-type).
 
 ### String Fields
 
@@ -119,9 +119,9 @@ properties:
 
 ## Enum-Based Selection Controls
 
-Enums define the options for selection controls. 
-The presentation (dropdown, radio buttons, or checkboxes) is controlled 
-by the [UI schema](./uischema), but the allowed values are defined in the schema:
+Enums define options for selection controls. 
+Presentation (dropdown, radio buttons, or checkboxes) is controlled 
+by [UI schema](./uischema), but allowed values are defined in the schema:
 
 ### String Enum (Single Selection)
 This creates a set of mutually exclusive options. 
@@ -141,7 +141,7 @@ properties:
 
 
 ### Array Enum (Multiple Selection)
-This enables multi-select controls (typically checkboxes). The `uniqueItems: true` constraint prevents duplicate selections:
+This enables multi-select controls (typically checkboxes). `uniqueItems: true` prevents duplicate selections:
 
 ```yml
 properties:
@@ -175,7 +175,7 @@ properties:
 
 
 ### Formats
-The format keyword provides semantic meaning to field types, enabling specialized UI controls and validation:
+The `format` keyword provides semantic meaning to field types, enabling specialized UI controls and validation:
 
 |Format|Description|Rendered Control|Example|
 |---|---|---|---|
@@ -271,7 +271,7 @@ properties:
       type: string
 ```
 
-This creates two controls: checkboxes for predefined options and a text input array for custom additions. The `template` can merge them using Liquid: 
+This creates two controls: checkboxes for predefined options and a text input array for custom additions. `template` can merge them using Liquid: 
 ```liquid
 {% assign allRequirements = requirements | concat: customRequirements %}
 ```
@@ -280,8 +280,8 @@ This creates two controls: checkboxes for predefined options and a text input ar
 
 
 ### File Uploads
-Espanso Dynamic Forms also defines custom renderer for the `object` and `array` field types when they are combined with `format: file`.
-This form config renders a file picker and outputs text content of the selected file on submit:
+Espanso Dynamic Forms also defines a custom renderer for `object` and `array` field types when they are combined with `format: file`.
+This form config renders a file picker and outputs the text content of the selected file on submit:
 
 ```yml
 schema:
@@ -303,7 +303,7 @@ template: {{ myFileFormField.text }}
 
 ## Validation
 
-Validation is handled by [Ajv JSON schema validator](https://ajv.js.org), which supports a wide range of validation keywords. 
+Validation is handled by the [Ajv JSON schema validator](https://ajv.js.org), which supports a wide range of validation keywords. 
 
 Some commonly used validation keywords include:
 

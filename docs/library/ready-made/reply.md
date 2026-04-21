@@ -12,7 +12,7 @@ A form for crafting thoughtful replies to messages, emails, posts, or comments w
 
 ## What It Does
 
-This form helps you compose replies by capturing the original content, your draft response, and style preferences. It's designed to work with AI assistants by formatting a structured prompt. It demonstrates:
+This form helps you compose replies by capturing original content, your draft response, and style preferences. It's designed to work with AI assistants by formatting a structured prompt. It demonstrates:
 
 - Tabbed interface with three categories (Content, Style, Convo)
 - Inline radio buttons for content type
@@ -227,7 +227,7 @@ styleGuidelines:
 ```
 
 ### Custom Guidelines
-Add your own guidelines beyond the predefined options:
+Add your own guidelines beyond predefined options:
 
 ```yml
 customGuidelines:
@@ -237,7 +237,7 @@ customGuidelines:
 ```
 
 ### Merged Guidelines in Template
-The template combines both `styleGuidelines` and `customGuidelines`, filtering out empty entries:
+Template combines both `styleGuidelines` and `customGuidelines`, filtering out empty entries:
 
 ```liquid
 {% assign allGuidelines = styleGuidelines | concat: customGuidelines %}
@@ -245,7 +245,7 @@ The template combines both `styleGuidelines` and `customGuidelines`, filtering o
 ```
 
 ### Conditional Template Sections
-The template only includes sections that have content:
+Template only includes sections that have content:
 
 ```yml
 {% if draft %}
@@ -277,4 +277,4 @@ matches:
 - Add a "tone" dropdown (professional, friendly, assertive)
 - Include a maximum length preference
 - Add a language selector for replies in different languages
-- Expand the predefined style guidelines enum with more options
+- Expand predefined style guidelines enum with more options

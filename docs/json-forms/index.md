@@ -32,7 +32,7 @@ flowchart LR
 In your form config file, you define a `schema` that describes the structure of the data you want to collect, and a `uischema` that defines how the form should be rendered.
 You can also provide `data` to pre-fill the form with existing values.
 
-When the form is rendered, JSON Forms generates the appropriate input fields based on the `schema` and `uischema` definitions.
+When a form is rendered, JSON Forms generates appropriate input fields based on `schema` and `uischema` definitions.
 
 Here is a simple form config example:
 
@@ -64,15 +64,15 @@ data:
   age: 30
 ```
 
-In this example, the `schema` defines an object with two properties: `firstName` (a required string with a minimum length of 2) and `age` (an optional integer with a minimum value of 0).
+In this example, `schema` defines an object with two properties: `firstName` (a required string with a minimum length of 2) and `age` (an optional integer with a minimum value of 0).
 
-The `uischema` specifies a vertical layout with two controls for the `firstName` and `age` properties, each with a corresponding label.
+`uischema` specifies a vertical layout with two controls for the `firstName` and `age` properties, each with a corresponding label.
 
-When the form is rendered, it will display input fields for "First Name" and "Age", pre-filled with the values "John" and "30", respectively.
+When the form is rendered, it will display input fields for "First Name" and "Age", pre-filled with values "John" and "30", respectively.
 
 > [!Note]
 > This is a simplified form config that does not include the required top-level `template` property. 
-> In a real config, you would also need to define a `template` to specify how the collected data should be formatted when the form is submitted.
+> In a real config, you would also need to define a `template` to specify how collected data should be formatted when the form is submitted.
 > More on that later in the [Form Config](../form-config/) section.
 
 ## Forms Elements
@@ -80,7 +80,7 @@ JSON Forms provides a variety of built-in form elements (controls and layouts) t
 These include standard input types like text fields, checkboxes, radio buttons, dropdowns, and more complex elements like arrays and objects.
 
 Espanso Dynamic Forms also includes some custom renderers to provide additional functionality.
-To learn more about the available form elements, check out the [Form Elements](../form-elements/) page.
+To learn more about available form elements, check out the [Form Elements](../form-elements/) page.
 
 ## UI Framework
 JSON Forms provides its own rendering engine which supports multiple UI frameworks for rendering forms.
@@ -88,10 +88,10 @@ Espanso Dynamic Forms uses [Vuetify 3](https://vuetifyjs.com/en/components/all/)
 
 
 ## Official Resources and Examples
-- [JSON Schema specification](https://json-schema.org/specification) – The official **JSON Schema** documentation
-- [JSON Forms documentation](https://jsonforms.io/docs/) – The official **JSON Forms** documentation
-- [JSON Forms examples](https://jsonforms.io/examples/basic) – The official demo showcasing various features of JSON Forms
-- [JSON Forms Vuetify examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) – Examples specifically using the Vuetify renderer. Examples there use Vuetify 2, but all the same concepts still apply to Vuetify 3.
+- [JSON Schema specification](https://json-schema.org/specification) – Official **JSON Schema** documentation
+- [JSON Forms documentation](https://jsonforms.io/docs/) – Official **JSON Forms** documentation
+- [JSON Forms examples](https://jsonforms.io/examples/basic) – Official demo showcasing various features of JSON Forms
+- [JSON Forms Vuetify examples](https://jsonforms-vuetify-renderers.netlify.app/#/example/main) – Examples specifically using the Vuetify renderer. The examples there use Vuetify 2, but all the same concepts still apply to Vuetify 3.
 
 ## Further Reading
 

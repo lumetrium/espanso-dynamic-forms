@@ -317,7 +317,7 @@ See [Conditional Visibility](../conditional-visibility/) for more on rules.
 
 ## Best Practices
 
-1. **Use VerticalLayout as the root** — It provides the best default spacing
+1. **Use VerticalLayout as root** — It provides best default spacing
 2. **Wrap Category contents in VerticalLayout** — For consistent padding
 3. **Group related fields horizontally** — Name parts, address components
 4. **Keep tab count reasonable** — 2-5 tabs is ideal

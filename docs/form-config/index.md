@@ -4,7 +4,7 @@ outline: [1, 4]
 
 # Form Config
 
-A form config file defines everything about your form: what fields it has, how they look, what default values they contain, and how the output is formatted.
+A form config file defines everything about your form: what fields it has, how they look, what default values they contain, and how output is formatted.
 
 You write form configs in **YAML** or **JSON** format and pass them to Espanso Dynamic Forms using the `--form-config` command-line argument. See [Getting Started](../getting-started/) for setup instructions.
 
@@ -16,7 +16,7 @@ Every form config file can have up to **six sections**. Three are required for t
 |---------|----------|-------------------------------------------------------------------------------------------------|
 | [`schema`](./schema) | ✅ Yes | Defines form fields, their types, and validation rules. Based on [JSON Schema](../json-forms/). |
 | [`uischema`](./uischema) | ✅ Yes | Controls layout and appearance – how fields are arranged and styled.                            |
-| [`template`](./template) | ✅ Yes | Defines the output format using [Liquid](../liquid/) templating.                                |
+| [`template`](./template) | ✅ Yes | Defines output format using [Liquid](../liquid/) templating.                                |
 | [`data`](./data) | ❌ No | Sets default values for form fields. Supports dynamic tokens like `{{clipboard}}`.              |
 | [`meta`](./meta) | ❌ No | Window properties (title, size, position) and form metadata (name, version).                    |
 | [`i18n`](./i18n) | ❌ No | Translations for multi-language support.                                                        |
@@ -149,7 +149,7 @@ This form:
 
 ## Ready-Made Forms
 
-Browse the [Forms Library](../library/) for pre-built form configs you can use as starting points for your own forms.
+Browse [Forms Library](../library/) for pre-built form configs you can use as starting points for your own forms.
 
 
 ## Learn More
